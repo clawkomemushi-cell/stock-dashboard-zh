@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台股觀察站｜交易紀錄</title>
+  <link rel="stylesheet" href="./assets/style.css?v=20260323e" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar card page-hero">
+      <div>
+        <p class="eyebrow">TRADE CENTER</p>
+        <h1>交易紀錄 / 操作中心</h1>
+        <p class="hero-copy">這頁專門放你的買賣紀錄，不跟市場頁混在一起。你可以在這裡新增操作、看今天紀錄、看目前同步到雲端的資料，讓網站其他頁面在更新時能讀到你的實際操作。</p>
+      </div>
+      <div class="hero-meta compact-meta">
+        <div>
+          <span class="label">頁面用途</span>
+          <strong>紀錄你的操作</strong>
+        </div>
+        <div>
+          <span class="label">資料模式</span>
+          <strong>本機 + 雲端同步</strong>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav card" id="siteNav"></nav>
+
+    <main>
+      <section class="summary-grid">
+        <article class="card highlight">
+          <span class="label">今天這頁是拿來做什麼的</span>
+          <h2>先把買賣理由記下來，再來談反省與提醒</h2>
+          <p class="hero-copy">你每次交易都不只是「買了什麼」，而是還要留下當時理由。這樣之後我才能把你的實際操作，和日報、今日股市、股票學習那些內容連起來看。</p>
+          <div class="chips">
+            <span class="chip">記錄買進 / 賣出</span>
+            <span class="chip">同步雲端</span>
+            <span class="chip">供其他頁更新時讀取</span>
+          </div>
+        </article>
+        <article class="card stat-list" id="tradeCenterStats"></article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head"><h3>新增一筆操作</h3></div>
+          <div class="trade-form">
+            <select id="tradeAction"><option value="buy">買進</option><option value="sell">賣出</option></select>
+            <input id="tradeSymbol" placeholder="代號，例如 0050 / 2330" />
+            <input id="tradeName" placeholder="名稱（可不填）" />
+            <input id="tradePrice" type="number" step="0.01" placeholder="價格" />
+            <select id="tradeUnit"><option value="odd">零股</option><option value="lot">張</option></select>
+            <input id="tradeQty" type="number" step="1" placeholder="數量" />
+            <textarea id="tradeNote" placeholder="這筆為什麼買 / 賣？例如：高股息承接、想先小量試單、覺得漲多先減碼... "></textarea>
+          </div>
+          <div class="trade-actions">
+            <button class="mini-btn" id="saveTradeBtn">儲存這筆操作</button>
+            <button class="mini-btn" id="clearTradeBtn">清空今天本機紀錄</button>
+          </div>
+          <div id="tradeStatus" class="comparison-panel" style="margin-top:12px"></div>
+        </article>
+        <article class="card">
+          <div class="section-head"><h3>同步設定</h3></div>
+          <div id="syncPanel" class="comparison-panel"></div>
+        </article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head"><h3>今天的本機紀錄</h3><span id="localTradeCount" class="badge">0</span></div>
+          <div id="localTradeLog" class="trade-log"></div>
+        </article>
+        <article class="card">
+          <div class="section-head"><h3>雲端同步後資料</h3><span id="remoteTradeCount" class="badge">0</span></div>
+          <div id="remoteTradeStatus" class="comparison-panel"></div>
+          <div id="remoteTradeLog" class="trade-log"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="./assets/site.js?v=20260323e"></script>
+  <script>
+    const TODAY = '2026-03-23';
+    const webhookKey = 'mi-chong-trade-webhook-url';
+    const webhookSecretKey = 'mi-chong-trade-webhook-secret';
+    const tradeStorageKey = () => `mi-chong-trades-${TODAY}`;
+    const unitLabel = unit => unit === 'lot' ? '張' : '零股';
+    const makeTradeId = () => `trade_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+    function normalizeEvent(raw){
+      const item = raw || {};
+      return {
+        ...item,
+        tradeId: item.tradeId || item.id || item.createdAt || item.savedAt || `${item.symbol || 'trade'}-${item.date || TODAY}`
+      };
+    }
+
+    function buildEffectiveTrades(items){
+      const events = (Array.isArray(items) ? items : []).map(normalizeEvent);
+      let clearedAt = '';
+      const deletedIds = new Set();
+      for (const item of events) {
+        if (item.eventType === 'clear_all') {
+          const ts = String(item.createdAt || item.savedAt || '');
+          if (ts > clearedAt) clearedAt = ts;
+        }
+      }
+      for (const item of events) {
+        if (item.eventType === 'delete_trade' && item.targetTradeId) {
+          deletedIds.add(String(item.targetTradeId));
+        }
+      }
+      return events.filter(item => {
+        if (item.eventType) return false;
+        const ts = String(item.createdAt || item.savedAt || '');
+        if (clearedAt && ts <= clearedAt) return false;
+        if (deletedIds.has(String(item.tradeId))) return false;
+        return true;
+      }).sort((a, b) => String(b.createdAt || b.savedAt || '').localeCompare(String(a.createdAt || a.savedAt || '')));
+    }
+
+    function getWebhookUrl(){ return localStorage.getItem(webhookKey)||''; }
+    function getWebhookSecret(){ return localStorage.getItem(webhookSecretKey)||''; }
+    function getDefaultWebhookUrl(){ return 'https://script.google.com/macros/s/AKfycbyOwan3t9B6Jo4xlhVR6Iq0Hp39DfRDIztxRUbddpQTYbcStQ9wG7WVzS7Kcl4QhtBXHQ/exec'; }
+    function setWebhookUrl(url){ if(url){ localStorage.setItem(webhookKey,url); } else { localStorage.removeItem(webhookKey); } }
+    function setWebhookSecret(secret){ if(secret){ localStorage.setItem(webhookSecretKey,secret); } else { localStorage.removeItem(webhookSecretKey); } }
+    function getTrades(){ try { return JSON.parse(localStorage.getItem(tradeStorageKey())||'[]'); } catch { return []; } }
+    function setTrades(items){ localStorage.setItem(tradeStorageKey(), JSON.stringify(items)); }
+    function applyInitLinkIfPresent(){
+      const raw = window.location.hash ? window.location.hash.slice(1) : '';
+      if(!raw) return false;
+      const params = new URLSearchParams(raw);
+      const webhook = params.get('webhook');
+      const secret = params.get('secret');
+      const clear = params.get('clear');
+      let changed = false;
+      if(clear === '1'){
+        setWebhookUrl('');
+        setWebhookSecret('');
+        changed = true;
+      }
+      if(webhook){ setWebhookUrl(webhook); changed = true; }
+      if(secret){ setWebhookSecret(secret); changed = true; }
+      if(changed){
+        history.replaceState(null, '', window.location.pathname);
+      }
+      return changed;
+    }
+
+    async function sendTradeToWebhook(payload){
+      const url=getWebhookUrl();
+      const secret=getWebhookSecret();
+      if(!url) return {ok:false, reason:'no-webhook'};
+      if(!secret) return {ok:false, reason:'no-secret'};
+      const target = `${url}?secret=${encodeURIComponent(secret)}`;
+      const res = await fetch(target,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+      const raw = await res.text();
+      try { return JSON.parse(raw); } catch { return {ok:res.ok, raw}; }
+    }
+
+    async function fetchRemoteTrades(){
+      const url = getWebhookUrl();
+      const secret = getWebhookSecret();
+      if(!url) return {ok:false, reason:'no-webhook'};
+      if(!secret) return {ok:false, reason:'no-secret'};
+      const res = await fetch(`${url}?secret=${encodeURIComponent(secret)}`, { method:'GET' });
+      const raw = await res.text();
+      try { return JSON.parse(raw); } catch { return {ok:false, raw}; }
+    }
+
+    function renderStats(){
+      const localCount = getTrades().length;
+      document.getElementById('tradeCenterStats').innerHTML = [
+        ['今天日期', TODAY],
+        ['本機紀錄', `${localCount} 筆`],
+        ['同步模式', getWebhookUrl() ? '已設定' : '未設定'],
+        ['目的', '留操作理由']
+      ].map(([label, value]) => `<div class="stat"><span class="label">${label}</span><span class="value">${value}</span></div>`).join('');
+    }
+
+    function renderSyncPanel(){
+      const url=getWebhookUrl(); const secret=getWebhookSecret();
+      document.getElementById('syncPanel').innerHTML = `<div class="compare-item"><strong>目前同步狀態</strong><br>${url ? `已設定 webhook：<code>${url}</code>` : '尚未設定 webhook。'}<br>${secret ? '已設定同步密鑰。' : '尚未設定同步密鑰。'}<br><br>公開網址預設不會自動帶入這兩個值；只有你的專屬初始化連結才會寫進這台裝置。</div><div class="trade-actions"><button class="mini-btn" id="setWebhookBtn">設定 / 更換 webhook</button><button class="mini-btn" id="setSecretBtn">設定 / 更換密鑰</button><button class="mini-btn" id="refreshRemoteBtn">重新讀取雲端</button><button class="mini-btn" id="clearSyncBtn">清除本機同步設定</button></div>`;
+      document.getElementById('setWebhookBtn').onclick = () => { const next = prompt('請輸入 webhook URL', getWebhookUrl() || getDefaultWebhookUrl()); if(next!==null){ setWebhookUrl(next.trim()); renderSyncPanel(); renderStats(); }};
+      document.getElementById('setSecretBtn').onclick = () => { const next = prompt('請輸入同步密鑰', getWebhookSecret()); if(next!==null){ setWebhookSecret(next.trim()); renderSyncPanel(); renderStats(); }};
+      document.getElementById('refreshRemoteBtn').onclick = refreshRemoteTrades;
+      document.getElementById('clearSyncBtn').onclick = () => { setWebhookUrl(''); setWebhookSecret(''); renderSyncPanel(); renderStats(); refreshRemoteTrades(); };
+    }
+
+    async function pushDeleteEvent(tradeId){
+      if(!tradeId) return {ok:false, reason:'no-trade-id'};
+      return sendTradeToWebhook({ eventType:'delete_trade', targetTradeId: tradeId, createdAt: new Date().toISOString(), date: TODAY });
+    }
+
+    async function pushClearEvent(){
+      return sendTradeToWebhook({ eventType:'clear_all', createdAt: new Date().toISOString(), date: TODAY });
+    }
+
+    function renderLocalTrades(){
+      const items = getTrades();
+      document.getElementById('localTradeCount').textContent = items.length;
+      document.getElementById('localTradeLog').innerHTML = items.length ? items.map((item,idx)=>`<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>交易單位：${unitLabel(item.unit)}｜數量：${item.qty||'未填'}${item.price?`｜價格：${item.price}`:''}<br>理由：${item.note||'未填'}<br><button class="mini-btn" onclick="removeTrade(${idx})">刪除這筆</button></div>`).join('') : '<div class="trade-item">今天本機還沒有紀錄。</div>';
+      renderStats();
+    }
+
+
+    async function removeTrade(idx){ const items=getTrades(); const [removed]=items.splice(idx,1); setTrades(items); renderLocalTrades(); document.getElementById('tradeStatus').innerHTML = '<div class="compare-item"><strong>同步結果</strong><br>本機已刪除，正在同步雲端刪除事件…</div>'; try { const result = await pushDeleteEvent(removed && removed.tradeId); document.getElementById('tradeStatus').innerHTML = `<div class="compare-item"><strong>同步結果</strong><br>${result && result.ok ? '已同步刪除事件，雲端列表會隱藏這筆。' : '本機已刪除，但雲端刪除事件未成功送出。'}</div>`; refreshRemoteTrades(); } catch(err){ document.getElementById('tradeStatus').innerHTML = `<div class="compare-item"><strong>同步結果</strong><br>${err.message}</div>`; } }
+    window.removeTrade = removeTrade;
+
+    async function refreshRemoteTrades(){
+      const mount = document.getElementById('remoteTradeStatus');
+      mount.innerHTML = '<div class="compare-item">正在讀取雲端資料…</div>';
+      try {
+        const result = await fetchRemoteTrades();
+        if(result && result.ok){
+          const items = buildEffectiveTrades(result.items || []);
+          document.getElementById('remoteTradeCount').textContent = items.length;
+          document.getElementById('remoteTradeLog').innerHTML = items.length ? items.map(item => `<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>${item.date||'未填'}｜${unitLabel(item.unit)} ${item.qty||'未填'}${item.price?`｜價格 ${item.price}`:''}<br>理由：${item.note||'未填'}</div>`).join('') : '<div class="trade-item">雲端目前沒有有效資料。</div>';
+          mount.innerHTML = `<div class="compare-item"><strong>雲端同步</strong><br>已讀取並整理成 ${items.length} 筆目前有效資料。</div>`;
+        } else {
+          document.getElementById('remoteTradeCount').textContent = '0';
+          document.getElementById('remoteTradeLog').innerHTML = '<div class="trade-item">目前沒有成功讀到雲端資料。</div>';
+          mount.innerHTML = `<div class="compare-item"><strong>雲端同步</strong><br>${result.reason === 'no-webhook' ? '尚未設定 webhook。' : result.reason === 'no-secret' ? '尚未設定同步密鑰。' : '讀取失敗。'}</div>`;
+        }
+      } catch(err){
+        document.getElementById('remoteTradeCount').textContent = '0';
+        document.getElementById('remoteTradeLog').innerHTML = '<div class="trade-item">讀取雲端資料時發生錯誤。</div>';
+        mount.innerHTML = `<div class="compare-item"><strong>雲端同步</strong><br>${err.message}</div>`;
+      }
+    }
+
+    async function saveTrade(){
+      const payload = {
+        tradeId: makeTradeId(),
+        date: TODAY,
+        action: document.getElementById('tradeAction').value,
+        symbol: document.getElementById('tradeSymbol').value.trim(),
+        name: document.getElementById('tradeName').value.trim(),
+        price: document.getElementById('tradePrice').value.trim(),
+        unit: document.getElementById('tradeUnit').value,
+        qty: document.getElementById('tradeQty').value.trim(),
+        note: document.getElementById('tradeNote').value.trim(),
+        createdAt: new Date().toISOString()
+      };
+      if(!payload.symbol){ alert('至少要填代號喔'); return; }
+      const items = getTrades(); items.unshift(payload); setTrades(items); renderLocalTrades();
+      document.getElementById('tradeStatus').innerHTML = '<div class="compare-item">本機已儲存，正在嘗試同步雲端…</div>';
+      try {
+        const result = await sendTradeToWebhook(payload);
+        document.getElementById('tradeStatus').innerHTML = `<div class="compare-item"><strong>同步結果</strong><br>${result && result.ok ? '已同步成功。' : '本機已存，但雲端未成功同步。'}</div>`;
+        refreshRemoteTrades();
+      } catch(err){
+        document.getElementById('tradeStatus').innerHTML = `<div class="compare-item"><strong>同步結果</strong><br>${err.message}</div>`;
+      }
+      ['tradeSymbol','tradeName','tradePrice','tradeQty','tradeNote'].forEach(id => document.getElementById(id).value='');
+      document.getElementById('tradeUnit').value='odd';
+    }
+
+    async function clearLocalTrades(){ localStorage.removeItem(tradeStorageKey()); renderLocalTrades(); document.getElementById('tradeStatus').innerHTML = '<div class="compare-item"><strong>同步結果</strong><br>本機已清空，正在同步雲端清空事件…</div>'; try { const result = await pushClearEvent(); document.getElementById('tradeStatus').innerHTML = `<div class="compare-item"><strong>同步結果</strong><br>${result && result.ok ? '已同步清空事件，雲端列表會清成空白狀態。' : '本機已清空，但雲端清空事件未成功送出。'}</div>`; refreshRemoteTrades(); } catch(err){ document.getElementById('tradeStatus').innerHTML = `<div class="compare-item"><strong>同步結果</strong><br>${err.message}</div>`; } }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applyInitLinkIfPresent();
+      renderSiteNav('交易紀錄');
+      renderStats();
+      renderSyncPanel();
+      renderLocalTrades();
+      refreshRemoteTrades();
+      document.getElementById('saveTradeBtn').addEventListener('click', saveTrade);
+      document.getElementById('clearTradeBtn').addEventListener('click', clearLocalTrades);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "latestDate": "2026-03-23",
+  "slots": [
+    "morning",
+    "noon",
+    "evening"
+  ],
+  "files": [
+    {
+      "date": "2026-03-23",
+      "slot": "morning",
+      "path": "./entries/2026-03-23-morning.json"
+    },
+    {
+      "date": "2026-03-23",
+      "slot": "noon",
+      "path": "./entries/2026-03-23-noon.json"
+    },
+    {
+      "date": "2026-03-23",
+      "slot": "evening",
+      "path": "./entries/2026-03-23-evening.json"
+    },
+    {
+      "date": "2026-03-22",
+      "slot": "evening",
+      "path": "./entries/2026-03-22-evening.json"
+    }
+  ]
+}

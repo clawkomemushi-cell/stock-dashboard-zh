@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台股新手觀察站</title>
+  <style>
+:root { --bg:#080b12; --panel:#111723; --panel-soft:#161d2b; --text:#ebf1ff; --muted:#92a0bc; --line:rgba(255,255,255,.08); --green:#3ddc97; --red:#ff6b81; --yellow:#f8c75d; --blue:#78a6ff; --shadow:0 18px 60px rgba(0,0,0,.35);} *{box-sizing:border-box} body{margin:0;font-family:Inter,"Noto Sans TC",system-ui,sans-serif;background:radial-gradient(circle at top,#131b2b 0%,var(--bg) 55%);color:var(--text)} .app-shell{width:min(1200px,calc(100vw - 24px));margin:0 auto;padding:20px 0 48px}.hero,.summary-grid,.grid-two,.grid-three,.grid-single{display:grid;gap:16px;align-items:stretch}.grid-two>*,.grid-three>*,.grid-single>*{min-width:0}.card,.signal-card,.compare-item,.trade-item{width:100%}.stack-col{display:grid;gap:16px;align-content:start}.hero{grid-template-columns:2fr 1fr;align-items:stretch;margin-bottom:18px}.summary-grid,.grid-two{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:16px}.grid-three{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:16px}.grid-single{grid-template-columns:1fr;margin-bottom:16px}.card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0)),var(--panel);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:18px}.highlight{min-height:220px}.eyebrow,.label{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:12px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(30px,5vw,42px);margin-bottom:8px}.hero-copy{color:#cad5ef;max-width:60ch;line-height:1.7}.hero-meta{display:grid;gap:14px}.hero-meta strong{display:block;font-size:20px;margin-top:4px}.chips,.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chip,.badge,.rating,.budget-tag,.trend-tag{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:var(--panel-soft);border:1px solid var(--line);color:#dfe8ff;font-size:13px}.badge{min-width:40px;justify-content:center}.rating.good{border-color:rgba(61,220,151,.35);color:#bff4db}.rating.mid{border-color:rgba(248,199,93,.35);color:#ffe8a8}.rating.low{border-color:rgba(255,107,129,.35);color:#ffc0ca}.budget-tag.ok{border-color:rgba(120,166,255,.35);color:#c8dbff}.trend-tag{border-color:rgba(120,166,255,.35);color:#c8dbff}.stat-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.stat{background:var(--panel-soft);border:1px solid var(--line);border-radius:16px;padding:14px}.stat .value{display:block;margin-top:6px;font-size:24px;font-weight:700}.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}.controls label{display:block;margin-bottom:6px;color:var(--muted);font-size:14px}select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#0e1420;color:var(--text);font:inherit}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.signal-list{display:grid;gap:12px}.signal-card{background:var(--panel-soft);border:1px solid var(--line);border-radius:16px;padding:14px}.signal-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}.signal-top h4{margin:0 0 4px 0;font-size:18px}.signal-meta{color:var(--muted);font-size:13px}.signal-card p{line-height:1.65;margin:0 0 10px 0;color:#dce6ff}.signal-card .note{color:#c7d5f7}.comparison-panel{display:grid;gap:10px;min-width:0}.trade-form{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:14px}.trade-form textarea,.trade-form input,.trade-form select{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#0e1420;color:var(--text);font:inherit}.trade-form textarea{grid-column:1/-1;min-height:84px;resize:vertical}.trade-actions{display:flex;gap:10px;flex-wrap:wrap}.trade-actions button{width:auto;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,#1b2840,#10263c);color:var(--text);cursor:pointer}.trade-actions button:hover{filter:brightness(1.08)}.trade-log{display:grid;gap:10px;margin-top:10px}.trade-split{display:grid;grid-template-columns:1fr;gap:16px}.holdings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.holding-item{background:var(--panel-soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px;line-height:1.7}.sync-url{display:block;max-width:100%;overflow-wrap:anywhere;word-break:break-word;white-space:normal}.remote-sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.subcard-title{margin:0 0 10px 0;font-size:16px;color:#dfe8ff}@media (max-width:860px){.trade-split,.holdings-grid{grid-template-columns:1fr}}.trade-item{background:var(--panel-soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px;line-height:1.6}.mini-btn{width:auto;padding:10px 14px}.compare-item{background:var(--panel-soft);border:1px solid var(--line);border-radius:14px;padding:14px;line-height:1.7}.compare-item strong{color:#fff}.pos{color:var(--green)}.neg{color:var(--red)}.neu{color:var(--yellow)} @media (max-width:860px){.hero,.summary-grid,.grid-two,.grid-three,.grid-single,.controls,.stat-list,.trade-form,.remote-sections,.holdings-grid{grid-template-columns:1fr}.section-head{align-items:flex-start}.app-shell{width:min(100vw - 16px,100%)}.card{padding:16px;border-radius:16px}}
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">FOR 米蟲</p>
+        <h1>台股新手觀察站</h1>
+        <p class="hero-copy">這頁是專門幫你看台股用的。重點不是塞很多術語，而是用比較白話的方式告訴你：今天我為什麼注意這些 ETF / 個股、依照你的預算比較適合怎麼做，還有我自己對未來趨勢的判斷有沒有失準。</p>
+      </div>
+      <div class="hero-meta card">
+        <div><span class="label">資料日期</span><strong id="currentDate">--</strong></div>
+        <div><span class="label">歷史筆數</span><strong id="historyCount">--</strong></div>
+        <div><span class="label">你的配置重點</span><strong>ETF 優先，預算保守分批</strong></div>
+      </div>
+    </header>
+    <main>
+      <section class="summary-grid">
+        <article class="card highlight"><span class="label">今天一句話</span><h2 id="marketHeadline">載入中...</h2><p id="marketSummary"></p><div class="chips" id="marketTags"></div></article>
+        <article class="card stat-list" id="metrics"></article>
+      </section>
+      <section class="card controls">
+        <div><label for="dateSelect">切換日期</label><select id="dateSelect"></select></div>
+        <div><label for="compareSelect">拿來比較的日期</label><select id="compareSelect"></select></div>
+      </section>
+      <section class="grid-two signal-columns">
+        <div class="stack-col">
+          <article class="card"><div class="section-head"><h3>今天我注意的 ETF</h3><span id="etfCount" class="badge">0</span></div><div id="etfList" class="signal-list"></div></article>
+        </div>
+        <div class="stack-col">
+          <article class="card"><div class="section-head"><h3>今天我注意的個股</h3><span id="stockCount" class="badge">0</span></div><div id="stockList" class="signal-list"></div></article>
+          <article class="card"><div class="section-head"><h3>跟前一天比有什麼變化</h3></div><div id="comparisonPanel" class="comparison-panel"></div></article>
+        </div>
+      </section>
+      <section class="grid-three">
+        <article class="card"><div class="section-head"><h3>依照你的預算，比較能考慮的 ETF</h3></div><div id="budgetEtfPanel" class="comparison-panel"></div></article>
+        <article class="card"><div class="section-head"><h3>依照你的預算，比較能考慮的個股</h3></div><div id="budgetStockPanel" class="comparison-panel"></div></article>
+        <article class="card"><div class="section-head"><h3>今天你比較適合怎麼做</h3></div><div id="actionPanel" class="comparison-panel"></div></article>
+      </section>
+      <section class="grid-single">
+        <article class="card">
+          <div class="section-head"><h3>今天的買賣操作</h3><span class="badge" id="tradeCount">0</span></div>
+          <div class="trade-form">
+            <select id="tradeAction"><option value="buy">買進</option><option value="sell">賣出</option></select>
+            <input id="tradeSymbol" placeholder="代號，例如 0050 / 2330" />
+            <input id="tradeName" placeholder="名稱（可不填）" />
+            <input id="tradePrice" type="number" step="0.01" placeholder="價格" />
+            <select id="tradeUnit"><option value="odd">零股</option><option value="lot">張</option></select>
+            <input id="tradeQty" type="number" step="1" placeholder="數量" />
+            <textarea id="tradeNote" placeholder="你今天為什麼買 / 賣？例如：分批進場、先停利、覺得太高先跑、測試小量買進..."></textarea>
+          </div>
+          <div id="syncPanel" class="comparison-panel"></div>
+          <div class="trade-actions">
+            <button class="mini-btn" id="saveTradeBtn">儲存這筆操作</button>
+            <button class="mini-btn" id="clearTradeBtn">清空今天操作</button>
+          </div>
+          <div id="tradeHint" class="comparison-panel"></div>
+          <div id="tradeStatus" class="comparison-panel"></div>
+          <div id="tradeLog" class="trade-log"></div>
+        </article>
+      </section>
+
+      <section class="grid-single">
+        <article class="card">
+          <div class="section-head"><h3>雲端同步後的交易資料</h3><span class="badge" id="remoteTradeCount">0</span></div>
+          <div id="remoteTradeStatus" class="comparison-panel"></div>
+          <div class="remote-sections">
+            <div>
+              <h4 class="subcard-title">目前持有整理</h4>
+              <div id="holdingSummary" class="holdings-grid"></div>
+            </div>
+            <div>
+              <h4 class="subcard-title">之前買賣紀錄</h4>
+              <div id="remoteTradeLog" class="trade-log"></div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid-single">
+        <article class="card"><div class="section-head"><h3>自我反省</h3></div><div id="reflectionPanel" class="comparison-panel"></div></article>
+      </section>
+    </main>
+  </div>
+<script>
+const dataset={
+'2026-03-20':{date:'2026-03-20',summary:{headline:'今天先偏保守，ETF 比個股更適合你慢慢看',marketBias:'neutral',overview:'市場有點觀望，資金偏向防守。對新手來說，今天重點不是急著下單，而是先看哪些 ETF 比較穩、哪些個股暫時不要碰。',tags:['偏保守','先觀察','防守型'],metrics:{weightedIndexChangePct:-0.28,breadthPct:44,etfSignals:3,stockSignals:3},newbieAction:'今天比較適合先觀察，不適合因為一兩根紅K就衝進去。若真的想動作，ETF 會比個股更穩。'},budget:{etfs:['0056：單價通常比較親切，適合先用小額熟悉 ETF 節奏。','00878：高股息類型，對新手比較容易理解，也比較適合慢慢分批。'],stocks:['2303：單價相對沒那麼高，但今天偏弱，所以不是便宜就能買。','2454：雖然值得觀察，但以你的預算來說壓力偏大，先看不急著碰。']},reflection:'今天如果真的照「先保守」這個想法走，就算沒買到反彈，也是在保護本金。這種日子少動作，不一定是錯。',etfs:[{symbol:'0056',name:'元大高股息',action:'watch',fit:'high',priceChangePct:0.8,trend:'如果接下來市場還是偏保守，高股息 ETF 這種相對穩的東西，未來幾天仍有機會持續被資金注意。',why:'最近市場在觀望，資金比較容易回流到高股息 ETF 這種波動沒那麼大的標的。因為大家對財報前後還有點保留，所以穩定型 ETF 會比較容易受到注意。',advice:'如果你今天真的想試著布局，可以先小量觀察，不需要急著一次買很多。',note:'比較適合想先熟悉市場節奏的新手。'},{symbol:'00878',name:'國泰永續高股息',action:'watch',fit:'high',priceChangePct:0.5,trend:'若資金持續留在高股息族群，它未來一段時間還是可能維持有人氣，但不代表就會一直直線上去。',why:'高股息 ETF 最近有支撐，市場不太穩時，這類標的通常比較容易被注意。加上它的邏輯相對好懂，對新手比較友善。',advice:'可以列入觀察名單，等你更有把握再分批。',note:'不要只因為配息就追高。'},{symbol:'006208',name:'富邦台50',action:'hold',fit:'mid',priceChangePct:-0.3,trend:'如果之後大型權值股重新轉強，它會比防守型 ETF 更容易跟著受惠。',why:'它偏大盤核心，但今天權值股整理，所以比較像是先觀察，不是積極進場。最近不是它特別弱，而是整體市場在整理。',advice:'可以看，不急著追。等市場方向更清楚再說。',note:'適合長期型思路。'}],stocks:[{symbol:'2330',name:'台積電',action:'hold',fit:'mid',priceChangePct:-0.4,trend:'如果接下來 AI 與高階製程題材繼續被市場追捧，它中期仍然很容易是風向球，但不代表每天都適合進場。',why:'雖然是核心權值股，但今天沒有很明確的強攻訊號。最近大家都會看它，但不是每次看它都代表適合進場。',advice:'你如果是新手，今天不需要因為它有名就硬買。先看就好。',note:'等法人態度更明顯時再看。'},{symbol:'2454',name:'聯發科',action:'watch',fit:'mid',priceChangePct:0.6,trend:'如果半導體族群後續回暖，它會是容易一起被拉起來的標的之一。',why:'位置整理中，有反彈可能，但波動仍比 ETF 大。最近市場會看它，是因為它有代表性，不是因為它今天特別安全。',advice:'先觀察，不要把它當成今天一定要買的目標。',note:'適合先練習看節奏。'},{symbol:'2303',name:'聯電',action:'avoid',fit:'low',priceChangePct:-1.2,trend:'除非後續有明顯轉強訊號，否則未來幾天大概率還是偏弱勢整理。',why:'短線偏弱，還沒看到明顯轉強。最近注意到它，不是因為想買，而是因為它可以提醒你：弱勢股不要因為便宜就亂接。',advice:'今天先不要碰，避免你買進去後又繼續跌。',note:'新手先避開弱勢股比較好。'}]},
+'2026-03-21':{date:'2026-03-21',summary:{headline:'市場有回暖跡象，但你還是要先分清楚哪些能看、哪些不能追',marketBias:'positive',overview:'半導體和大型股有回穩感，整體比前一天好一些。不過對新手來說，回暖不代表每一檔都能追，重點是挑比較看得懂的標的。',tags:['市場回暖','不要亂追','挑簡單標的'],metrics:{weightedIndexChangePct:0.62,breadthPct:56,etfSignals:3,stockSignals:3},newbieAction:'今天比昨天友善一點，但還是先以 ETF 為主，個股只適合少量觀察。'},budget:{etfs:['0050：如果你想拿 2 萬先進 ETF，這種核心型 ETF 很適合當主力觀察。','0056：若你想保守一點，它比追題材股更容易拿來練習分批。'],stocks:['2382：值得觀察，但單價與波動都不算輕鬆，新手先看就好。','2330：代表性高，但以你的預算來說不是最適合拿來試單的標的。']},reflection:'如果昨天太保守、今天看到回暖才覺得可惜，這其實很正常。但對新手來說，少賺不一定比亂追更糟。',etfs:[{symbol:'0050',name:'元大台灣50',action:'watch',fit:'high',priceChangePct:1.0,trend:'如果市場接下來真的進入比較明顯的回暖期，這類大盤型 ETF 很可能會持續成為比較安全的主線選項。',why:'大盤型 ETF 轉強，代表市場對大型股的信心有回來一些。最近市場回暖時，這種代表大盤的 ETF 往往會先被注意。',advice:'如果你想學怎麼分批，這類 ETF 會比題材股更適合當練習。',note:'適合拿來看整體市場氣氛。'},{symbol:'0056',name:'元大高股息',action:'hold',fit:'high',priceChangePct:0.2,trend:'如果市場風險偏好繼續升高，它未必會是最亮眼的，但仍可能是保守資金的停靠點。',why:'它比較穩，但今天彈性不如市值型 ETF。最近市場沒那麼怕風險時，高股息就不一定最搶眼。',advice:'如果你偏保守，可以續放觀察；如果你想學分批進場，也可以和 0050 比較看看。',note:'偏穩健型。'},{symbol:'00919',name:'群益台灣精選高息',action:'watch',fit:'mid',priceChangePct:0.7,trend:'如果人氣延續，它未來幾天仍可能有表現，但也更容易因為情緒過熱而震盪。',why:'人氣不錯，最近容易被市場拿來關注。不過人氣高有時候也代表短線情緒偏熱。',advice:'可觀察，但不要看到人氣高就衝。',note:'高人氣不等於低風險。'}],stocks:[{symbol:'2330',name:'台積電',action:'watch',fit:'mid',priceChangePct:1.1,trend:'如果後面 AI、半導體題材延續，它中期還是很有機會被繼續看好，但短線節奏仍要抓。',why:'受到外部氣氛帶動，市場信心有比較回來。它會被注意是正常的，但注意不等於適合追價。',advice:'可觀察，但新手不建議因為它漲了就追。',note:'先看它能不能穩住。'},{symbol:'2382',name:'廣達',action:'watch',fit:'mid',priceChangePct:0.9,trend:'只要 AI 伺服器題材還在，未來一段時間它就還是會是市場高機率反覆討論的標的。',why:'AI 題材還有熱度，所以市場持續在看它。最近它的熱度不是一天造成的，而是題材延續下來。',advice:'你可以把它當成題材股觀察範例，但先不要重壓。',note:'題材熱就代表波動也可能比較大。'},{symbol:'2603',name:'長榮',action:'hold',fit:'low',priceChangePct:0.1,trend:'若沒有新的運價或產業催化，未來趨勢可能還是偏震盪，不是很好做。',why:'題材還在，但方向不夠明確。最近市場會看它，多半是因為消息和題材，不是因為走勢超漂亮。',advice:'今天先看，不急著動。',note:'新手比較容易被消息面帶著跑。'}]},
+'2026-03-22':{date:'2026-03-22',summary:{headline:'今天重點不是猜最高點，而是分清楚哪些適合你這個新手慢慢來',marketBias:'positive',overview:'台股目前是高檔震盪，市場雖然不差，但也不是閉眼就能買。今天我特別注意的是：高股息 ETF 有資金回流、AI 權值股仍有熱度，但新手操作上不適合追太急。',tags:['高檔震盪','高股息回流','AI 題材續強'],metrics:{weightedIndexChangePct:0.84,breadthPct:61,etfSignals:4,stockSignals:4},newbieAction:'今天如果你想動作，ETF 會比個股更適合。個股可以看，但不建議因為熱就追。先分批、先小量，會比一次衝進去安全很多。'},budget:{etfs:['0050：如果你要拿 2 萬先進 ETF，它是很適合優先考慮的核心型標的。','0056：價格與波動通常比熱門個股友善，適合你現在這種先求穩的階段。','00878：如果你想走高股息思路，這類也比直接追熱門股輕鬆。'],stocks:['2308：比超高價權值股更有機會納入你的預算，但今天仍偏觀察。','3017：雖然不是最貴，但位置不太舒服，預算不是唯一考量。','2330：很值得看，但以你的預算來說不適合當主力練習標的。']},reflection:'如果我前幾天一直提醒你保守，結果市場卻一路漲，這不一定代表判斷完全錯，而是我刻意把「保護本金」擺在新手階段的前面。不過我也要提醒自己：如果接下來市場明顯轉強，就不能一直只講保守而不更新節奏。',etfs:[{symbol:'0050',name:'元大台灣50',action:'watch',fit:'high',priceChangePct:1.2,trend:'如果接下來權值股續穩、外資願意回流，未來一段時間它還是很有機會繼續被市場視為核心配置。',why:'最近大型權值股有回穩感，所以這種代表大盤的 ETF 值得注意。今天它會被我列進來，不只是因為它漲，而是因為它很能反映「市場到底是不是真的願意回來買大型股」。',advice:'如果你要練習分批布局，這類 ETF 比熱門個股更適合你。',note:'它不是暴衝型，但比較穩。'},{symbol:'0056',name:'元大高股息',action:'watch',fit:'high',priceChangePct:0.9,trend:'只要市場還在高檔震盪，高股息這種兼顧防守與現金流概念的標的，未來一段時間就還是容易有資金停留。',why:'最近有資金回流高股息，代表市場在高檔時還是有人想找相對穩一點的標的。這種現象對新手來說很重要，因為它表示市場不是完全在拼最兇的題材。',advice:'你如果怕波動太大，這種會比追熱門題材舒服一些。',note:'適合新手放進觀察清單前排。'},{symbol:'00878',name:'國泰永續高股息',action:'hold',fit:'high',priceChangePct:0.4,trend:'如果高股息族群沒有退潮，它未來大概率還是會穩穩走，不一定最亮眼，但相對好理解。',why:'它目前比較像穩穩整理，不是最強，但也沒明顯轉弱。最近注意它，是因為如果你之後想走高股息路線，它是很典型的觀察標的。',advice:'可以續看，不急著追價。',note:'如果你已經有高股息 ETF 思路，這類可保留。'},{symbol:'00919',name:'群益台灣精選高息',action:'watch',fit:'mid',priceChangePct:0.8,trend:'如果人氣持續，它未來可能還有表現空間；但若市場風格切換，也可能很快降溫。',why:'市場人氣還在，所以容易被注意到。不過它被注意，不只是因為表現，而是因為很多人會把高人氣誤會成低風險。',advice:'可以看，但不要因為很多人提就直接衝。',note:'人氣高時也要記得看風險。'}],stocks:[{symbol:'2330',name:'台積電',action:'watch',fit:'mid',priceChangePct:1.5,trend:'如果 AI 與先進製程需求持續被市場看好，它未來不只是一檔權值股，而是整個台股的重要主線觀察點。',why:'AI 與高階製程題材讓它持續被市場關注，所以它是今天一定會被注意到的核心標的。我注意它的原因，是它常常代表整體電子與大盤氣氛，而不是單純因為它很熱門。',advice:'你可以看它、學它怎麼帶大盤，但今天不建議看到漲就追。',note:'比較適合當市場風向球。'},{symbol:'2382',name:'廣達',action:'watch',fit:'mid',priceChangePct:1.9,trend:'只要 AI 伺服器、資料中心與相關資本支出題材還在，未來一段時間它都可能持續有發展性。',why:'伺服器與 AI 題材還在熱，所以它維持強勢。最近之所以持續注意它，是因為它不是一天兩天的題材，而是市場一直在追這條線。',advice:'適合觀察，不適合新手衝動追高。',note:'題材強時通常波動也大。'},{symbol:'3017',name:'奇鋐',action:'hold',fit:'low',priceChangePct:0.3,trend:'如果 AI 硬體需求繼續擴大，散熱相關題材未來仍有機會；但短線位置不對時，一樣不適合硬追。',why:'散熱題材還在，但目前比較像高檔震盪，不是很好切入。最近注意它，不是因為想推你買，而是因為它可以提醒你：熱門股的位置也很重要。',advice:'你先看就好，不要因為它在熱門族群就硬買。',note:'這種位置對新手不太友善。'},{symbol:'2308',name:'台達電',action:'hold',fit:'mid',priceChangePct:-0.2,trend:'如果之後電源管理、AI 基礎設施、工業相關題材持續發酵，它仍可能慢慢被市場重視。',why:'之前漲過一段，現在比較像整理。最近市場會看它，是因為它夠穩、夠有代表性，不是因為它短線最好賺。',advice:'先觀察支撐，不急著進。',note:'等方向更清楚會比較舒服。'}]}
+};
+const dates=Object.keys(dataset).sort(); let currentDate=dates[dates.length-1]; let compareDate=dates[dates.length-2]||dates[0];
+const fmtPct=v=>{const n=Number(v||0),cls=n>0?'pos':n<0?'neg':'neu',sign=n>0?'+':'';return `<span class="${cls}">${sign}${n.toFixed(2)}%</span>`};
+const badgeLabel=a=>a==='watch'?'可觀察':a==='hold'?'先續看 / 不急':a==='avoid'?'先不要碰':a;
+const fitLabel = f => f==='high'?'新手適合度：高':f==='mid'?'新手適合度：中':'新手適合度：低';
+const fitClass=f=>f==='high'?'good':f==='mid'?'mid':'low';
+const sentimentLabel=b=>b==='positive'?'偏多，但別亂追':b==='negative'?'偏弱，要更保守':'中性，先看節奏';
+function renderMetrics(metrics,bias){const items=[['今天市場感覺',sentimentLabel(bias)],['加權漲跌',`${metrics.weightedIndexChangePct>0?'+':''}${metrics.weightedIndexChangePct.toFixed(2)}%`],['上漲家數比',`${metrics.breadthPct}%`],['我今天注意的 ETF',`${metrics.etfSignals}`],['我今天注意的個股',`${metrics.stockSignals}`]];document.getElementById('metrics').innerHTML=items.map(([l,v])=>`<div class="stat"><span class="label">${l}</span><span class="value">${v}</span></div>`).join('')}
+function renderSignals(items,mountId){document.getElementById(mountId).innerHTML=items.map(item=>`<article class="signal-card"><div class="signal-top"><div><h4>${item.symbol} ${item.name}</h4><div class="signal-meta">今天漲跌：${fmtPct(item.priceChangePct)}</div></div><div class="pill-row"><span class="chip">${badgeLabel(item.action)}</span><span class="rating ${fitClass(item.fit)}">${fitLabel(item.fit)}</span></div></div><p>${item.why}</p><p>${item.advice}</p><p><span class="trend-tag">未來趨勢</span> ${item.trend}</p><p class="note">${item.note}</p></article>`).join('')}
+function compareSets(currentItems,previousItems){const prevMap=new Map(previousItems.map(i=>[i.symbol,i]));const added=[],removed=[],changed=[];currentItems.forEach(item=>{const prev=prevMap.get(item.symbol);if(!prev){added.push(item.symbol);return;}if(prev.action!==item.action||prev.fit!==item.fit){changed.push(`${item.symbol}：${badgeLabel(prev.action)} → ${badgeLabel(item.action)}，${fitLabel(prev.fit)} → ${fitLabel(item.fit)}`)}prevMap.delete(item.symbol)});prevMap.forEach((_,symbol)=>removed.push(symbol));return {added,removed,changed}}
+function renderComparison(current,previous){const panel=document.getElementById('comparisonPanel');if(!previous){panel.innerHTML='<div class="compare-item">目前沒有更早的資料可以比。</div>';return;}const etfDiff=compareSets(current.etfs,previous.etfs);const stockDiff=compareSets(current.stocks,previous.stocks);const metricsDiff=current.summary.metrics.weightedIndexChangePct-previous.summary.metrics.weightedIndexChangePct;panel.innerHTML=[`<div class="compare-item"><strong>整體市場差異</strong><br>${previous.date} → ${current.date}<br>加權漲跌差：${metricsDiff>0?'+':''}${metricsDiff.toFixed(2)}%</div>`,`<div class="compare-item"><strong>ETF 觀察名單變化</strong><br>新增：${etfDiff.added.join('、')||'無'}<br>移除：${etfDiff.removed.join('、')||'無'}<br>評級調整：${etfDiff.changed.join('<br>')||'無'}</div>`,`<div class="compare-item"><strong>個股觀察名單變化</strong><br>新增：${stockDiff.added.join('、')||'無'}<br>移除：${stockDiff.removed.join('、')||'無'}<br>評級調整：${stockDiff.changed.join('<br>')||'無'}</div>`].join('')}
+function renderActionPanel(current){document.getElementById('actionPanel').innerHTML=`<div class="compare-item"><strong>你今天可以怎麼做</strong><br>${current.summary.newbieAction}</div><div class="compare-item"><strong>一句提醒</strong><br>先看懂原因，再決定要不要出手；不要因為某一檔看起來很熱就立刻追進去。</div>`}
+function renderBudget(list, mountId){document.getElementById(mountId).innerHTML=list.map(text=>`<div class="compare-item"><span class="budget-tag ok">依照你的預算</span><br>${text}</div>`).join('')}
+function renderReflection(current){document.getElementById('reflectionPanel').innerHTML=`<div class="compare-item"><strong>我今天的反省</strong><br>${current.reflection}</div><div class="compare-item"><strong>我會提醒自己的事</strong><br>如果市場節奏改變，我不能只講同一套。要根據新的走勢、新聞和資金方向去調整，不然就會變成只會保守，卻沒有真的幫到你。</div>`}
+
+const webhookKey = 'mi-chong-trade-webhook-url';
+const webhookSecretKey = 'mi-chong-trade-webhook-secret';
+function getWebhookUrl(){ return localStorage.getItem(webhookKey)||''; }
+function getWebhookSecret(){ return localStorage.getItem(webhookSecretKey)||''; }
+function getDefaultWebhookUrl(){ return 'https://script.google.com/macros/s/AKfycbyOwan3t9B6Jo4xlhVR6Iq0Hp39DfRDIztxRUbddpQTYbcStQ9wG7WVzS7Kcl4QhtBXHQ/exec'; }
+function setWebhookUrl(url){ if(url){ localStorage.setItem(webhookKey,url); } else { localStorage.removeItem(webhookKey); } }
+function setWebhookSecret(secret){ if(secret){ localStorage.setItem(webhookSecretKey,secret); } else { localStorage.removeItem(webhookSecretKey); } }
+const makeTradeId = () => `trade_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+function normalizeEvent(raw){ const item = raw || {}; return { ...item, tradeId: item.tradeId || item.id || item.createdAt || item.savedAt || `${item.symbol || 'trade'}-${item.date || currentDate}` }; }
+function buildEffectiveTrades(items){ const events=(Array.isArray(items)?items:[]).map(normalizeEvent); let clearedAt=''; const deletedIds=new Set(); for(const item of events){ if(item.eventType==='clear_all'){ const ts=String(item.createdAt||item.savedAt||''); if(ts>clearedAt) clearedAt=ts; } } for(const item of events){ if(item.eventType==='delete_trade' && item.targetTradeId){ deletedIds.add(String(item.targetTradeId)); } } return events.filter(item=>{ if(item.eventType) return false; const ts=String(item.createdAt||item.savedAt||''); if(clearedAt && ts<=clearedAt) return false; if(deletedIds.has(String(item.tradeId))) return false; return true; }).sort((a,b)=>String(b.createdAt||b.savedAt||'').localeCompare(String(a.createdAt||a.savedAt||''))); }
+async function sendTradeToWebhook(payload){ const url=getWebhookUrl(); const secret=getWebhookSecret(); if(!url) return {ok:false, reason:'no-webhook'}; if(!secret) return {ok:false, reason:'no-secret'}; const target = `${url}?secret=${encodeURIComponent(secret)}`; document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>fetch 準備送到：<code>${target}</code></div>`; try { const res = await fetch(target,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>fetch 已回應，HTTP ${res.status}。</div>`; const raw = await res.text(); let parsed = null; try { parsed = JSON.parse(raw); } catch {} if(!res.ok){ return {ok:false, reason:'http-error', status:res.status, raw, parsed}; } if(parsed) return parsed; return {ok:true, raw}; } catch(err){ return {ok:false, reason:'fetch-throw', message:String(err && err.message || err)}; } }
+
+async function fetchRemoteTrades(){
+  const url = getWebhookUrl();
+  const secret = getWebhookSecret();
+  if(!url) return {ok:false, reason:'no-webhook'};
+  if(!secret) return {ok:false, reason:'no-secret'};
+  const res = await fetch(`${url}?secret=${encodeURIComponent(secret)}`, { method:'GET' });
+  const raw = await res.text();
+  let parsed = null;
+  try { parsed = JSON.parse(raw); } catch {}
+  if(!res.ok) return {ok:false, reason:'http-error', status:res.status, raw, parsed};
+  return parsed || {ok:false, reason:'bad-json', raw};
+}
+function summarizeHoldings(items){
+  const map = new Map();
+  for(const item of items||[]){
+    const symbol = (item.symbol||'').trim();
+    if(!symbol) continue;
+    const qty = Number(item.qty||0) || 0;
+    const price = Number(item.price||0) || 0;
+    const action = item.action === 'sell' ? -1 : 1;
+    const unit = item.unit === 'lot' ? '張' : '零股';
+    const key = `${symbol}__${unit}`;
+    const prev = map.get(key) || { symbol, unit, qty:0, cost:0, buys:0, sells:0 };
+    prev.qty += action * qty;
+    if(action > 0){ prev.cost += qty * price; prev.buys += 1; }
+    else { prev.sells += 1; }
+    map.set(key, prev);
+  }
+  return [...map.values()].filter(x => x.qty !== 0 || x.buys || x.sells);
+}
+function renderRemoteTrades(items){
+  const list = buildEffectiveTrades(items);
+  document.getElementById('remoteTradeCount').textContent = list.length;
+  const summary = summarizeHoldings(list);
+  document.getElementById('holdingSummary').innerHTML = summary.length
+    ? summary.map(item => `<div class="holding-item"><strong>${item.symbol}</strong><br>目前估計持有：${item.qty} ${item.unit}<br>累計買進次數：${item.buys}｜累計賣出次數：${item.sells}${item.cost ? `<br>買進成本累計：${item.cost.toFixed(2)}` : ''}</div>`).join('')
+    : '<div class="compare-item">目前還沒有可整理的持有資料。</div>';
+  document.getElementById('remoteTradeLog').innerHTML = list.length
+    ? list.map(item => `<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>日期：${item.date||'未填'}｜交易單位：${item.unit==='lot'?'張':'零股'}｜數量：${item.qty||'未填'}｜價格：${item.price||'未填'}<br>備註：${item.note||'無'}</div>`).join('')
+    : '<div class="trade-item">雲端目前還沒有有效交易紀錄。</div>';
+}
+async function refreshRemoteTrades(){
+  const status = document.getElementById('remoteTradeStatus');
+  status.innerHTML = '<div class="compare-item"><strong>雲端資料</strong><br>正在讀取你同步過的交易資料…</div>';
+  try {
+    const result = await fetchRemoteTrades();
+    if(result && result.ok){
+      renderRemoteTrades(result.items || []);
+      status.innerHTML = `<div class="compare-item"><strong>雲端資料</strong><br>已讀取 ${result.count ?? (result.items||[]).length} 筆同步紀錄。之後我也可以根據這些資料做分析與提醒。</div>`;
+    } else if(result && result.reason === 'no-webhook') {
+      document.getElementById('remoteTradeCount').textContent = '0';
+      document.getElementById('holdingSummary').innerHTML = '<div class="compare-item">還沒設定 webhook，所以目前無法讀取雲端交易資料。</div>';
+      document.getElementById('remoteTradeLog').innerHTML = '';
+      status.innerHTML = '<div class="compare-item"><strong>雲端資料</strong><br>還沒設定 webhook。</div>';
+    } else if(result && result.reason === 'no-secret') {
+      document.getElementById('remoteTradeCount').textContent = '0';
+      document.getElementById('holdingSummary').innerHTML = '<div class="compare-item">還沒設定同步密鑰，所以目前無法讀取雲端交易資料。</div>';
+      document.getElementById('remoteTradeLog').innerHTML = '';
+      status.innerHTML = '<div class="compare-item"><strong>雲端資料</strong><br>還沒設定同步密鑰。</div>';
+    } else {
+      document.getElementById('remoteTradeCount').textContent = '0';
+      document.getElementById('holdingSummary').innerHTML = '<div class="compare-item">這次沒有成功讀到雲端資料。</div>';
+      document.getElementById('remoteTradeLog').innerHTML = '';
+      status.innerHTML = `<div class="compare-item"><strong>雲端資料</strong><br>讀取失敗。<br><code>${JSON.stringify(result)}</code></div>`;
+    }
+  } catch(err) {
+    document.getElementById('remoteTradeCount').textContent = '0';
+    document.getElementById('holdingSummary').innerHTML = '<div class="compare-item">雲端資料讀取時發生錯誤。</div>';
+    document.getElementById('remoteTradeLog').innerHTML = '';
+    status.innerHTML = `<div class="compare-item"><strong>雲端資料</strong><br>讀取失敗：${err.message}</div>`;
+  }
+}
+
+function renderSyncPanel(){ const url=getWebhookUrl(); const secret=getWebhookSecret(); document.getElementById('syncPanel').innerHTML = `<div class="compare-item"><strong>同步設定</strong><br>${url ? `目前已設定 webhook：<code class="sync-url">${url}</code>` : '目前還沒設定 webhook，所以操作只會先存在你現在這台裝置。'}<br>${secret ? '已設定同步密鑰。' : '目前還沒設定同步密鑰。'}<br><div class="trade-actions" style="margin-top:10px"><button class="mini-btn" id="setWebhookBtn">設定 / 更換 webhook</button><button class="mini-btn" id="setSecretBtn">設定 / 更換密鑰</button><button class="mini-btn" id="testWebhookBtn">測試同步</button><button class="mini-btn" id="clearWebhookBtn">清除同步設定</button></div></div>`; document.getElementById('setWebhookBtn').onclick = () => { const suggestion = getWebhookUrl() || getDefaultWebhookUrl(); const next = prompt('請輸入 webhook URL', suggestion); if(next!==null){ setWebhookUrl(next.trim()); renderSyncPanel(); refreshRemoteTrades(); } }; document.getElementById('setSecretBtn').onclick = () => { const next = prompt('請輸入同步密鑰', getWebhookSecret()); if(next!==null){ setWebhookSecret(next.trim()); renderSyncPanel(); refreshRemoteTrades(); } }; document.getElementById('testWebhookBtn').onclick = async () => { try { const url = getWebhookUrl(); const secret = getWebhookSecret(); if(!url){ document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步測試</strong><br>還沒設定 webhook URL。</div>`; return; } if(!secret){ document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步測試</strong><br>還沒設定同步密鑰。</div>`; return; } const testUrl = `${url}?action=meta`; const res = await fetch(testUrl, { method: 'GET' }); const text = await res.text(); document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步測試</strong><br>HTTP ${res.status}<br><code>${text.replace(/</g,'&lt;')}</code></div>`; } catch(err){ document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步測試</strong><br>測試失敗：${err.message}</div>`; } }; document.getElementById('clearWebhookBtn').onclick = () => { setWebhookUrl(''); setWebhookSecret(''); renderSyncPanel(); refreshRemoteTrades(); }; }
+const tradeStorageKey = () => `mi-chong-trades-${currentDate}`;
+function getTrades(){ try { return JSON.parse(localStorage.getItem(tradeStorageKey())||'[]'); } catch { return []; } }
+function setTrades(items){ localStorage.setItem(tradeStorageKey(), JSON.stringify(items)); }
+function renderTrades(){ renderSyncPanel(); const items=getTrades(); const log=document.getElementById('tradeLog'); document.getElementById('tradeCount').textContent=items.length; const hint = document.getElementById('tradeHint'); hint.innerHTML = `<div class="compare-item"><strong>這裡是做什麼的</strong><br>你可以把今天的買賣操作記在這裡。這樣之後我在看網站時，就能更清楚知道你實際做了哪些事，也更容易對照我前面的判斷是不是有幫到你。</div>`; if(!items.length){ log.innerHTML='<div class="trade-item">今天還沒有記錄任何操作。</div>'; return; } const unitLabel = u => u==='lot'?'張':'零股'; log.innerHTML=items.map((item,idx)=>`<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>價格：${item.price||'未填'}｜交易單位：${unitLabel(item.unit)}｜數量：${item.qty||'未填'}<br>備註：${item.note||'無'}<br><button class="mini-btn" onclick="removeTrade(${idx})">刪除這筆</button></div>`).join(''); }
+async function pushDeleteEvent(tradeId){ if(!tradeId) return {ok:false, reason:'no-trade-id'}; return sendTradeToWebhook({ eventType:'delete_trade', targetTradeId: tradeId, createdAt: new Date().toISOString(), date: currentDate }); }
+async function pushClearEvent(){ return sendTradeToWebhook({ eventType:'clear_all', createdAt: new Date().toISOString(), date: currentDate }); }
+async function removeTrade(idx){ const items=getTrades(); const [removed]=items.splice(idx,1); setTrades(items); renderTrades(); try { const result = await pushDeleteEvent(removed && removed.tradeId); document.getElementById('tradeHint').innerHTML = `<div class="compare-item"><strong>同步狀態</strong><br>${result && result.ok ? '本機已刪除，也已送出雲端刪除事件。' : '本機已刪除，但雲端刪除事件沒有成功送出。'}</div>`; refreshRemoteTrades(); } catch(err){ document.getElementById('tradeHint').innerHTML = `<div class="compare-item"><strong>同步狀態</strong><br>送出雲端刪除事件失敗：${err.message}</div>`; } }
+async function saveTrade(){ document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>已進入 saveTrade()。</div>`; const action=document.getElementById('tradeAction').value; const symbol=document.getElementById('tradeSymbol').value.trim(); const name=document.getElementById('tradeName').value.trim(); const price=document.getElementById('tradePrice').value.trim(); const unit=document.getElementById('tradeUnit').value; const qty=document.getElementById('tradeQty').value.trim(); const note=document.getElementById('tradeNote').value.trim(); if(!symbol){ alert('至少要填代號喔'); return; } const payload={tradeId:makeTradeId(),date:currentDate,action,symbol,name,price,unit,qty,note,createdAt:new Date().toISOString()}; document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>已組好 payload，準備送出。</div>`; const items=getTrades(); items.unshift(payload); setTrades(items); try { document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>正在呼叫 sendTradeToWebhook()。</div>`; const result = await sendTradeToWebhook(payload); document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>sendTradeToWebhook() 已回傳。<br><code>${JSON.stringify(result)}</code></div>`; if(result && result.ok){ document.getElementById('tradeHint').innerHTML = `<div class="compare-item"><strong>同步狀態</strong><br>這筆操作已同步到 webhook / JSON 端囉。</div>`; refreshRemoteTrades(); } else if(result && result.reason==='no-webhook'){ document.getElementById('tradeHint').innerHTML = `<div class="compare-item"><strong>同步狀態</strong><br>目前還沒設定 webhook，所以這筆操作先只存在你現在這台裝置。</div>`; } } catch(err){ document.getElementById('tradeHint').innerHTML = `<div class="compare-item"><strong>同步狀態</strong><br>送出 webhook 失敗：${err.message}</div>`; } document.getElementById('tradeSymbol').value=''; document.getElementById('tradeName').value=''; document.getElementById('tradePrice').value=''; document.getElementById('tradeUnit').value='odd'; document.getElementById('tradeQty').value=''; document.getElementById('tradeNote').value=''; renderTrades(); }
+async function clearTrades(){ localStorage.removeItem(tradeStorageKey()); renderTrades(); try { const result = await pushClearEvent(); document.getElementById('tradeHint').innerHTML = `<div class="compare-item"><strong>同步狀態</strong><br>${result && result.ok ? '本機已清空，也已送出雲端清空事件。' : '本機已清空，但雲端清空事件沒有成功送出。'}</div>`; refreshRemoteTrades(); } catch(err){ document.getElementById('tradeHint').innerHTML = `<div class="compare-item"><strong>同步狀態</strong><br>送出雲端清空事件失敗：${err.message}</div>`; } }
+
+function populateSelect(id,selected){const select=document.getElementById(id);select.innerHTML=dates.slice().reverse().map(date=>`<option value="${date}" ${date===selected?'selected':''}>${date}</option>`).join('')}
+function render(date){const current=dataset[date],previous=dataset[compareDate];currentDate=date;document.getElementById('currentDate').textContent=current.date;document.getElementById('historyCount').textContent=dates.length;document.getElementById('marketHeadline').textContent=current.summary.headline;document.getElementById('marketSummary').textContent=current.summary.overview;document.getElementById('marketTags').innerHTML=current.summary.tags.map(tag=>`<span class="chip">${tag}</span>`).join('');document.getElementById('etfCount').textContent=current.etfs.length;document.getElementById('stockCount').textContent=current.stocks.length;renderMetrics(current.summary.metrics,current.summary.marketBias);renderSignals(current.etfs,'etfList');renderSignals(current.stocks,'stockList');renderComparison(current,previous);renderActionPanel(current);renderBudget(current.budget.etfs,'budgetEtfPanel');renderBudget(current.budget.stocks,'budgetStockPanel');renderReflection(current)}
+document.getElementById('dateSelect').addEventListener('change',e=>render(e.target.value)); document.getElementById('compareSelect').addEventListener('change',e=>{compareDate=e.target.value;render(currentDate)}); document.getElementById('saveTradeBtn').addEventListener('click',saveTrade); document.getElementById('clearTradeBtn').addEventListener('click',clearTrades); populateSelect('dateSelect',currentDate); populateSelect('compareSelect',compareDate); render(currentDate); renderTrades(); refreshRemoteTrades();
+</script>
+</body>
+</html>

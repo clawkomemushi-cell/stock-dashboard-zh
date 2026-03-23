@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台股觀察站｜今日股市</title>
+  <link rel="stylesheet" href="./assets/style.css?v=20260323e" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar card page-hero">
+      <div>
+        <p class="eyebrow">MARKET FOCUS</p>
+        <h1>今日股市</h1>
+        <p class="hero-copy">這頁先幫你把今天市場發生什麼、哪些標的值得看、今天比較適合怎麼做整理好。重點不只是結論，而是把我為什麼注意這些 ETF / 個股的判斷過程攤開來給你看。</p>
+      </div>
+      <div class="hero-meta compact-meta">
+        <div>
+          <span class="label">最新整理日</span>
+          <strong id="marketDateLabel">--</strong>
+        </div>
+        <div>
+          <span class="label">頁面用途</span>
+          <strong>先看盤，再決定要不要動</strong>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav card" id="siteNav"></nav>
+
+    <main>
+      <section class="summary-grid">
+        <article class="card highlight">
+          <span class="label">今天一句話</span>
+          <h2 id="marketHeadline">載入中...</h2>
+          <p id="marketSummary" class="hero-copy">正在整理今日盤勢。</p>
+          <div class="chips" id="marketTags"></div>
+        </article>
+        <article class="card stat-list" id="marketStats"></article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head"><h3>今天先看三件事</h3></div>
+          <div id="marketChecklist" class="comparison-panel"></div>
+        </article>
+        <article class="card">
+          <div class="section-head"><h3>今天比較適合怎麼做</h3></div>
+          <div id="marketAction" class="comparison-panel"></div>
+        </article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head"><h3>今天我會先看這些 ETF</h3></div>
+          <div id="etfFocus" class="comparison-panel"></div>
+        </article>
+        <article class="card">
+          <div class="section-head"><h3>今天我會先看這些個股</h3></div>
+          <div id="stockFocus" class="comparison-panel"></div>
+        </article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head"><h3>今天該避開什麼</h3></div>
+          <div id="riskFocus" class="comparison-panel"></div>
+        </article>
+        <article class="card">
+          <div class="section-head"><h3>交易摘要入口</h3></div>
+          <div id="tradeSummaryEntry" class="comparison-panel"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="./assets/site.js?v=20260323e"></script>
+  <script>
+    const MARKET_FALLBACK = {
+      date: '2026-03-23',
+      summary: {
+        headline: '台股午盤跌深後收斂，但盤勢仍偏防守；高股息 ETF 相對穩，電子與記憶體波動大',
+        overview: '今天台股早盤一度重挫逾千點，午盤前跌幅收斂到約 700～800 點區間，代表恐慌賣壓有稍微降溫，但還不能直接當成轉強。盤面主軸很明顯：權值電子和記憶體承壓，高股息 ETF 雖然也跌，但成交量放大、承接意願相對明顯；金融相對抗跌，部分設備與高價股逆勢表現。對新手來說，今天比較像先守節奏、優先 ETF、小量零股練習的盤。',
+        tags: ['午間整理', '跌深收斂', '高股息承接', '偏防守'],
+        metrics: { weightedIndexChangePct: -2.4, breadthPct: 24, etfSignals: 5, stockSignals: 7 }
+      },
+      etfs: [
+        { symbol: '0056', name: '元大高股息', action: 'watch', reason: '今天它被我放前面，不是因為它完全沒跌，而是因為在大盤重挫時，高股息族群的承接看起來比權值電子穩。這代表市場雖然怕風險，但不是全面撤退，而是有資金在找比較能守的地方。', watchFor: '如果下午高股息 ETF 的跌幅持續明顯小於大盤，而且量能沒有突然失控，這個防守邏輯就還成立。', risk: '它適合分批觀察，不適合看到相對抗跌就以為完全安全。若大盤再殺一段，它也還是會被拖下去。', use: '適合拿來當今天保守型觀察標的。' },
+        { symbol: '00878', name: '國泰永續高股息', action: 'watch', reason: '我注意它，是因為它今天跌幅相對沒有那麼重，對新手來說也比較容易理解。這種標的在劇烈震盪時，常常比熱門個股更適合用來練習「少量分批」而不是追速度。', watchFor: '重點看它下午承接有沒有延續，以及高股息族群是不是一起穩，而不是只看它單一檔。', risk: '如果只是短線資金暫時躲進來，之後也可能再轉弱，所以不能只因為今天比較穩就認定它一路安全。', use: '適合想用小量參與，但不想承受太大波動的人。' },
+        { symbol: '006208', name: '富邦台50', action: 'watch', reason: '我把它列進來，是因為今天如果你想看大盤型 ETF，006208 這種單價相對友善的選項會比直接碰熱門股更好掌握。它的觀察價值在於：如果權值股真的慢慢穩，它會比較早反映出來。', watchFor: '重點是看台積電等權值股有沒有真正站穩，而不是只有短暫反彈。', risk: '如果權值股只是跌深反抽，買進去之後也可能繼續跟著震盪。', use: '適合拿來當大盤止穩與否的觀察工具。' }
+      ],
+      stocks: [
+        { symbol: '2330', name: '台積電', action: 'watch', reason: '我注意它不是因為要你今天去追，而是因為它是今天電子權值與整體台股情緒的風向球。它能不能穩，會直接影響你對今天市場是不是有真正止跌的判斷。', watchFor: '看它能不能守住關鍵位置，以及反彈時量價是不是健康，不只是單純跌深回彈。', risk: '它雖然是核心股，但在大震盪裡一樣會放大情緒；對新手來說，知道它重要，不等於今天適合重押。', use: '更適合當風向球，而不是當今天主力進攻標的。' },
+        { symbol: '2303', name: '聯電', action: 'watch', reason: '我把它放進來，是因為它兼具半導體代表性與相對親民的價格，對新手來說比較適合觀察。它不是今天最強，但能讓你練習看半導體族群是不是一起穩。', watchFor: '看它下午是否跟著權值與半導體氣氛回穩，而不是獨自亂跳。', risk: '如果半導體整體仍弱，它也不會因為價格較親民就變成好買點。', use: '適合做族群觀察，不適合因為便宜就亂接。' },
+        { symbol: '2884', name: '玉山金', action: 'watch', reason: '我注意金融股，是因為今天這種盤裡，金融通常比熱門科技股更能讓人看出市場到底有沒有轉向完全失控。玉山金這種標的不一定最亮眼，但常常比較適合新手理解風險。', watchFor: '看金融族群是不是維持相對穩定，而不是突然補跌。', risk: '金融穩不代表會立刻漲，只是風險感受通常比高波動科技股低。', use: '適合拿來當保守型觀察名單。' },
+        { symbol: '2382', name: '廣達', action: 'watch', reason: '我還是會看它，因為 AI 主流題材沒有消失，它有代表性。但今天把它放在觀察，不是鼓勵追價，而是提醒你：主流股就算有故事，位置不對也不能亂追。', watchFor: '看它有沒有量價穩住，以及 AI 族群是不是一起轉強。', risk: '高價與高人氣會放大波動，若市場還在不穩，新手很容易買在情緒點。', use: '適合看主流題材強弱，不適合今天衝動追。' },
+        { symbol: '2408', name: '南亞科', action: 'avoid', reason: '我把它列入避開，不是因為它完全沒機會，而是記憶體今天雜音多、波動明顯。這種標的最容易讓人覺得跌很多很便宜，結果其實是在接落刀。', watchFor: '除非後面有更明確的止穩訊號，否則先當高風險區。', risk: '波動快、情緒重、誤判成本高，對新手不友善。', use: '今天更適合拿來提醒自己哪些不能只看跌深。' }
+      ]
+    };
+
+    const TRADE_FALLBACK = [];
+
+    async function safeFetchJson(url) {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Fetch failed: ${url}`);
+      return response.json();
+    }
+
+    function badgeLabel(action) {
+      return action === 'watch' ? '可觀察' : action === 'hold' ? '先續看 / 不急' : action === 'avoid' ? '先不要碰' : action;
+    }
+
+    async function loadMarketData() {
+      try {
+        return await safeFetchJson('./data/daily/2026-03-23.json');
+      } catch {
+        return MARKET_FALLBACK;
+      }
+    }
+
+    async function loadTradeData() {
+      try {
+        return await safeFetchJson('./data/trades/2026-03-23.json');
+      } catch {
+        return TRADE_FALLBACK;
+      }
+    }
+
+    function enrichMarketData(raw) {
+      const fallbackMap = new Map([
+        ...MARKET_FALLBACK.etfs.map(item => [item.symbol, item]),
+        ...MARKET_FALLBACK.stocks.map(item => [item.symbol, item])
+      ]);
+      return {
+        ...raw,
+        etfs: (raw.etfs || []).map(item => ({ ...item, ...(fallbackMap.get(item.symbol) || {}) })),
+        stocks: (raw.stocks || []).map(item => ({ ...item, ...(fallbackMap.get(item.symbol) || {}) }))
+      };
+    }
+
+    function renderStats(summary) {
+      const metrics = summary.metrics;
+      document.getElementById('marketStats').innerHTML = [
+        ['加權漲跌', `${metrics.weightedIndexChangePct > 0 ? '+' : ''}${metrics.weightedIndexChangePct.toFixed(2)}%`],
+        ['上漲家數比', `${metrics.breadthPct}%`],
+        ['ETF 訊號數', `${metrics.etfSignals}`],
+        ['個股訊號數', `${metrics.stockSignals}`]
+      ].map(([label, value]) => `
+        <div class="stat">
+          <span class="label">${label}</span>
+          <span class="value">${value}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderReasonCards(items, mountId) {
+      document.getElementById(mountId).innerHTML = items.map(item => `
+        <div class="compare-item">
+          <strong>${item.symbol} ${item.name}</strong><br>
+          <span class="chip">${badgeLabel(item.action)}</span>
+          <div style="margin-top:10px; line-height:1.8;">
+            <div><strong>我為什麼今天注意它：</strong><br>${item.reason || item.note || '目前先以觀察為主。'}</div>
+            <div style="margin-top:10px;"><strong>你自己可以看什麼：</strong><br>${item.watchFor || '先看量價、族群有沒有一起配合。'}</div>
+            <div style="margin-top:10px;"><strong>風險在哪：</strong><br>${item.risk || '若大盤續弱，個別標的也容易被拖累。'}</div>
+            <div style="margin-top:10px;"><strong>我會怎麼使用這個判斷：</strong><br>${item.use || '先觀察，不急著出手。'}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderRiskCards(items) {
+      const risks = items.filter(item => item.action === 'avoid').slice(0, 3);
+      document.getElementById('riskFocus').innerHTML = risks.length
+        ? risks.map(item => `<div class="compare-item"><strong>${item.symbol} ${item.name}</strong><br><div style="margin-top:8px; line-height:1.8;"><strong>我為什麼先避開：</strong><br>${item.reason || item.note}<br><br><strong>主要風險：</strong><br>${item.risk || '波動過大，不適合新手。'}</div></div>`).join('')
+        : '<div class="compare-item">今天暫時沒有特別新增的高風險避開名單。</div>';
+    }
+
+    function renderTradeSummary(trades) {
+      const count = trades.length;
+      const latest = trades[0];
+      const unitLabel = unit => unit === 'lot' ? '張' : '零股';
+      document.getElementById('tradeSummaryEntry').innerHTML = [
+        `<div class="compare-item"><strong>今天已同步交易</strong><br>${count} 筆${count ? `，目前最新一筆是 ${latest.action === 'buy' ? '買進' : '賣出'} ${latest.symbol}` : '，目前還沒有資料'}。</div>`,
+        count ? `<div class="compare-item"><strong>最新一筆摘要</strong><br>${latest.symbol}${latest.name ? ` ${latest.name}` : ''}｜${unitLabel(latest.unit)} ${latest.qty || '未填'}${latest.price ? `｜價格 ${latest.price}` : ''}</div>` : '<div class="compare-item"><strong>接下來可以做什麼</strong><br>你可以直接去交易紀錄頁新增操作，之後這裡就會一起反映摘要。</div>',
+        '<div class="compare-item"><strong>前往交易紀錄</strong><br><a class="site-tab" href="./trade-center.html" style="margin-top:8px; display:inline-flex;">打開交易紀錄 / 操作中心</a></div>'
+      ].join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderSiteNav('今日股市');
+      const rawMarket = await loadMarketData();
+      const market = enrichMarketData(rawMarket);
+      const trades = await loadTradeData();
+      document.getElementById('marketDateLabel').textContent = market.date || '--';
+      document.getElementById('marketHeadline').textContent = market.summary.headline;
+      document.getElementById('marketSummary').textContent = market.summary.overview;
+      document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
+      renderStats(market.summary);
+      document.getElementById('marketChecklist').innerHTML = [
+        '<div class="compare-item"><strong>先看大盤有沒有真的止穩</strong><br>今天有收斂，不代表今天就安全；先確認跌勢是不是有繼續擴大。</div>',
+        '<div class="compare-item"><strong>先看高股息 ETF 承接</strong><br>如果高股息和大盤型 ETF 承接還在，會比硬追熱門股更適合新手。</div>',
+        '<div class="compare-item"><strong>先分清楚觀察和出手</strong><br>看得懂的標的可以觀察，但不一定代表今天就非買不可。</div>'
+      ].join('');
+      document.getElementById('marketAction').innerHTML = [
+        '<div class="compare-item"><strong>今天比較適合怎麼做</strong><br>偏觀望、偏分批、偏零股、偏 ETF。今天重點是守節奏，不是拼抄底速度。</div>',
+        '<div class="compare-item"><strong>新手提醒</strong><br>如果你看完還覺得不確定，那就先少做一點。這種盤先保護自己，比硬做更重要。</div>'
+      ].join('');
+      renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
+      renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
+      renderRiskCards(market.stocks || []);
+      renderTradeSummary(trades || []);
+    });
+  </script>
+</body>
+</html>

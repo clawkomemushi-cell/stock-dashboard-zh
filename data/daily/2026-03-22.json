@@ -1,0 +1,27 @@
+{
+  "date": "2026-03-22",
+  "summary": {
+    "headline": "台股高檔震盪，資金聚焦高息 ETF 與 AI 權值股",
+    "marketBias": "positive",
+    "overview": "加權指數維持高檔整理，成交量略縮。資金一邊回防高股息 ETF，一邊集中在具題材的半導體與伺服器族群。短線適合看強不追高。",
+    "tags": ["高檔震盪", "AI 權值股", "高股息回流"],
+    "metrics": {
+      "weightedIndexChangePct": 0.84,
+      "breadthPct": 61,
+      "etfSignals": 4,
+      "stockSignals": 4
+    }
+  },
+  "etfs": [
+    { "symbol": "0050", "name": "元大台灣50", "action": "watch", "trendScore": 78, "priceChangePct": 1.2, "note": "權值股回穩，適合追蹤大盤強度" },
+    { "symbol": "0056", "name": "元大高股息", "action": "watch", "trendScore": 76, "priceChangePct": 0.9, "note": "高息買盤回流，波動相對溫和" },
+    { "symbol": "00878", "name": "國泰永續高股息", "action": "hold", "trendScore": 66, "priceChangePct": 0.4, "note": "月線之上整理，續抱可" },
+    { "symbol": "00919", "name": "群益台灣精選高息", "action": "watch", "trendScore": 73, "priceChangePct": 0.8, "note": "人氣與量能維持" }
+  ],
+  "stocks": [
+    { "symbol": "2330", "name": "台積電", "action": "watch", "trendScore": 81, "priceChangePct": 1.5, "note": "高階製程與 AI 題材續強" },
+    { "symbol": "2382", "name": "廣達", "action": "watch", "trendScore": 77, "priceChangePct": 1.9, "note": "伺服器族群續強，短線仍有量價優勢" },
+    { "symbol": "3017", "name": "奇鋐", "action": "hold", "trendScore": 64, "priceChangePct": 0.3, "note": "散熱族群高檔震盪，等待再突破" },
+    { "symbol": "2308", "name": "台達電", "action": "hold", "trendScore": 62, "priceChangePct": -0.2, "note": "漲多後整理，觀察支撐" }
+  ]
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台股觀察站｜首頁總覽</title>
+  <link rel="stylesheet" href="./assets/style.css?v=20260323e" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar card">
+      <div>
+        <p class="eyebrow">MI CHONG STOCK HUB</p>
+        <h1>台股觀察站</h1>
+        <p class="hero-copy">這裡先給你一眼看懂整站重點：今天市場大概怎麼看、現在各分頁是拿來做什麼、你今天適合先去哪一頁。首頁不是只放骨架，而是變成你每天進站先看的入口。</p>
+      </div>
+      <div class="hero-meta compact-meta">
+        <div>
+          <span class="label">最新整理日</span>
+          <strong data-latest-date>--</strong>
+        </div>
+        <div>
+          <span class="label">目前定位</span>
+          <strong>每日入口頁</strong>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav card" id="siteNav"></nav>
+
+    <main>
+      <section class="summary-grid">
+        <article class="card highlight">
+          <span class="label">今天一句話</span>
+          <h2 id="homeHeadline">載入中...</h2>
+          <p id="homeSummary" class="hero-copy">正在整理首頁總覽內容。</p>
+          <div class="chips" id="homeTags"></div>
+        </article>
+
+        <article class="card stat-list" id="homeStats"></article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head">
+            <h3>今天你可以先怎麼看</h3>
+          </div>
+          <div class="comparison-panel" id="homeActions"></div>
+        </article>
+
+        <article class="card">
+          <div class="section-head">
+            <h3>我幫你先整理好的分頁用途</h3>
+          </div>
+          <div class="comparison-panel" id="pageGuide"></div>
+        </article>
+      </section>
+
+      <section class="grid-three">
+        <article class="card">
+          <div class="section-head">
+            <h3>今天市場焦點</h3>
+          </div>
+          <div class="comparison-panel" id="marketFocusPreview"></div>
+        </article>
+
+        <article class="card">
+          <div class="section-head">
+            <h3>今天先看哪些標的類型</h3>
+          </div>
+          <div class="comparison-panel" id="watchPreview"></div>
+        </article>
+
+        <article class="card">
+          <div class="section-head">
+            <h3>首頁今天的提醒</h3>
+          </div>
+          <div class="comparison-panel" id="homeReminder"></div>
+        </article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head">
+            <h3>蝦米蟲的判斷反省</h3>
+          </div>
+          <div class="comparison-panel" id="assistantReflection"></div>
+        </article>
+
+        <article class="card">
+          <div class="section-head">
+            <h3>下次我會怎麼修正</h3>
+          </div>
+          <div class="comparison-panel" id="assistantAdjustment"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="./assets/site.js?v=20260323e"></script>
+  <script>
+    const ASSISTANT_REFLECTION = {
+      review: [
+        '我前幾次在市場偏震盪時，把提醒做得比較保守，這有保護到風險，但也容易讓內容看起來像一直重複同一套。這提醒我：之後不能只停在「先保守」，而要更明確區分今天到底是全面高風險，還是只是要放慢節奏。',
+        '像今天這種急跌後收斂的盤，我如果只說「不要追高」，其實還不夠。更有用的做法是把判斷拆開：哪些是風向球、哪些是承接觀察、哪些是跌深卻不能碰。',
+        '如果後面驗證發現高股息 ETF 的承接沒有我預期中那麼穩，或我列為觀察的個股沒有站住，那我就要承認原本假設失效，而不是硬把舊說法撐下去。'
+      ],
+      adjustment: [
+        '之後我在推 ETF / 個股時，會更清楚寫出：我基於什麼現象注意它、這個判斷成立的前提是什麼、什麼情況下算我看錯。',
+        '之後晨間 / 午間 / 晚間更新前，我會先回頭看首頁這裡的反省區，避免自己只是重複前一版結論，卻沒有根據市場驗證去修正。',
+        '如果某個判斷後來證明是對的，我也會說清楚是因為哪個邏輯成立；如果是錯的，我會說錯在哪個前提，不會只模糊帶過。'
+      ]
+    };
+
+    function renderHomeOverview() {
+      renderSiteNav('首頁總覽');
+      const latest = REPORT_LIBRARY.dailyBriefs[0];
+      const market = REPORT_LIBRARY.marketFocus;
+
+      document.getElementById('homeHeadline').textContent = latest.title;
+      document.getElementById('homeSummary').textContent = latest.summary;
+      document.getElementById('homeTags').innerHTML = latest.tags.map(tag => `<span class="chip">${tag}</span>`).join('');
+
+      document.getElementById('homeStats').innerHTML = [
+        ['建議起手頁', '首頁 → 今日股市'],
+        ['今天節奏', '先看量再決定'],
+        ['操作方向', 'ETF 優先 / 分批'],
+        ['目前站點', '5 個分頁']
+      ].map(([label, value]) => `
+        <div class="stat">
+          <span class="label">${label}</span>
+          <span class="value">${value}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('homeActions').innerHTML = [
+        '如果你現在只想知道今天能不能動，先去看「今日股市」。',
+        '如果你想回頭看我每天怎麼整理重點，就去「日報中心」。',
+        '如果你想補觀念、降低亂追風險，就去「股票學習」。',
+        '如果你想記錄買賣、看同步後的交易資料，就去「交易紀錄」。'
+      ].map(text => `<div class="compare-item">${text}</div>`).join('');
+
+      document.getElementById('pageGuide').innerHTML = [
+        ['首頁總覽', '每天先看這頁，快速知道整站重點與今天建議路線。'],
+        ['日報中心', '放比較完整的匯報內容，適合之後一篇篇累積。'],
+        ['今日股市', '放今天該先注意什麼、哪些是觀察不是追價。'],
+        ['股票學習', '放新手觀念、避免踩雷、慢慢建立判斷框架。'],
+        ['交易紀錄', '專門放你的買賣紀錄與同步資料，供其他頁更新時讀取。']
+      ].map(([title, desc]) => `<div class="compare-item"><strong>${title}</strong><br>${desc}</div>`).join('');
+
+      document.getElementById('marketFocusPreview').innerHTML = market.checklist
+        .map(item => `<div class="compare-item"><strong>${item.title}</strong><br>${item.detail}</div>`)
+        .join('');
+
+      document.getElementById('watchPreview').innerHTML = [
+        '<div class="compare-item"><strong>先看 ETF</strong><br>0050、0056 這類標的比較適合當今天的第一層觀察。</div>',
+        '<div class="compare-item"><strong>個股先當風向球</strong><br>2330、2382 可以看，但不是因為強就直接追。</div>',
+        '<div class="compare-item"><strong>交易紀錄入口</strong><br><a class="site-tab" href="./trade-center.html" style="margin-top:8px; display:inline-flex;">打開交易紀錄</a></div>'
+      ].join('');
+
+      document.getElementById('homeReminder').innerHTML = [
+        `<div class="compare-item"><strong>今天比較適合怎麼做</strong><br>${latest.action}</div>`,
+        `<div class="compare-item"><strong>首頁提醒</strong><br>${market.closeNote}</div>`
+      ].join('');
+
+      document.getElementById('assistantReflection').innerHTML = ASSISTANT_REFLECTION.review
+        .map(text => `<div class="compare-item">${text}</div>`)
+        .join('');
+
+      document.getElementById('assistantAdjustment').innerHTML = ASSISTANT_REFLECTION.adjustment
+        .map(text => `<div class="compare-item">${text}</div>`)
+        .join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', renderHomeOverview);
+  </script>
+</body>
+</html>

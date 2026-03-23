@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台股觀察站｜股票學習</title>
+  <link rel="stylesheet" href="./assets/style.css?v=20260323e" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar card page-hero">
+      <div>
+        <p class="eyebrow">LEARNING LAB</p>
+        <h1>股票學習</h1>
+        <p class="hero-copy">這頁不是拿來堆名詞，而是把每天值得學的東西整理成你看得懂、之後也用得上的版本。重點不是背知識，而是慢慢建立自己的判斷框架。</p>
+      </div>
+      <div class="hero-meta compact-meta">
+        <div>
+          <span class="label">最新整理日</span>
+          <strong id="learningDateLabel">--</strong>
+        </div>
+        <div>
+          <span class="label">頁面用途</span>
+          <strong>把觀念變成判斷工具</strong>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav card" id="siteNav"></nav>
+
+    <main>
+      <section class="summary-grid">
+        <article class="card highlight">
+          <span class="label">今天先學這件事</span>
+          <h2 id="learningHeadline">載入中...</h2>
+          <p id="learningSummary" class="hero-copy">正在整理今天的學習重點。</p>
+          <div class="chips" id="learningTags"></div>
+        </article>
+        <article class="card stat-list" id="learningStats"></article>
+      </section>
+
+      <section class="grid-two">
+        <article class="card">
+          <div class="section-head"><h3>今天學這些是為了什麼</h3></div>
+          <div id="learningPurpose" class="comparison-panel"></div>
+        </article>
+        <article class="card">
+          <div class="section-head"><h3>你可以怎麼把它拿來用</h3></div>
+          <div id="learningUse" class="comparison-panel"></div>
+        </article>
+      </section>
+
+      <section id="learningModules" class="stack-layout"></section>
+    </main>
+  </div>
+
+  <script src="./assets/site.js?v=20260323e"></script>
+  <script>
+    const LEARNING_DATA = {
+      date: '2026-03-23',
+      headline: '今天先學：跌深收斂不等於可以直接抄底',
+      summary: '今天這頁的重點，不是教你抓最低點，而是教你分辨「恐慌有沒有降溫」和「趨勢有沒有真的轉回來」是兩件不同的事。這種差別如果沒搞清楚，很容易把觀察訊號誤認成進場訊號。',
+      tags: ['跌深收斂', '不要亂抄底', '新手判斷'],
+      modules: [
+        {
+          title: '為什麼今天高股息 ETF 比熱門股更值得先看？',
+          summary: '因為今天市場是先殺情緒，再看誰有承接。高股息 ETF 雖然也跌，但波動通常比單一熱門股小，對新手更容易執行分批。',
+          whyItMatters: '這不是在說高股息一定最會漲，而是在說當市場很亂時，你更需要一個波動相對能理解、也比較容易執行策略的工具。',
+          howToUse: '之後遇到大震盪時，你可以先看高股息 ETF 有沒有相對抗跌、量能是否合理，來判斷市場是不是還有防守資金。',
+          takeaways: [
+            '先求買得下去、抱得住，再求買得漂亮。',
+            '成交量放大不一定是壞事，但要看是不是有人願意接。'
+          ]
+        },
+        {
+          title: '跌深收斂是不是就能直接抄底？',
+          summary: '不一定。跌深收斂只能代表恐慌稍微降溫，不能自動等於趨勢反轉。要先看權值、量能、族群有沒有一起穩。',
+          whyItMatters: '很多人最容易在這種地方誤判，以為跌很多又有反彈就是便宜。但如果只是短暫止跌，接下來還是可能再破。',
+          howToUse: '以後看到「急跌後拉回」時，先問自己三件事：是只有單一標的回穩，還是整體一起穩？量能是止跌量還是逃命量？隔壁族群有沒有一起配合？',
+          takeaways: [
+            '收斂是觀察訊號，不是無腦買進訊號。',
+            '如果你只能接受一點點錯，那就用一點點部位。'
+          ]
+        },
+        {
+          title: '下午零股最該練的是什麼？',
+          summary: '練習把買進理由說清楚：因為高股息承接、因為權值止穩、因為價格適合分批，而不是因為跌很多看起來便宜。',
+          whyItMatters: '零股最大的價值不是讓你隨便買，而是讓你用比較低的壓力去練習判斷、練習紀錄、練習面對波動。',
+          howToUse: '每次想下零股單前，先逼自己寫一句理由：我買這個，是因為什麼邏輯？如果這句話說不清楚，那就先不要按。',
+          takeaways: [
+            '新手不是不能買，而是不要亂追。',
+            '能重複做、做了睡得著的操作，才比較有機會長久。'
+          ]
+        }
+      ]
+    };
+
+    function renderLearningPage() {
+      renderSiteNav('股票學習');
+      document.getElementById('learningDateLabel').textContent = LEARNING_DATA.date;
+      document.getElementById('learningHeadline').textContent = LEARNING_DATA.headline;
+      document.getElementById('learningSummary').textContent = LEARNING_DATA.summary;
+      document.getElementById('learningTags').innerHTML = LEARNING_DATA.tags.map(tag => `<span class="chip">${tag}</span>`).join('');
+
+      document.getElementById('learningStats').innerHTML = [
+        ['今天主題', '先分辨觀察與進場'],
+        ['學習模組', `${LEARNING_DATA.modules.length} 個`],
+        ['核心方向', '建立判斷框架'],
+        ['用途', '拿去看盤與下單前思考']
+      ].map(([label, value]) => `
+        <div class="stat">
+          <span class="label">${label}</span>
+          <span class="value">${value}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('learningPurpose').innerHTML = [
+        '<div class="compare-item"><strong>不是背知識，是降低亂做單</strong><br>這頁整理的不是考試題，而是你在真實市場裡最容易做錯判斷的地方。</div>',
+        '<div class="compare-item"><strong>不是看爽，是幫你慢慢形成框架</strong><br>你之後看市場時，不會只看漲跌，而會開始看量、承接、族群、風險位置。</div>'
+      ].join('');
+
+      document.getElementById('learningUse').innerHTML = [
+        '<div class="compare-item"><strong>怎麼用在今天</strong><br>今天這種大震盪盤，就用這頁提醒自己：跌深收斂不等於可以直接衝，先看市場是不是整體一起穩。</div>',
+        '<div class="compare-item"><strong>怎麼用在之後</strong><br>之後每次想買前，你都可以回來問：我現在看到的是觀察訊號，還是真的進場訊號？</div>'
+      ].join('');
+
+      document.getElementById('learningModules').innerHTML = LEARNING_DATA.modules.map(item => `
+        <article class="card report-card">
+          <span class="label">股票學習模組</span>
+          <h3>${item.title}</h3>
+          <p class="report-summary">${item.summary}</p>
+          <div class="comparison-panel" style="margin-bottom:12px;">
+            <div class="compare-item"><strong>為什麼這件事重要</strong><br>${item.whyItMatters}</div>
+            <div class="compare-item"><strong>你可以怎麼把它拿來用</strong><br>${item.howToUse}</div>
+          </div>
+          <ul class="help-list report-list">
+            ${item.takeaways.map(point => `<li>${point}</li>`).join('')}
+          </ul>
+        </article>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', renderLearningPage);
+  </script>
+</body>
+</html>
