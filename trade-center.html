@@ -46,14 +46,20 @@
       <section class="grid-two">
         <article class="card">
           <div class="section-head"><h3>選擇日期與新增 / 編輯</h3></div>
-          <div class="trade-form">
-            <input id="activeTradeDate" class="field-wide" type="date" />
-            <select id="tradeAction" class="field-compact"><option value="buy">買進</option><option value="sell">賣出</option></select>
-            <input id="tradeSymbol" class="field-wide" placeholder="代號，例如 0050 / 2330" />
-            <input id="tradeName" class="field-wide" placeholder="名稱（可不填）" />
-            <input id="tradePrice" class="field-compact" type="number" step="0.01" placeholder="價格" />
-            <select id="tradeUnit" class="field-compact"><option value="odd">零股</option><option value="lot">張</option></select>
-            <input id="tradeQty" class="field-compact" type="number" step="1" placeholder="數量" />
+          <div class="trade-form trade-form-structured">
+            <div class="form-row form-row-date">
+              <input id="activeTradeDate" type="date" />
+            </div>
+            <div class="form-row form-row-main">
+              <select id="tradeAction"><option value="buy">買進</option><option value="sell">賣出</option></select>
+              <input id="tradeSymbol" placeholder="代號，例如 0050 / 2330" />
+              <input id="tradeName" placeholder="名稱（可不填）" />
+              <input id="tradePrice" type="number" step="0.01" placeholder="價格" />
+            </div>
+            <div class="form-row form-row-sub">
+              <select id="tradeUnit"><option value="odd">零股</option><option value="lot">張</option></select>
+              <input id="tradeQty" type="number" step="1" placeholder="數量" />
+            </div>
             <textarea id="tradeNote" placeholder="這筆為什麼買 / 賣？例如：高股息承接、想先小量試單、覺得漲多先減碼... "></textarea>
           </div>
           <div class="trade-actions">
