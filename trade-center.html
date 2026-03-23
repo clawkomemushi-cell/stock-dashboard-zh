@@ -75,7 +75,18 @@
         <article class="card">
           <div class="section-head"><h3>雲端同步後資料</h3><span id="remoteTradeCount" class="badge">0</span></div>
           <div id="remoteTradeStatus" class="comparison-panel"></div>
-          <div id="remoteTradeLog" class="trade-log"></div>
+          <div class="filter-row">
+            <select id="remoteDateFilter">
+              <option value="all">查看全部日期</option>
+              <option value="2026-03-23">只看 2026-03-23</option>
+              <option value="2026-03-22">只看 2026-03-22</option>
+            </select>
+            <button class="mini-btn" id="toggleRemoteLogBtn">展開全部</button>
+          </div>
+          <p class="helper-text">這裡顯示的是整理後的有效資料，不會直接把刪除事件、清空事件當成正常交易顯示。</p>
+          <div id="remoteLogWrap" class="remote-log-wrap">
+            <div id="remoteTradeLog" class="trade-log"></div>
+          </div>
         </article>
       </section>
     </main>
@@ -118,9 +129,28 @@
         const ts = String(item.createdAt || item.savedAt || '');
         if (clearedAt && ts <= clearedAt) return false;
         if (deletedIds.has(String(item.tradeId))) return false;
+        if (!item.symbol || !item.action || !['buy','sell'].includes(item.action)) return false;
         return true;
       }).sort((a, b) => String(b.createdAt || b.savedAt || '').localeCompare(String(a.createdAt || a.savedAt || '')));
     }
++
++    let remoteViewExpanded = false;
++    let remoteEffectiveTrades = [];
++
++    function getFilteredRemoteTrades(){
++      const filter = document.getElementById('remoteDateFilter')?.value || 'all';
++      return remoteEffectiveTrades.filter(item => filter === 'all' ? true : String(item.date || '') === filter);
++    }
++
++    function renderRemoteTradeList(){
++      const items = getFilteredRemoteTrades();
++      document.getElementById('remoteTradeCount').textContent = items.length;
++      document.getElementById('remoteTradeLog').innerHTML = items.length ? items.map(item => `<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>${item.date||'未填'}｜${unitLabel(item.unit)} ${item.qty||'未填'}${item.price?`｜價格 ${item.price}`:''}<br>理由：${item.note||'未填'}</div>`).join('') : '<div class="trade-item">目前這個篩選條件下沒有有效資料。</div>';
++      const wrap = document.getElementById('remoteLogWrap');
++      const btn = document.getElementById('toggleRemoteLogBtn');
++      wrap.style.maxHeight = remoteViewExpanded ? 'none' : '420px';
++      btn.textContent = remoteViewExpanded ? '改成固定高度' : '展開全部';
++    }
 
     function getWebhookUrl(){ return localStorage.getItem(webhookKey)||''; }
     function getWebhookSecret(){ return localStorage.getItem(webhookSecretKey)||''; }
@@ -183,7 +213,7 @@
 
     function renderSyncPanel(){
       const url=getWebhookUrl(); const secret=getWebhookSecret();
-      document.getElementById('syncPanel').innerHTML = `<div class="compare-item"><strong>目前同步狀態</strong><br>${url ? `已設定 webhook：<code>${url}</code>` : '尚未設定 webhook。'}<br>${secret ? '已設定同步密鑰。' : '尚未設定同步密鑰。'}<br><br>公開網址預設不會自動帶入這兩個值；只有你的專屬初始化連結才會寫進這台裝置。</div><div class="trade-actions"><button class="mini-btn" id="setWebhookBtn">設定 / 更換 webhook</button><button class="mini-btn" id="setSecretBtn">設定 / 更換密鑰</button><button class="mini-btn" id="refreshRemoteBtn">重新讀取雲端</button><button class="mini-btn" id="clearSyncBtn">清除本機同步設定</button></div>`;
+      document.getElementById('syncPanel').innerHTML = `<div class="compare-item"><strong>目前同步狀態</strong><br>${url ? `已設定 webhook：<code class="sync-url">${url}</code>` : '尚未設定 webhook。'}<br>${secret ? '已設定同步密鑰。' : '尚未設定同步密鑰。'}<br><br>公開網址預設不會自動帶入這兩個值；只有你的專屬初始化連結才會寫進這台裝置。</div><div class="trade-actions"><button class="mini-btn" id="setWebhookBtn">設定 / 更換 webhook</button><button class="mini-btn" id="setSecretBtn">設定 / 更換密鑰</button><button class="mini-btn" id="refreshRemoteBtn">重新讀取雲端</button><button class="mini-btn" id="clearSyncBtn">清除本機同步設定</button></div>`;
       document.getElementById('setWebhookBtn').onclick = () => { const next = prompt('請輸入 webhook URL', getWebhookUrl() || getDefaultWebhookUrl()); if(next!==null){ setWebhookUrl(next.trim()); renderSyncPanel(); renderStats(); }};
       document.getElementById('setSecretBtn').onclick = () => { const next = prompt('請輸入同步密鑰', getWebhookSecret()); if(next!==null){ setWebhookSecret(next.trim()); renderSyncPanel(); renderStats(); }};
       document.getElementById('refreshRemoteBtn').onclick = refreshRemoteTrades;
@@ -216,10 +246,11 @@
       try {
         const result = await fetchRemoteTrades();
         if(result && result.ok){
-          const items = buildEffectiveTrades(result.items || []);
-          document.getElementById('remoteTradeCount').textContent = items.length;
-          document.getElementById('remoteTradeLog').innerHTML = items.length ? items.map(item => `<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>${item.date||'未填'}｜${unitLabel(item.unit)} ${item.qty||'未填'}${item.price?`｜價格 ${item.price}`:''}<br>理由：${item.note||'未填'}</div>`).join('') : '<div class="trade-item">雲端目前沒有有效資料。</div>';
-          mount.innerHTML = `<div class="compare-item"><strong>雲端同步</strong><br>已讀取並整理成 ${items.length} 筆目前有效資料。</div>`;
+          remoteEffectiveTrades = buildEffectiveTrades(result.items || []);
+          renderRemoteTradeList();
+          const totalEvents = Array.isArray(result.items) ? result.items.length : 0;
+          const validCount = remoteEffectiveTrades.length;
+          mount.innerHTML = `<div class="compare-item"><strong>雲端同步</strong><br>原始雲端事件共 ${totalEvents} 筆；整理後目前有效交易 ${validCount} 筆。</div>`;
         } else {
           document.getElementById('remoteTradeCount').textContent = '0';
           document.getElementById('remoteTradeLog').innerHTML = '<div class="trade-item">目前沒有成功讀到雲端資料。</div>';
@@ -270,6 +301,8 @@
       refreshRemoteTrades();
       document.getElementById('saveTradeBtn').addEventListener('click', saveTrade);
       document.getElementById('clearTradeBtn').addEventListener('click', clearLocalTrades);
+      document.getElementById('remoteDateFilter').addEventListener('change', renderRemoteTradeList);
+      document.getElementById('toggleRemoteLogBtn').addEventListener('click', () => { remoteViewExpanded = !remoteViewExpanded; renderRemoteTradeList(); });
     });
   </script>
 </body>

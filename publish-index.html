@@ -72,6 +72,15 @@
         <article class="card">
           <div class="section-head"><h3>雲端同步後的交易資料</h3><span class="badge" id="remoteTradeCount">0</span></div>
           <div id="remoteTradeStatus" class="comparison-panel"></div>
+          <div class="filter-row">
+            <select id="remoteDateFilter">
+              <option value="all">查看全部日期</option>
+              <option value="2026-03-23">只看 2026-03-23</option>
+              <option value="2026-03-22">只看 2026-03-22</option>
+            </select>
+            <button class="mini-btn" id="toggleRemoteLogBtn">展開全部</button>
+          </div>
+          <p class="helper-text">這裡會先把雲端原始事件整理成有效交易，再顯示給你，不直接把刪除/清空事件當交易。</p>
           <div class="remote-sections">
             <div>
               <h4 class="subcard-title">目前持有整理</h4>
@@ -79,7 +88,9 @@
             </div>
             <div>
               <h4 class="subcard-title">之前買賣紀錄</h4>
-              <div id="remoteTradeLog" class="trade-log"></div>
+              <div id="remoteLogWrap" class="remote-log-wrap">
+                <div id="remoteTradeLog" class="trade-log"></div>
+              </div>
             </div>
           </div>
         </article>
@@ -119,7 +130,10 @@ function setWebhookUrl(url){ if(url){ localStorage.setItem(webhookKey,url); } el
 function setWebhookSecret(secret){ if(secret){ localStorage.setItem(webhookSecretKey,secret); } else { localStorage.removeItem(webhookSecretKey); } }
 const makeTradeId = () => `trade_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 function normalizeEvent(raw){ const item = raw || {}; return { ...item, tradeId: item.tradeId || item.id || item.createdAt || item.savedAt || `${item.symbol || 'trade'}-${item.date || currentDate}` }; }
-function buildEffectiveTrades(items){ const events=(Array.isArray(items)?items:[]).map(normalizeEvent); let clearedAt=''; const deletedIds=new Set(); for(const item of events){ if(item.eventType==='clear_all'){ const ts=String(item.createdAt||item.savedAt||''); if(ts>clearedAt) clearedAt=ts; } } for(const item of events){ if(item.eventType==='delete_trade' && item.targetTradeId){ deletedIds.add(String(item.targetTradeId)); } } return events.filter(item=>{ if(item.eventType) return false; const ts=String(item.createdAt||item.savedAt||''); if(clearedAt && ts<=clearedAt) return false; if(deletedIds.has(String(item.tradeId))) return false; return true; }).sort((a,b)=>String(b.createdAt||b.savedAt||'').localeCompare(String(a.createdAt||a.savedAt||''))); }
+function buildEffectiveTrades(items){ const events=(Array.isArray(items)?items:[]).map(normalizeEvent); let clearedAt=''; const deletedIds=new Set(); for(const item of events){ if(item.eventType==='clear_all'){ const ts=String(item.createdAt||item.savedAt||''); if(ts>clearedAt) clearedAt=ts; } } for(const item of events){ if(item.eventType==='delete_trade' && item.targetTradeId){ deletedIds.add(String(item.targetTradeId)); } } return events.filter(item=>{ if(item.eventType) return false; const ts=String(item.createdAt||item.savedAt||''); if(clearedAt && ts<=clearedAt) return false; if(deletedIds.has(String(item.tradeId))) return false; if(!item.symbol || !item.action || !['buy','sell'].includes(item.action)) return false; return true; }).sort((a,b)=>String(b.createdAt||b.savedAt||'').localeCompare(String(a.createdAt||a.savedAt||''))); }
+let remoteViewExpanded = false;
+let remoteEffectiveTrades = [];
+function getFilteredRemoteTrades(){ const filter=document.getElementById('remoteDateFilter')?.value || 'all'; return remoteEffectiveTrades.filter(item => filter === 'all' ? true : String(item.date || '') === filter); }
 async function sendTradeToWebhook(payload){ const url=getWebhookUrl(); const secret=getWebhookSecret(); if(!url) return {ok:false, reason:'no-webhook'}; if(!secret) return {ok:false, reason:'no-secret'}; const target = `${url}?secret=${encodeURIComponent(secret)}`; document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>fetch 準備送到：<code>${target}</code></div>`; try { const res = await fetch(target,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); document.getElementById('tradeStatus').innerHTML = `<div class=\"compare-item\"><strong>同步狀態</strong><br>fetch 已回應，HTTP ${res.status}。</div>`; const raw = await res.text(); let parsed = null; try { parsed = JSON.parse(raw); } catch {} if(!res.ok){ return {ok:false, reason:'http-error', status:res.status, raw, parsed}; } if(parsed) return parsed; return {ok:true, raw}; } catch(err){ return {ok:false, reason:'fetch-throw', message:String(err && err.message || err)}; } }
 
 async function fetchRemoteTrades(){
@@ -153,7 +167,8 @@ function summarizeHoldings(items){
   return [...map.values()].filter(x => x.qty !== 0 || x.buys || x.sells);
 }
 function renderRemoteTrades(items){
-  const list = buildEffectiveTrades(items);
+  remoteEffectiveTrades = buildEffectiveTrades(items);
+  const list = getFilteredRemoteTrades();
   document.getElementById('remoteTradeCount').textContent = list.length;
   const summary = summarizeHoldings(list);
   document.getElementById('holdingSummary').innerHTML = summary.length
@@ -161,7 +176,11 @@ function renderRemoteTrades(items){
     : '<div class="compare-item">目前還沒有可整理的持有資料。</div>';
   document.getElementById('remoteTradeLog').innerHTML = list.length
     ? list.map(item => `<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>日期：${item.date||'未填'}｜交易單位：${item.unit==='lot'?'張':'零股'}｜數量：${item.qty||'未填'}｜價格：${item.price||'未填'}<br>備註：${item.note||'無'}</div>`).join('')
-    : '<div class="trade-item">雲端目前還沒有有效交易紀錄。</div>';
+    : '<div class="trade-item">目前這個篩選條件下沒有有效交易紀錄。</div>';
+  const wrap = document.getElementById('remoteLogWrap');
+  const btn = document.getElementById('toggleRemoteLogBtn');
+  wrap.style.maxHeight = remoteViewExpanded ? 'none' : '420px';
+  btn.textContent = remoteViewExpanded ? '改成固定高度' : '展開全部';
 }
 async function refreshRemoteTrades(){
   const status = document.getElementById('remoteTradeStatus');
@@ -170,7 +189,7 @@ async function refreshRemoteTrades(){
     const result = await fetchRemoteTrades();
     if(result && result.ok){
       renderRemoteTrades(result.items || []);
-      status.innerHTML = `<div class="compare-item"><strong>雲端資料</strong><br>已讀取 ${result.count ?? (result.items||[]).length} 筆同步紀錄。之後我也可以根據這些資料做分析與提醒。</div>`;
+      status.innerHTML = `<div class="compare-item"><strong>雲端資料</strong><br>原始雲端事件共 ${Array.isArray(result.items) ? result.items.length : 0} 筆；整理後目前有效交易 ${remoteEffectiveTrades.length} 筆。</div>`;
     } else if(result && result.reason === 'no-webhook') {
       document.getElementById('remoteTradeCount').textContent = '0';
       document.getElementById('holdingSummary').innerHTML = '<div class="compare-item">還沒設定 webhook，所以目前無法讀取雲端交易資料。</div>';
@@ -208,7 +227,7 @@ async function clearTrades(){ localStorage.removeItem(tradeStorageKey()); render
 
 function populateSelect(id,selected){const select=document.getElementById(id);select.innerHTML=dates.slice().reverse().map(date=>`<option value="${date}" ${date===selected?'selected':''}>${date}</option>`).join('')}
 function render(date){const current=dataset[date],previous=dataset[compareDate];currentDate=date;document.getElementById('currentDate').textContent=current.date;document.getElementById('historyCount').textContent=dates.length;document.getElementById('marketHeadline').textContent=current.summary.headline;document.getElementById('marketSummary').textContent=current.summary.overview;document.getElementById('marketTags').innerHTML=current.summary.tags.map(tag=>`<span class="chip">${tag}</span>`).join('');document.getElementById('etfCount').textContent=current.etfs.length;document.getElementById('stockCount').textContent=current.stocks.length;renderMetrics(current.summary.metrics,current.summary.marketBias);renderSignals(current.etfs,'etfList');renderSignals(current.stocks,'stockList');renderComparison(current,previous);renderActionPanel(current);renderBudget(current.budget.etfs,'budgetEtfPanel');renderBudget(current.budget.stocks,'budgetStockPanel');renderReflection(current)}
-document.getElementById('dateSelect').addEventListener('change',e=>render(e.target.value)); document.getElementById('compareSelect').addEventListener('change',e=>{compareDate=e.target.value;render(currentDate)}); document.getElementById('saveTradeBtn').addEventListener('click',saveTrade); document.getElementById('clearTradeBtn').addEventListener('click',clearTrades); populateSelect('dateSelect',currentDate); populateSelect('compareSelect',compareDate); render(currentDate); renderTrades(); refreshRemoteTrades();
+document.getElementById('dateSelect').addEventListener('change',e=>render(e.target.value)); document.getElementById('compareSelect').addEventListener('change',e=>{compareDate=e.target.value;render(currentDate)}); document.getElementById('saveTradeBtn').addEventListener('click',saveTrade); document.getElementById('clearTradeBtn').addEventListener('click',clearTrades); document.getElementById('remoteDateFilter').addEventListener('change', () => renderRemoteTrades(remoteEffectiveTrades)); document.getElementById('toggleRemoteLogBtn').addEventListener('click', () => { remoteViewExpanded = !remoteViewExpanded; renderRemoteTrades(remoteEffectiveTrades); }); populateSelect('dateSelect',currentDate); populateSelect('compareSelect',compareDate); render(currentDate); renderTrades(); refreshRemoteTrades();
 </script>
 </body>
 </html>
