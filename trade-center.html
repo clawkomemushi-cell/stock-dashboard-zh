@@ -133,24 +133,24 @@
         return true;
       }).sort((a, b) => String(b.createdAt || b.savedAt || '').localeCompare(String(a.createdAt || a.savedAt || '')));
     }
-+
-+    let remoteViewExpanded = false;
-+    let remoteEffectiveTrades = [];
-+
-+    function getFilteredRemoteTrades(){
-+      const filter = document.getElementById('remoteDateFilter')?.value || 'all';
-+      return remoteEffectiveTrades.filter(item => filter === 'all' ? true : String(item.date || '') === filter);
-+    }
-+
-+    function renderRemoteTradeList(){
-+      const items = getFilteredRemoteTrades();
-+      document.getElementById('remoteTradeCount').textContent = items.length;
-+      document.getElementById('remoteTradeLog').innerHTML = items.length ? items.map(item => `<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>${item.date||'未填'}｜${unitLabel(item.unit)} ${item.qty||'未填'}${item.price?`｜價格 ${item.price}`:''}<br>理由：${item.note||'未填'}</div>`).join('') : '<div class="trade-item">目前這個篩選條件下沒有有效資料。</div>';
-+      const wrap = document.getElementById('remoteLogWrap');
-+      const btn = document.getElementById('toggleRemoteLogBtn');
-+      wrap.style.maxHeight = remoteViewExpanded ? 'none' : '420px';
-+      btn.textContent = remoteViewExpanded ? '改成固定高度' : '展開全部';
-+    }
+
+    let remoteViewExpanded = false;
+    let remoteEffectiveTrades = [];
+
+    function getFilteredRemoteTrades(){
+      const filter = document.getElementById('remoteDateFilter')?.value || 'all';
+      return remoteEffectiveTrades.filter(item => filter === 'all' ? true : String(item.date || '') === filter);
+    }
+
+    function renderRemoteTradeList(){
+      const items = getFilteredRemoteTrades();
+      document.getElementById('remoteTradeCount').textContent = items.length;
+      document.getElementById('remoteTradeLog').innerHTML = items.length ? items.map(item => `<div class="trade-item"><strong>${item.action==='buy'?'買進':'賣出'} ${item.symbol}${item.name?` ${item.name}`:''}</strong><br>${item.date||'未填'}｜${unitLabel(item.unit)} ${item.qty||'未填'}${item.price?`｜價格 ${item.price}`:''}<br>理由：${item.note||'未填'}</div>`).join('') : '<div class="trade-item">目前這個篩選條件下沒有有效資料。</div>';
+      const wrap = document.getElementById('remoteLogWrap');
+      const btn = document.getElementById('toggleRemoteLogBtn');
+      wrap.style.maxHeight = remoteViewExpanded ? 'none' : '420px';
+      btn.textContent = remoteViewExpanded ? '改成固定高度' : '展開全部';
+    }
 
     function getWebhookUrl(){ return localStorage.getItem(webhookKey)||''; }
     function getWebhookSecret(){ return localStorage.getItem(webhookSecretKey)||''; }
