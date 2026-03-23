@@ -109,7 +109,7 @@
 
     function getWebhookUrl(){ return localStorage.getItem(webhookKey)||''; }
     function getWebhookSecret(){ return localStorage.getItem(webhookSecretKey)||''; }
-    function getDefaultWebhookUrl(){ return 'https://script.google.com/macros/s/AKfycbyOwan3t9B6Jo4xlhVR6Iq0Hp39DfRDIztxRUbddpQTYbcStQ9wG7WVzS7Kcl4QhtBXHQ/exec'; }
+    function getDefaultWebhookUrl(){ return 'https://script.google.com/macros/s/AKfycbxTKdwElxNLNuW1vXorgoRZq03PCoS7pJwiKrCoGLZ60214Xk9ItF_160piSZzQ1oKo1Q/exec'; }
     function setWebhookUrl(url){ if(url){ localStorage.setItem(webhookKey,url); } else { localStorage.removeItem(webhookKey); } }
     function setWebhookSecret(secret){ if(secret){ localStorage.setItem(webhookSecretKey,secret); } else { localStorage.removeItem(webhookSecretKey); } }
     function tradeStorageKey(date){ return `${tradeStoragePrefix}${date}`; }
