@@ -112,7 +112,7 @@
 
     async function loadMarketData() {
       try {
-        return await safeFetchJson('./data/daily/2026-03-23.json');
+        return await safeFetchJson('./data/daily/2026-03-24.json');
       } catch {
         return MARKET_FALLBACK;
       }
@@ -197,16 +197,16 @@
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
       renderStats(market.summary);
       document.getElementById('marketChecklist').innerHTML = [
-        '<div class="compare-item"><strong>先看 006208 有沒有接住權值</strong><br>今天先不要急著追題材，先看大型權值是不是有把昨夜利多接住；如果 006208 守不住，盤勢多半還是在修復。</div>',
-        '<div class="compare-item"><strong>再看 0056、00878 防守承接在不在</strong><br>高股息 ETF 今天的用途是讀市場有沒有保守底，不是因為它們比較穩就等於今天一定最好買。</div>',
-        '<div class="compare-item"><strong>最後才決定節奏要不要放寬</strong><br>只有當權值穩、高股息也穩，才比較有資格把今天從防守修到中性；若只有開高一下就轉弱，就先繼續保守。</div>'
+        '<div class="compare-item"><strong>先看 2330 能不能把核心權值穩住</strong><br>今天最重要的不是它會不會大漲，而是它能不能把昨夜國際回暖真正接住，讓修復盤有骨架。</div>',
+        '<div class="compare-item"><strong>再看 2454、2303 是否把修復往半導體擴散</strong><br>如果只有台積電撐、其他大型 IC 設計與半導體中段沒跟上，那今天多半還只是單點止穩，不算完整修復。</div>',
+        '<div class="compare-item"><strong>最後用 2884 搭高股息確認盤面秩序</strong><br>金融與高股息若都能守，盤勢才比較像有整體風險收斂；若只有電子急彈，仍先別把節奏放太快。</div>'
       ].join('');
       document.getElementById('marketAction').innerHTML = [
-        '<div class="compare-item"><strong>盤前第 2 回合比較適合怎麼做</strong><br>把 006208 當風向球，把 0056 / 00878 當防守溫度計。觀察工具和防守工具一起穩，後面才值得放寬節奏；否則就維持 ETF 優先、單筆小量、不急追。</div>',
-        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天有實際分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為權值穩、高股息穩才出手，還是只是看到開高就跟著衝。</div>'
+        '<div class="compare-item"><strong>盤前第 3 回合比較適合怎麼做</strong><br>ETF 仍是主體，個股是讀盤輔助。先看 2330 穩不穩，再看 2454、2303 有沒有把修復往半導體擴散，最後看 2884 與高股息能不能一起守住秩序；只有條件一起成立，後面才值得放寬節奏。</div>',
+        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天有實際分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為修復有擴散、有秩序才出手，還是只是看到個股急拉就跟著衝。</div>'
       ].join('');
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
-      renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
+      renderReasonCards((market.stocks || []).slice(0, 4), 'stockFocus');
       renderRiskCards(market.stocks || []);
       renderTradeSummary(trades || []);
     });
