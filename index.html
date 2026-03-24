@@ -124,8 +124,8 @@
 
       document.getElementById('homeStats').innerHTML = [
         ['建議起手頁', '首頁 → 今日股市'],
-        ['今天節奏', '先看量再決定'],
-        ['操作方向', 'ETF 優先 / 分批'],
+        ['今天節奏', '有限修復 / 先防守'],
+        ['操作方向', 'ETF 優先 / 零股分批'],
         ['目前站點', '5 個分頁']
       ].map(([label, value]) => `
         <div class="stat">
@@ -154,14 +154,14 @@
         .join('');
 
       document.getElementById('watchPreview').innerHTML = [
-        '<div class="compare-item"><strong>先看精選個股的用途</strong><br>2330 看核心權值有沒有穩，2454、2303 看半導體修復有沒有擴散，2884 看金融秩序有沒有跟上。</div>',
-        '<div class="compare-item"><strong>今天也有避開名單</strong><br>2408、3017 這種高波動或高位熱門股先不要急，避免把修復盤做成追價盤。</div>',
+        '<div class="compare-item"><strong>先看 ETF 修正後順序</strong><br>0056、00878 先看高股息承接還在不在；006208 保留成權值續穩風向球，但午後優先度略降。</div>',
+        '<div class="compare-item"><strong>下午零股主體先別亂換</strong><br>目前仍以 ETF 優先，比直接追熱門題材或突然展開個股名單更穩。</div>',
         '<div class="compare-item"><strong>交易紀錄入口</strong><br><a class="site-tab" href="./trade-center.html" style="margin-top:8px; display:inline-flex;">打開交易紀錄</a></div>'
       ].join('');
 
       document.getElementById('homeReminder').innerHTML = [
         `<div class="compare-item"><strong>今天比較適合怎麼做</strong><br>${latest.action}</div>`,
-        '<div class="compare-item"><strong>首頁提醒</strong><br>今天首頁先跟著盤前第 3 回合走：個股先拿來確認修復品質，不把台積電單點撐盤或熱門題材急拉，直接翻成整體市場已經安全。</div>'
+        '<div class="compare-item"><strong>首頁提醒</strong><br>午間第 2 回合先把 ETF 修清楚：承接還在的是高股息，不是全面回暖。所以下午零股仍以 ETF 主體優先，但不要把有限修復誤會成可以全面追價。</div>'
       ].join('');
 
       document.getElementById('assistantReflection').innerHTML = ASSISTANT_REFLECTION.review
