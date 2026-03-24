@@ -74,7 +74,7 @@
     </main>
   </div>
 
-  <script src="./assets/site.js?v=20260323e"></script>
+  <script src="./assets/site.js?v=20260324f"></script>
   <script>
     const MARKET_FALLBACK = {
       date: '2026-03-23',
@@ -120,7 +120,7 @@
 
     async function loadTradeData() {
       try {
-        return await safeFetchJson('./data/trades/2026-03-23.json');
+        return await safeFetchJson('./data/trades/2026-03-24.json');
       } catch {
         return TRADE_FALLBACK;
       }
@@ -197,16 +197,16 @@
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
       renderStats(market.summary);
       document.getElementById('marketChecklist').innerHTML = [
-        '<div class="compare-item"><strong>先確認高股息承接有沒有留著</strong><br>0056、00878 午盤前仍大致守在昨收之上，代表防守資金沒有明顯抽離。</div>',
-        '<div class="compare-item"><strong>再確認大盤型 ETF 要不要降一級看</strong><br>006208 沒有轉壞，但在有限修復盤裡更像權值續穩風向球，不再是午後首選。</div>',
-        '<div class="compare-item"><strong>最後評估零股主體要不要維持 ETF</strong><br>在高股息承接尚未鬆動前，下午零股仍適合 ETF 優先；只是邏輯偏防守參與，不是追價進攻。</div>'
+        '<div class="compare-item"><strong>先確認權值主樑有沒有續住</strong><br>2330 仍留在名單最前面，但功能是確認權值修復有沒有續，不是直接拿來當午後追價標的。</div>',
+        '<div class="compare-item"><strong>再確認個股名單有沒有過度擴張</strong><br>2303、2884 可續看；2454 降到次觀察，代表今天個股層只留低難度代表，不把有限修復盤硬做成題材盤。</div>',
+        '<div class="compare-item"><strong>最後確認下午零股主體要不要改</strong><br>答案仍是不改：午後零股先守 ETF 主體，個股只把 2303、2884 當輔助觀察或小量參與名單。</div>'
       ].join('');
       document.getElementById('marketAction').innerHTML = [
-        '<div class="compare-item"><strong>午間第 2 回合比較適合怎麼做</strong><br>下午若只想小量跟上節奏，先用 ETF；順序先看 0056、00878，再看 006208。零股可以，但先偏分批、偏確認承接，不要把紅盤直接翻成追價訊號。</div>',
-        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天午盤真的有分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為高股息承接仍成立才小量出手，還是只是看到指數紅盤就追進去。</div>'
+        '<div class="compare-item"><strong>午間第 3 回合比較適合怎麼做</strong><br>ETF 仍優先，順序先看 0056、00878，再用 2330 / 2303 / 2884 去確認權值、半導體、金融有沒有一起續穩。若只是新手零股練習，個股最多只留 2303、2884；2408、3017 先不要碰。</div>',
+        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天午盤真的有分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為高股息承接與低難度個股邏輯成立才小量出手，還是只是看到指數紅盤就追進去。</div>'
       ].join('');
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
-      document.getElementById('stockFocus').innerHTML = '<div class="compare-item"><strong>這一回合先不展開個股名單</strong><br>午間第 2 回合只修 ETF 層，避免把有限修復盤硬做成題材追價盤。若你下午要小量參與，先用 ETF 驗證承接與節奏就好。</div>';
+      renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
       renderRiskCards(market.stocks || []);
       renderTradeSummary(trades || []);
     });
