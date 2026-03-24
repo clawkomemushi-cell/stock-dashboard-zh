@@ -197,13 +197,13 @@
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
       renderStats(market.summary);
       document.getElementById('marketChecklist').innerHTML = [
-        '<div class="compare-item"><strong>先看 2330 能不能把核心權值穩住</strong><br>今天最重要的不是它會不會大漲，而是它能不能把昨夜國際回暖真正接住，讓修復盤有骨架。</div>',
-        '<div class="compare-item"><strong>再看 2454、2303 是否把修復往半導體擴散</strong><br>如果只有台積電撐、其他大型 IC 設計與半導體中段沒跟上，那今天多半還只是單點止穩，不算完整修復。</div>',
-        '<div class="compare-item"><strong>最後用 2884 搭高股息確認盤面秩序</strong><br>金融與高股息若都能守，盤勢才比較像有整體風險收斂；若只有電子急彈，仍先別把節奏放太快。</div>'
+        '<div class="compare-item"><strong>先確認早盤修復定調有沒有被推翻</strong><br>午盤前加權仍維持紅盤，代表今天不是把晨間修復假設整個打掉，而是保留修復主軸。</div>',
+        '<div class="compare-item"><strong>再確認修復是不是只剩權值在撐</strong><br>台積電、聯發科、聯電、玉山金與高股息大致仍守在昨收之上，但櫃買沒有同步轉強，代表修復偏向權值與防守主導。</div>',
+        '<div class="compare-item"><strong>最後評估午後風險有沒有真的降到可放寬</strong><br>今天風險確實比昨天低，但若午後只剩撐指數、櫃買再弱，市場仍不算低風險盤。</div>'
       ].join('');
       document.getElementById('marketAction').innerHTML = [
-        '<div class="compare-item"><strong>盤前第 3 回合比較適合怎麼做</strong><br>ETF 仍是主體，個股是讀盤輔助。先看 2330 穩不穩，再看 2454、2303 有沒有把修復往半導體擴散，最後看 2884 與高股息能不能一起守住秩序；只有條件一起成立，後面才值得放寬節奏。</div>',
-        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天有實際分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為修復有擴散、有秩序才出手，還是只是看到個股急拉就跟著衝。</div>'
+        '<div class="compare-item"><strong>午間第 1 回合比較適合怎麼做</strong><br>先把今天視為有限修復盤：ETF 與低波動部位優先，小量可以，但不適合把題材急拉直接當成安全追價訊號；只有權值、防守與櫃買一起更穩，後面才值得再放寬節奏。</div>',
+        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天午盤真的有分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為有限修復仍成立才小量出手，還是只是看到指數紅盤就追進去。</div>'
       ].join('');
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
       renderReasonCards((market.stocks || []).slice(0, 4), 'stockFocus');

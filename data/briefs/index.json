@@ -12,6 +12,11 @@
       "path": "./entries/2026-03-24-morning.json"
     },
     {
+      "date": "2026-03-24",
+      "slot": "noon",
+      "path": "./entries/2026-03-24-noon.json"
+    },
+    {
       "date": "2026-03-23",
       "slot": "morning",
       "path": "./entries/2026-03-23-morning.json"
