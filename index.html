@@ -43,39 +43,16 @@
       <section class="grid-two">
         <article class="card">
           <div class="section-head">
-            <h3>今天你可以先怎麼看</h3>
+            <h3>今天建議怎麼看這個站</h3>
           </div>
-          <div class="comparison-panel" id="homeActions"></div>
+          <div class="comparison-panel" id="homeGuide"></div>
         </article>
 
-        <article class="card">
-          <div class="section-head">
-            <h3>我幫你先整理好的分頁用途</h3>
-          </div>
-          <div class="comparison-panel" id="pageGuide"></div>
-        </article>
-      </section>
-
-      <section class="grid-three">
         <article class="card">
           <div class="section-head">
             <h3>今天市場焦點</h3>
           </div>
           <div class="comparison-panel" id="marketFocusPreview"></div>
-        </article>
-
-        <article class="card">
-          <div class="section-head">
-            <h3>今天先看哪些標的類型</h3>
-          </div>
-          <div class="comparison-panel" id="watchPreview"></div>
-        </article>
-
-        <article class="card">
-          <div class="section-head">
-            <h3>首頁今天的提醒</h3>
-          </div>
-          <div class="comparison-panel" id="homeReminder"></div>
         </article>
       </section>
 
@@ -134,35 +111,17 @@
         </div>
       `).join('');
 
-      document.getElementById('homeActions').innerHTML = [
-        '如果你現在只想知道今天能不能動，先去看「今日股市」。',
-        '如果你想回頭看我每天怎麼整理重點，就去「日報中心」。',
-        '如果你想補觀念、降低亂追風險，就去「股票學習」。',
-        '如果你想記錄買賣、看同步後的交易資料，就去「交易紀錄」。'
-      ].map(text => `<div class="compare-item">${text}</div>`).join('');
-
-      document.getElementById('pageGuide').innerHTML = [
-        ['首頁總覽', '每天先看這頁，快速知道整站重點與今天建議路線。'],
-        ['日報中心', '放比較完整的匯報內容，適合之後一篇篇累積。'],
-        ['今日股市', '放今天該先注意什麼、哪些是觀察不是追價。'],
-        ['股票學習', '放新手觀念、避免踩雷、慢慢建立判斷框架。'],
-        ['交易紀錄', '專門放你的買賣紀錄與同步資料，供其他頁更新時讀取。']
+      document.getElementById('homeGuide').innerHTML = [
+        ['先看今日股市', '如果你現在只想知道今天能不能動、該先觀察什麼，就先去「今日股市」。'],
+        ['再看日報中心', '如果你想回頭看今天晨間 / 午間 / 晚間是怎麼一步步整理的，就去「日報中心」。'],
+        ['需要補觀念時看股票學習', '如果你想補分批、ETF、避追高這類基礎判斷，再去「股票學習」。'],
+        ['有實際下單就看交易紀錄', '如果你要記錄買賣、回頭核對理由，最後再去「交易紀錄」。']
       ].map(([title, desc]) => `<div class="compare-item"><strong>${title}</strong><br>${desc}</div>`).join('');
 
       document.getElementById('marketFocusPreview').innerHTML = market.checklist
         .map(item => `<div class="compare-item"><strong>${item.title}</strong><br>${item.detail}</div>`)
         .join('');
 
-      document.getElementById('watchPreview').innerHTML = [
-        '<div class="compare-item"><strong>先看明天還要不要留防守主體</strong><br>0056、00878 先看高股息承接有沒有續在；006208 與 2330 繼續當權值結構風向球，不急著把它們解讀成進攻起點。</div>',
-        '<div class="compare-item"><strong>先驗收盤，再決定能不能放寬</strong><br>明天若只有盤中翻紅、但櫃買與高波動題材沒跟上，就先維持保守，不把短暫修復直接升級成安全盤。</div>',
-        '<div class="compare-item"><strong>交易紀錄入口</strong><br><a class="site-tab" href="./trade-center.html" style="margin-top:8px; display:inline-flex;">打開交易紀錄</a></div>'
-      ].join('');
-
-      document.getElementById('homeReminder').innerHTML = [
-        `<div class="compare-item"><strong>明天比較適合先怎麼看</strong><br>${latest.action}</div>`,
-        '<div class="compare-item"><strong>首頁提醒</strong><br>今天留下的最大修正不是換標的，而是換讀盤順序：先確認收盤留下什麼，再決定明天能不能放寬。若只有盤中紅盤、但櫃買與高波動題材沒跟上，就先不要把節奏升級成進攻。</div>'
-      ].join('');
 
       document.getElementById('assistantReflection').innerHTML = ASSISTANT_REFLECTION.review
         .map(text => `<div class="compare-item">${text}</div>`)
