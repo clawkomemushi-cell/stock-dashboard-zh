@@ -197,13 +197,13 @@
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
       renderStats(market.summary);
       document.getElementById('marketChecklist').innerHTML = [
-        '<div class="compare-item"><strong>先看大盤有沒有真的止穩</strong><br>今天有收斂，不代表今天就安全；先確認跌勢是不是有繼續擴大。</div>',
-        '<div class="compare-item"><strong>先看高股息 ETF 承接</strong><br>如果高股息和大盤型 ETF 承接還在，會比硬追熱門股更適合新手。</div>',
-        '<div class="compare-item"><strong>先分清楚觀察和出手</strong><br>看得懂的標的可以觀察，但不一定代表今天就非買不可。</div>'
+        '<div class="compare-item"><strong>先看 006208 有沒有接住權值</strong><br>今天先不要急著追題材，先看大型權值是不是有把昨夜利多接住；如果 006208 守不住，盤勢多半還是在修復。</div>',
+        '<div class="compare-item"><strong>再看 0056、00878 防守承接在不在</strong><br>高股息 ETF 今天的用途是讀市場有沒有保守底，不是因為它們比較穩就等於今天一定最好買。</div>',
+        '<div class="compare-item"><strong>最後才決定節奏要不要放寬</strong><br>只有當權值穩、高股息也穩，才比較有資格把今天從防守修到中性；若只有開高一下就轉弱，就先繼續保守。</div>'
       ].join('');
       document.getElementById('marketAction').innerHTML = [
-        '<div class="compare-item"><strong>今天比較適合怎麼做</strong><br>偏觀望、偏分批、偏零股、偏 ETF。今天重點是守節奏，不是拼抄底速度。</div>',
-        '<div class="compare-item"><strong>新手提醒</strong><br>如果你看完還覺得不確定，那就先少做一點。這種盤先保護自己，比硬做更重要。</div>'
+        '<div class="compare-item"><strong>盤前第 2 回合比較適合怎麼做</strong><br>把 006208 當風向球，把 0056 / 00878 當防守溫度計。觀察工具和防守工具一起穩，後面才值得放寬節奏；否則就維持 ETF 優先、單筆小量、不急追。</div>',
+        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天有實際分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為權值穩、高股息穩才出手，還是只是看到開高就跟著衝。</div>'
       ].join('');
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
       renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
