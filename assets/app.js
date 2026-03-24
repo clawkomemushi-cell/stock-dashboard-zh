@@ -89,7 +89,7 @@ function badgeLabel(action) {
 }
 
 function sentimentLabel(bias) {
-  return bias === 'positive' ? '偏多' : bias === 'negative' ? '偏空' : '中性';
+  return bias === 'positive' ? '偏多' : bias === 'negative' ? '偏空' : '震盪';
 }
 
 function renderMetrics(metrics, bias) {
