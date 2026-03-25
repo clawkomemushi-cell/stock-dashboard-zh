@@ -64,6 +64,7 @@
         <article class="card">
           <div class="section-head">
             <h3>蝦米蟲的判斷反省</h3>
+            <span class="badge" id="assistantReflectionUpdatedAt">--</span>
           </div>
           <div class="comparison-panel" id="assistantReflection"></div>
         </article>
@@ -98,11 +99,16 @@
       renderSiteNav('首頁總覽');
       const latest = REPORT_LIBRARY.dailyBriefs[0];
       const market = REPORT_LIBRARY.marketFocus;
+      const latestUpdate = deriveBriefUpdate(latest);
 
       document.getElementById('homeHeadline').textContent = latest.title;
       document.getElementById('homeSummary').textContent = latest.summary;
       document.getElementById('homeTags').innerHTML = latest.tags.map(tag => `<span class="chip">${tag}</span>`).join('');
       setPageUpdateLabel('homeUpdatedAt', latestUpdate.label);
+      setPageUpdateLabel('homeGuideUpdatedAt', latestUpdate.label);
+      setPageUpdateLabel('marketFocusPreviewUpdatedAt', latestUpdate.label);
+      setPageUpdateLabel('assistantReflectionUpdatedAt', formatUpdateLabel(market.date || latest.date || '--', '15:25'));
+      setPageUpdateLabel('assistantAdjustmentUpdatedAt', formatUpdateLabel(market.date || latest.date || '--', '15:25'));
 
       document.getElementById('homeStats').innerHTML = [
         ['建議起手頁', '首頁 → 今日股市'],

@@ -45,7 +45,7 @@
           <div id="learningPurpose" class="comparison-panel"></div>
         </article>
         <article class="card">
-          <div class="section-head"><h3>你可以怎麼把它拿來用</h3></div>
+          <div class="section-head"><h3>你可以怎麼把它拿來用</h3><span class="badge" id="learningUseUpdatedAt">--</span></div>
           <div id="learningUse" class="comparison-panel"></div>
         </article>
       </section>
@@ -127,7 +127,7 @@
 
       document.getElementById('learningModules').innerHTML = LEARNING_DATA.modules.map(item => `
         <article class="card report-card">
-          <span class="label">股票學習模組</span>
+          <span class="label">股票學習模組 · ${learningUpdateLabel}</span>
           <h3>${item.title}</h3>
           <p class="report-summary">${item.summary}</p>
           <div class="comparison-panel" style="margin-bottom:12px;">
@@ -149,3 +149,17 @@ ngPage);
   </script>
 </body>
 </html>
+ml>
+article>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', renderLearningPage);
+  </script>
+</body>
+</html>
+ngPage);
+  </script>
+</body>
+</html>
+ml>

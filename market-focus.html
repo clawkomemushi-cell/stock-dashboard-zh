@@ -52,7 +52,7 @@
 
       <section class="grid-two">
         <article class="card">
-          <div class="section-head"><h3>今天我會先看這些 ETF</h3></div>
+          <div class="section-head"><h3>今天我會先看這些 ETF</h3><span class="badge" id="etfFocusUpdatedAt">--</span></div>
           <div id="etfFocus" class="comparison-panel"></div>
         </article>
         <article class="card">
@@ -198,7 +198,14 @@
       const market = enrichMarketData(rawMarket);
       const trades = await loadTradeData();
       document.getElementById('marketDateLabel').textContent = market.date || '--';
-      setPageUpdateLabel('marketUpdatedAt', formatUpdateLabel(market.date || '--', '15:25'));
+      const marketUpdateLabel = formatUpdateLabel(market.date || '--', '15:25');
+      setPageUpdateLabel('marketUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('marketChecklistUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('marketActionUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('etfFocusUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('stockFocusUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('riskFocusUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('tradeSummaryEntryUpdatedAt', marketUpdateLabel);
       document.getElementById('marketHeadline').textContent = market.summary.headline;
       document.getElementById('marketSummary').textContent = market.summary.overview;
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
@@ -227,3 +234,4 @@ stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus')
   </script>
 </body>
 </html>
+ml>
