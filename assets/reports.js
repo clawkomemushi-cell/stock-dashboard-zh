@@ -47,21 +47,6 @@ function renderMarketFocusPage() {
   if (headline) headline.textContent = data.headline;
 }
 
-function renderLearningLabPage() {
-  const mount = document.getElementById('learningModules');
-  if (!mount) return;
-  mount.innerHTML = REPORT_LIBRARY.learningLab.modules.map(item => `
-    <article class="card report-card">
-      <span class="label">股票學習</span>
-      <h3>${item.title}</h3>
-      <p class="report-summary">${item.summary}</p>
-      <ul class="help-list report-list">
-        ${item.takeaways.map(point => `<li>${point}</li>`).join('')}
-      </ul>
-    </article>
-  `).join('');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   renderDailyBriefPage();
   renderMarketFocusPage();
