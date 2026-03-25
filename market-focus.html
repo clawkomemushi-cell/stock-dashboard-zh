@@ -197,13 +197,13 @@
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
       renderStats(market.summary);
       document.getElementById('marketChecklist').innerHTML = [
-        '<div class="compare-item"><strong>先確認早盤前提已被推翻</strong><br>午間加權約 +3.15%，台積電、聯電、鴻海、聯發科與高股息 ETF 同步走強，今天已不是單點護盤，而是權值領軍、電子擴散的強彈盤。</div>',
-        '<div class="compare-item"><strong>再確認午後主觀察名單</strong><br>ETF 改由 006208、0050 當續航風向球；個股只留 2330、2303、2317、2454、2884 這些用途清楚的代表，不把名單擴成看到什麼都想追。</div>',
-        '<div class="compare-item"><strong>最後確認午後零股該怎麼調</strong><br>午後零股可以比早盤更開放，但仍先 ETF、後低難度代表股：0056、00878、00919、2303、2884 都比直接追高價熱門股更容易掌握。</div>'
+        '<div class="compare-item"><strong>先確認今天哪些判斷成立、哪些失效</strong><br>收盤後可確定：晨間「震盪偏防守盤」失效，午間改寫成「權值領軍、電子擴散的強彈盤」大致成立。今天不是只有高股息撐住，而是 2330、2303、2317 與高股息 ETF 一起把多方結構撐到收盤。</div>',
+        '<div class="compare-item"><strong>再確認哪些條件其實有收斂</strong><br>雖然指數最終仍收漲 2.54%，但 2330、2454、006208 到收盤都比午間價位收斂，代表午後「不要情緒追高」這個提醒是有效的，強彈成立不代表任何位置都安全。</div>',
+        '<div class="compare-item"><strong>最後確認明天該沿用什麼框架</strong><br>明天先看 2330、006208 能不能守住今天強彈的大半成果，再看 2303 與大型電子的人氣有沒有延續；高股息 ETF 繼續當穩定器，不把它們誤讀成主攻族群。</div>'
       ].join('');
       document.getElementById('marketAction').innerHTML = [
-        '<div class="compare-item"><strong>午間發布後比較適合怎麼做</strong><br>下午策略從「防守觀察」修正成「保留多方、但不鼓勵情緒追高」：ETF 以 006208、0050 觀察權值續航，高股息保留 0056、00878、00919 作為較低難度參與選項；個股優先留在 2330、2303、2317、2454、2884 這種用途清楚的名單。</div>',
-        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天午後真的有分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為午間強彈仍能守住漲幅才小量參與，還是只是看到盤中急拉就追進去。</div>'
+        '<div class="compare-item"><strong>收盤版總結重點</strong><br>今天最有價值的不是硬猜一開始就會大漲，而是能在午間正式承認早盤前提失效，並把 ETF、個股、避開名單與追高風險一次修正到同一個版本。收盤回頭看，這個修正方向是對的。</div>',
+        '<div class="compare-item"><strong>明天延用的提醒</strong><br>若明天再開高，先看續航與量價，不因今天收紅就把追高風險自動清零；新手仍先 ETF、再低難度代表股，避開 3017、3037、3661 這類高價急拉標的的 FOMO 節奏。</div>'
       ].join('');
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
       renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
