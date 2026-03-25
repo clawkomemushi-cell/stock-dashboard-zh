@@ -20,6 +20,10 @@
           <strong id="marketDateLabel">--</strong>
         </div>
         <div>
+          <span class="label">最近更新</span>
+          <strong id="marketHeroUpdatedAt">--</strong>
+        </div>
+        <div>
           <span class="label">頁面用途</span>
           <strong>先看盤，再決定要不要動</strong>
         </div>
@@ -31,21 +35,24 @@
     <main>
       <section class="summary-grid">
         <article class="card highlight">
-          <span class="label">今天一句話</span>
+          <div class="section-head"><span class="label">今天一句話</span><span class="badge" id="marketSummaryUpdatedAt">--</span></div>
           <h2 id="marketHeadline">載入中...</h2>
           <p id="marketSummary" class="hero-copy">正在整理今日盤勢。</p>
           <div class="chips" id="marketTags"></div>
         </article>
-        <article class="card stat-list" id="marketStats"></article>
+        <article class="card">
+          <div class="section-head"><h3>今天市場數字</h3><span class="badge" id="marketStatsUpdatedAt">--</span></div>
+          <div class="stat-list" id="marketStats"></div>
+        </article>
       </section>
 
       <section class="grid-two">
         <article class="card">
-          <div class="section-head"><h3>今天先看三件事</h3></div>
+          <div class="section-head"><h3>今天先看三件事</h3><span class="badge" id="marketChecklistUpdatedAt">--</span></div>
           <div id="marketChecklist" class="comparison-panel"></div>
         </article>
         <article class="card">
-          <div class="section-head"><h3>今天比較適合怎麼做</h3></div>
+          <div class="section-head"><h3>今天比較適合怎麼做</h3><span class="badge" id="marketActionUpdatedAt">--</span></div>
           <div id="marketAction" class="comparison-panel"></div>
         </article>
       </section>
@@ -56,19 +63,19 @@
           <div id="etfFocus" class="comparison-panel"></div>
         </article>
         <article class="card">
-          <div class="section-head"><h3>今天我會先看這些個股</h3></div>
+          <div class="section-head"><h3>今天我會先看這些個股</h3><span class="badge" id="stockFocusUpdatedAt">--</span></div>
           <div id="stockFocus" class="comparison-panel"></div>
         </article>
       </section>
 
       <section class="grid-two">
         <article class="card">
-          <div class="section-head"><h3>今天該避開什麼</h3></div>
+          <div class="section-head"><h3>今天該避開什麼</h3><span class="badge" id="riskFocusUpdatedAt">--</span></div>
           <div id="riskFocus" class="comparison-panel"></div>
         </article>
         <article class="card">
-          <div class="section-head"><h3>交易摘要入口</h3></div>
-          <div id="tradeSummaryEntry" class="comparison-panel"></div>
+          <div class="section-head"><h3>蝦米蟲的判斷反省 / 下次修正</h3><span class="badge" id="reflectionFocusUpdatedAt">--</span></div>
+          <div id="reflectionFocus" class="comparison-panel"></div>
         </article>
       </section>
     </main>
@@ -98,8 +105,6 @@
       ]
     };
 
-    const TRADE_FALLBACK = [];
-
     async function safeFetchJson(url) {
       const response = await fetch(url, { cache: 'no-store' });
       if (!response.ok) throw new Error(`Fetch failed: ${url}`);
@@ -120,20 +125,6 @@
           return await safeFetchJson(`./data/daily/${REPORT_LIBRARY.latestDate}.json`);
         } catch {
           return MARKET_FALLBACK;
-        }
-      }
-    }
-
-    async function loadTradeData() {
-      try {
-        const briefManifest = await safeFetchJson('./data/briefs/index.json');
-        const latestDate = briefManifest.latestDate || REPORT_LIBRARY.latestDate;
-        return await safeFetchJson(`./data/trades/${latestDate}.json`);
-      } catch {
-        try {
-          return await safeFetchJson(`./data/trades/${REPORT_LIBRARY.latestDate}.json`);
-        } catch {
-          return TRADE_FALLBACK;
         }
       }
     }
@@ -187,14 +178,16 @@
         : '<div class="compare-item">今天暫時沒有特別新增的高風險避開名單。</div>';
     }
 
-    function renderTradeSummary(trades) {
-      const count = trades.length;
-      const latest = trades[0];
-      const unitLabel = unit => unit === 'lot' ? '張' : '零股';
-      document.getElementById('tradeSummaryEntry').innerHTML = [
-        `<div class="compare-item"><strong>今天已同步交易</strong><br>${count} 筆${count ? `，目前最新一筆是 ${latest.action === 'buy' ? '買進' : '賣出'} ${latest.symbol}` : '，目前還沒有資料'}。</div>`,
-        count ? `<div class="compare-item"><strong>最新一筆摘要</strong><br>${latest.symbol}${latest.name ? ` ${latest.name}` : ''}｜${unitLabel(latest.unit)} ${latest.qty || '未填'}${latest.price ? `｜價格 ${latest.price}` : ''}</div>` : '<div class="compare-item"><strong>接下來可以做什麼</strong><br>你可以直接去交易紀錄頁新增操作，之後這裡就會一起反映摘要。</div>',
-        '<div class="compare-item"><strong>前往交易紀錄</strong><br><a class="site-tab" href="./trade-center.html" style="margin-top:8px; display:inline-flex;">打開交易紀錄 / 操作中心</a></div>'
+    function renderReflectionPanel(market) {
+      const reflectionText = market.reflection || '今天暫時沒有額外補充的判斷反省。';
+      const adjustments = [
+        '明天先看 2330、006208、0050 能不能守住今天強彈後的大半成果，再決定要把盤勢當續強還是漲後整理。',
+        '若再次出現龍頭偏強、權值與半導體同步轉暖的組合，我要更快提高對補漲式反攻的敏感度，不要只停在防守腳本。',
+        '新手節奏仍維持 ETF 優先、代表股輔助、熱門股避開；就算今天收紅，也不能把 3017、3037、3661 這類高波動標的的難度自動清零。'
+      ];
+      document.getElementById('reflectionFocus').innerHTML = [
+        `<div class="compare-item"><strong>蝦米蟲的判斷反省</strong><br>${reflectionText}</div>`,
+        `<div class="compare-item"><strong>下次我會怎麼修正</strong><br>${adjustments.join('<br><br>')}</div>`
       ].join('');
     }
 
@@ -202,16 +195,17 @@
       renderSiteNav('今日股市');
       const rawMarket = await loadMarketData();
       const market = enrichMarketData(rawMarket);
-      const trades = await loadTradeData();
       document.getElementById('marketDateLabel').textContent = market.date || '--';
       const marketUpdateLabel = formatUpdateLabel(market.date || '--', '15:25');
-      setPageUpdateLabel('marketUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('marketHeroUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('marketSummaryUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('marketStatsUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('marketChecklistUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('marketActionUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('etfFocusUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('stockFocusUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('riskFocusUpdatedAt', marketUpdateLabel);
-      setPageUpdateLabel('tradeSummaryEntryUpdatedAt', marketUpdateLabel);
+      setPageUpdateLabel('reflectionFocusUpdatedAt', marketUpdateLabel);
       document.getElementById('marketHeadline').textContent = market.summary.headline;
       document.getElementById('marketSummary').textContent = market.summary.overview;
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
@@ -228,7 +222,7 @@
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
       renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
       renderRiskCards(market.stocks || []);
-      renderTradeSummary(trades || []);
+      renderReflectionPanel(market);
     });
   </script>
 </body>

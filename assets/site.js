@@ -1,5 +1,4 @@
 const SITE_NAV_ITEMS = [
-  { href: './index.html', label: '首頁總覽', match: ['index.html', '/'] },
   { href: './daily-brief.html', label: '日報中心', match: ['daily-brief.html'] },
   { href: './market-focus.html', label: '今日股市', match: ['market-focus.html'] },
   { href: './trade-center.html', label: '交易紀錄', match: ['trade-center.html'] }
