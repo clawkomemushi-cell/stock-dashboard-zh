@@ -4,7 +4,10 @@
 
 ## 目錄
 
-- `index.html`：主頁
+- `index.html`：網站入口，會轉向 `market-focus.html`
+- `market-focus.html`：今日股市主頁
+- `daily-brief.html`：日報中心
+- `trade-center.html`：交易紀錄
 - `assets/`：前端 JS / CSS
 - `data/index.json`：資料清單與最新日期
 - `data/daily/YYYY-MM-DD.json`：每日分析 JSON
@@ -22,7 +25,7 @@ python3 -m http.server 8080
 
 然後打開：<http://localhost:8080>
 
-### 方法 2：直接打開 `index.html`
+### 方法 2：直接打開 `market-focus.html`
 
 可看到內建 fallback sample，但部分瀏覽器會因 CORS 無法讀本機 JSON，所以仍建議用 HTTP server。
 
@@ -70,5 +73,6 @@ python3 -m http.server 8080
 
 ## 備註
 
-- 頁面會自動讀取歷史 JSON 並提供比較面板。
+- 目前主更新目標以 `market-focus.html`、`daily-brief.html`、`trade-center.html` 為主。
+- `index.html` 已退役為入口轉址頁，排程不應再把它當主要內容頁維護。
 - 若抓不到 JSON，會退回內建 sample data，方便展示與除錯。
