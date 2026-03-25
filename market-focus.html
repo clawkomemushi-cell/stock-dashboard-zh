@@ -197,13 +197,13 @@
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
       renderStats(market.summary);
       document.getElementById('marketChecklist').innerHTML = [
-        '<div class="compare-item"><strong>先確認權值主樑有沒有續住</strong><br>2330 仍留在名單最前面，但功能是確認權值修復有沒有續，不是直接拿來當午後追價標的。</div>',
-        '<div class="compare-item"><strong>再確認個股名單有沒有過度擴張</strong><br>2303、2884 可續看；2454 降到次觀察，代表今天個股層只留低難度代表，不把有限修復盤硬做成題材盤。</div>',
-        '<div class="compare-item"><strong>最後確認下午零股主體要不要改</strong><br>答案仍是不改：午後零股先守 ETF 主體，個股只把 2303、2884 當輔助觀察或小量參與名單。</div>'
+        '<div class="compare-item"><strong>先確認早盤前提已被推翻</strong><br>午間加權約 +3.15%，台積電、聯電、鴻海、聯發科與高股息 ETF 同步走強，今天已不是單點護盤，而是權值領軍、電子擴散的強彈盤。</div>',
+        '<div class="compare-item"><strong>再確認午後主觀察名單</strong><br>ETF 改由 006208、0050 當續航風向球；個股只留 2330、2303、2317、2454、2884 這些用途清楚的代表，不把名單擴成看到什麼都想追。</div>',
+        '<div class="compare-item"><strong>最後確認午後零股該怎麼調</strong><br>午後零股可以比早盤更開放，但仍先 ETF、後低難度代表股：0056、00878、00919、2303、2884 都比直接追高價熱門股更容易掌握。</div>'
       ].join('');
       document.getElementById('marketAction').innerHTML = [
-        '<div class="compare-item"><strong>午間第 3 回合比較適合怎麼做</strong><br>ETF 仍優先，順序先看 0056、00878，再用 2330 / 2303 / 2884 去確認權值、半導體、金融有沒有一起續穩。若只是新手零股練習，個股最多只留 2303、2884；2408、3017 先不要碰。</div>',
-        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天午盤真的有分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為高股息承接與低難度個股邏輯成立才小量出手，還是只是看到指數紅盤就追進去。</div>'
+        '<div class="compare-item"><strong>午間發布後比較適合怎麼做</strong><br>下午策略從「防守觀察」修正成「保留多方、但不鼓勵情緒追高」：ETF 以 006208、0050 觀察權值續航，高股息保留 0056、00878、00919 作為較低難度參與選項；個股優先留在 2330、2303、2317、2454、2884 這種用途清楚的名單。</div>',
+        '<div class="compare-item"><strong>雲端同步後要看什麼</strong><br>若你今天午後真的有分批動作，記得把理由一起寫進交易紀錄。之後我就能回頭核對：你是因為午間強彈仍能守住漲幅才小量參與，還是只是看到盤中急拉就追進去。</div>'
       ].join('');
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
       renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
