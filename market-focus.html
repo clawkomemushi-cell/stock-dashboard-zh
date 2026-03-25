@@ -112,9 +112,15 @@
 
     async function loadMarketData() {
       try {
-        return await safeFetchJson('./data/daily/2026-03-24.json');
+        const briefManifest = await safeFetchJson('./data/briefs/index.json');
+        const latestDate = briefManifest.latestDate || REPORT_LIBRARY.latestDate;
+        return await safeFetchJson(`./data/daily/${latestDate}.json`);
       } catch {
-        return MARKET_FALLBACK;
+        try {
+          return await safeFetchJson(`./data/daily/${REPORT_LIBRARY.latestDate}.json`);
+        } catch {
+          return MARKET_FALLBACK;
+        }
       }
     }
 
@@ -192,6 +198,7 @@
       const market = enrichMarketData(rawMarket);
       const trades = await loadTradeData();
       document.getElementById('marketDateLabel').textContent = market.date || '--';
+      setPageUpdateLabel('marketUpdatedAt', formatUpdateLabel(market.date || '--', '15:25'));
       document.getElementById('marketHeadline').textContent = market.summary.headline;
       document.getElementById('marketSummary').textContent = market.summary.overview;
       document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
@@ -207,6 +214,13 @@
       ].join('');
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
       renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
+      renderRiskCards(market.stocks || []);
+      renderTradeSummary(trades || []);
+    });
+  </script>
+</body>
+</html>
+stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
       renderRiskCards(market.stocks || []);
       renderTradeSummary(trades || []);
     });

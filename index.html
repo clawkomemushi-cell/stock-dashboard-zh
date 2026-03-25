@@ -20,6 +20,10 @@
           <strong data-latest-date>--</strong>
         </div>
         <div>
+          <span class="label">最近更新</span>
+          <strong id="homeUpdatedAt">--</strong>
+        </div>
+        <div>
           <span class="label">目前定位</span>
           <strong>每日入口頁</strong>
         </div>
@@ -98,6 +102,7 @@
       document.getElementById('homeHeadline').textContent = latest.title;
       document.getElementById('homeSummary').textContent = latest.summary;
       document.getElementById('homeTags').innerHTML = latest.tags.map(tag => `<span class="chip">${tag}</span>`).join('');
+      setPageUpdateLabel('homeUpdatedAt', latestUpdate.label);
 
       document.getElementById('homeStats').innerHTML = [
         ['建議起手頁', '首頁 → 今日股市'],

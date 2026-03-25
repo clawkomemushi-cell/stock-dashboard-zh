@@ -159,6 +159,7 @@
         const pairs = BRIEF_FALLBACK_INDEX.files.map(item => BRIEF_FALLBACK_ENTRIES[`${item.date}-${item.slot}`]).filter(Boolean);
         briefEntries = pairs;
         document.getElementById('latestDateLabel').textContent = BRIEF_FALLBACK_INDEX.latestDate;
+        setPageUpdateLabel('briefUpdatedAt', deriveBriefUpdate(pairs[0]).label);
       }
       briefEntries.sort((a, b) => {
         if (a.date !== b.date) return a.date < b.date ? 1 : -1;
@@ -189,7 +190,7 @@
         <article class="card report-card">
           <div class="section-head">
             <div>
-              <span class="label">${item.date} · ${item.slotLabel}</span>
+              <span class="label">${deriveBriefUpdate(item).label} · ${item.slotLabel}</span>
               <h3>${item.title}</h3>
             </div>
             <div class="chips">${item.tags.map(tag => `<span class="chip">${tag}</span>`).join('')}</div>
@@ -256,6 +257,11 @@
       renderSelectedBrief();
       document.getElementById('briefDateSelect').addEventListener('change', renderSelectedBrief);
       document.getElementById('briefSlotSelect').addEventListener('change', renderSelectedBrief);
+    });
+  </script>
+</body>
+</html>
+ctedBrief);
     });
   </script>
 </body>

@@ -6,6 +6,34 @@ const SITE_NAV_ITEMS = [
   { href: './trade-center.html', label: '交易紀錄', match: ['trade-center.html'] }
 ];
 
+const SLOT_TIME_MAP = {
+  morning: '08:12',
+  noon: '12:45',
+  evening: '20:42',
+  close: '15:25'
+};
+
+function formatUpdateLabel(date, time) {
+  if (!date && !time) return '--';
+  if (date && time) return `${date} ${time}`;
+  return date || time || '--';
+}
+
+function deriveBriefUpdate(entry) {
+  if (!entry) return { date: REPORT_LIBRARY.latestDate || '--', time: '--', label: '--' };
+  const time = SLOT_TIME_MAP[entry.slot] || '--';
+  return {
+    date: entry.date || REPORT_LIBRARY.latestDate || '--',
+    time,
+    label: formatUpdateLabel(entry.date || REPORT_LIBRARY.latestDate || '--', time)
+  };
+}
+
+function setPageUpdateLabel(id, value) {
+  const node = document.getElementById(id);
+  if (node) node.textContent = value || '--';
+}
+
 const REPORT_LIBRARY = {
   latestDate: '2026-03-25',
   dailyBriefs: [

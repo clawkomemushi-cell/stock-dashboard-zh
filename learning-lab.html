@@ -98,6 +98,7 @@
     function renderLearningPage() {
       renderSiteNav('股票學習');
       document.getElementById('learningDateLabel').textContent = LEARNING_DATA.date;
+      setPageUpdateLabel('learningUpdatedAt', formatUpdateLabel(LEARNING_DATA.date, '20:42'));
       document.getElementById('learningHeadline').textContent = LEARNING_DATA.headline;
       document.getElementById('learningSummary').textContent = LEARNING_DATA.summary;
       document.getElementById('learningTags').innerHTML = LEARNING_DATA.tags.map(tag => `<span class="chip">${tag}</span>`).join('');
@@ -141,6 +142,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', renderLearningPage);
+  </script>
+</body>
+</html>
+ngPage);
   </script>
 </body>
 </html>
