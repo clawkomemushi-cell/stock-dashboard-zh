@@ -5,7 +5,7 @@
 ## 目錄
 
 - `index.html`：網站入口，會轉向 `market-focus.html`
-- `market-focus.html`：今日股市主頁
+- `market-focus.html`：今日股市主要頁面
 - `daily-brief.html`：日報中心
 - `trade-center.html`：交易紀錄
 - `assets/`：前端 JS / CSS
