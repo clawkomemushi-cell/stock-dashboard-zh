@@ -136,18 +136,24 @@
       ]);
       return {
         ...raw,
-        etfs: (raw.etfs || []).map(item => ({ ...item, ...(fallbackMap.get(item.symbol) || {}) })),
-        stocks: (raw.stocks || []).map(item => ({ ...item, ...(fallbackMap.get(item.symbol) || {}) }))
+        etfs: (raw.etfs || []).map(item => ({ ...(fallbackMap.get(item.symbol) || {}), ...item })),
+        stocks: (raw.stocks || []).map(item => ({ ...(fallbackMap.get(item.symbol) || {}), ...item }))
       };
     }
 
-    function renderStats(summary) {
-      const metrics = summary.metrics;
+    function formatPct(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return '--';
+      const numeric = Number(value);
+      return `${numeric > 0 ? '+' : ''}${numeric.toFixed(2)}%`;
+    }
+
+    function renderStats(summary = {}) {
+      const metrics = summary.metrics || {};
       document.getElementById('marketStats').innerHTML = [
-        ['加權漲跌', `${metrics.weightedIndexChangePct > 0 ? '+' : ''}${metrics.weightedIndexChangePct.toFixed(2)}%`],
-        ['上漲家數比', `${metrics.breadthPct}%`],
-        ['ETF 訊號數', `${metrics.etfSignals}`],
-        ['個股訊號數', `${metrics.stockSignals}`]
+        ['加權漲跌', formatPct(metrics.weightedIndexChangePct)],
+        ['上漲家數比', metrics.breadthPct === null || metrics.breadthPct === undefined ? '--' : `${metrics.breadthPct}%`],
+        ['ETF 觀察數', metrics.etfSignals === null || metrics.etfSignals === undefined ? '--' : `${metrics.etfSignals}`],
+        ['個股觀察數', metrics.stockSignals === null || metrics.stockSignals === undefined ? '--' : `${metrics.stockSignals}`]
       ].map(([label, value]) => `
         <div class="stat">
           <span class="label">${label}</span>
@@ -156,8 +162,18 @@
       `).join('');
     }
 
+    function renderInfoPanel(items, mountId, emptyText = '今天暫時沒有額外補充。') {
+      document.getElementById(mountId).innerHTML = items.length
+        ? items.map(item => `
+            <div class="compare-item">
+              <strong>${item.title}</strong><br>${item.detail}
+            </div>
+          `).join('')
+        : `<div class="compare-item">${emptyText}</div>`;
+    }
+
     function renderReasonCards(items, mountId) {
-      document.getElementById(mountId).innerHTML = items.map(item => `
+      document.getElementById(mountId).innerHTML = items.length ? items.map(item => `
         <div class="compare-item">
           <strong>${item.symbol} ${item.name}</strong><br>
           <span class="chip">${badgeLabel(item.action)}</span>
@@ -168,7 +184,7 @@
             <div style="margin-top:10px;"><strong>我會怎麼使用這個判斷：</strong><br>${item.use || '先觀察，不急著出手。'}</div>
           </div>
         </div>
-      `).join('');
+      `).join('') : '<div class="compare-item">今天暫時沒有新的觀察名單。</div>';
     }
 
     function renderRiskCards(items) {
@@ -180,11 +196,13 @@
 
     function renderReflectionPanel(market) {
       const reflectionText = market.reflection || '今天暫時沒有額外補充的判斷反省。';
-      const adjustments = [
-        '明天先看 2330、006208、0050 能不能守住今天強彈後的大半成果，再決定要把盤勢當續強還是漲後整理。',
-        '若再次出現龍頭偏強、權值與半導體同步轉暖的組合，我要更快提高對補漲式反攻的敏感度，不要只停在防守腳本。',
-        '新手節奏仍維持 ETF 優先、代表股輔助、熱門股避開；就算今天收紅，也不能把 3017、3037、3661 這類高波動標的的難度自動清零。'
-      ];
+      const adjustments = Array.isArray(market.reflectionAdjustments) && market.reflectionAdjustments.length
+        ? market.reflectionAdjustments
+        : [
+            '明天先看 2330、006208、0050 能不能守住今天強彈後的大半成果，再決定要把盤勢當續強還是漲後整理。',
+            '若再次出現龍頭偏強、權值與半導體同步轉暖的組合，我要更快提高對補漲式反攻的敏感度，不要只停在防守腳本。',
+            '新手節奏仍維持 ETF 優先、代表股輔助、熱門股避開；就算今天收紅，也不能把 3017、3037、3661 這類高波動標的的難度自動清零。'
+          ];
       document.getElementById('reflectionFocus').innerHTML = [
         `<div class="compare-item"><strong>蝦米蟲的判斷反省</strong><br>${reflectionText}</div>`,
         `<div class="compare-item"><strong>下次我會怎麼修正</strong><br>${adjustments.join('<br><br>')}</div>`
@@ -196,7 +214,8 @@
       const rawMarket = await loadMarketData();
       const market = enrichMarketData(rawMarket);
       document.getElementById('marketDateLabel').textContent = market.date || '--';
-      const marketUpdateLabel = formatUpdateLabel(market.date || '--', '15:25');
+      const marketUpdateTime = market.updateTime || (market.slot && typeof SLOT_TIME_MAP !== 'undefined' ? SLOT_TIME_MAP[market.slot] : null) || '15:25';
+      const marketUpdateLabel = formatUpdateLabel(market.date || '--', marketUpdateTime);
       setPageUpdateLabel('marketHeroUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('marketSummaryUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('marketStatsUpdatedAt', marketUpdateLabel);
@@ -206,21 +225,27 @@
       setPageUpdateLabel('stockFocusUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('riskFocusUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('reflectionFocusUpdatedAt', marketUpdateLabel);
-      document.getElementById('marketHeadline').textContent = market.summary.headline;
-      document.getElementById('marketSummary').textContent = market.summary.overview;
-      document.getElementById('marketTags').innerHTML = (market.summary.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
+      document.getElementById('marketHeadline').textContent = market.summary?.headline || '載入中...';
+      document.getElementById('marketSummary').textContent = market.summary?.overview || '正在整理今日盤勢。';
+      document.getElementById('marketTags').innerHTML = (market.summary?.tags || []).map(tag => `<span class="chip">${tag}</span>`).join('');
       renderStats(market.summary);
-      document.getElementById('marketChecklist').innerHTML = [
-        '<div class="compare-item"><strong>先確認今天哪些判斷成立、哪些失效</strong><br>收盤後可確定：晨間「震盪偏防守盤」失效，午間改寫成「權值領軍、電子擴散的強彈盤」大致成立。今天不是只有高股息撐住，而是 2330、2303、2317 與高股息 ETF 一起把多方結構撐到收盤。</div>',
-        '<div class="compare-item"><strong>再確認哪些條件其實有收斂</strong><br>雖然指數最終仍收漲 2.54%，但 2330、2454、006208 到收盤都比午間價位收斂，代表午後「不要情緒追高」這個提醒是有效的，強彈成立不代表任何位置都安全。</div>',
-        '<div class="compare-item"><strong>最後確認明天該沿用什麼框架</strong><br>明天先看 2330、006208 能不能守住今天強彈的大半成果，再看 2303 與大型電子的人氣有沒有延續；高股息 ETF 繼續當穩定器，不把它們誤讀成主攻族群。</div>'
-      ].join('');
-      document.getElementById('marketAction').innerHTML = [
-        '<div class="compare-item"><strong>收盤版總結重點</strong><br>今天最有價值的不是硬猜一開始就會大漲，而是能在午間正式承認早盤前提失效，並把 ETF、個股、避開名單與追高風險一次修正到同一個版本。收盤回頭看，這個修正方向是對的。</div>',
-        '<div class="compare-item"><strong>明天延用的提醒</strong><br>若明天再開高，先看續航與量價，不因今天收紅就把追高風險自動清零；新手仍先 ETF、再低難度代表股，避開 3017、3037、3661 這類高價急拉標的的 FOMO 節奏。</div>'
-      ].join('');
+      renderInfoPanel(
+        (market.checklist || []).length ? market.checklist : [
+          { title: '先確認今天哪些判斷成立、哪些失效', detail: '收盤後可確定：晨間「震盪偏防守盤」失效，午間改寫成「權值領軍、電子擴散的強彈盤」大致成立。今天不是只有高股息撐住，而是 2330、2303、2317 與高股息 ETF 一起把多方結構撐到收盤。' },
+          { title: '再確認哪些條件其實有收斂', detail: '雖然指數最終仍收漲 2.54%，但 2330、2454、006208 到收盤都比午間價位收斂，代表午後「不要情緒追高」這個提醒是有效的，強彈成立不代表任何位置都安全。' },
+          { title: '最後確認明天該沿用什麼框架', detail: '明天先看 2330、006208 能不能守住今天強彈的大半成果，再看 2303 與大型電子的人氣有沒有延續；高股息 ETF 繼續當穩定器，不把它們誤讀成主攻族群。' }
+        ],
+        'marketChecklist'
+      );
+      renderInfoPanel(
+        (market.actionPanel || []).length ? market.actionPanel : [
+          { title: '收盤版總結重點', detail: '今天最有價值的不是硬猜一開始就會大漲，而是能在午間正式承認早盤前提失效，並把 ETF、個股、避開名單與追高風險一次修正到同一個版本。收盤回頭看，這個修正方向是對的。' },
+          { title: '明天延用的提醒', detail: '若明天再開高，先看續航與量價，不因今天收紅就把追高風險自動清零；新手仍先 ETF、再低難度代表股，避開 3017、3037、3661 這類高價急拉標的的 FOMO 節奏。' }
+        ],
+        'marketAction'
+      );
       renderReasonCards((market.etfs || []).slice(0, 3), 'etfFocus');
-      renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 4), 'stockFocus');
+      renderReasonCards((market.stocks || []).filter(item => item.action !== 'avoid').slice(0, 5), 'stockFocus');
       renderRiskCards(market.stocks || []);
       renderReflectionPanel(market);
     });
