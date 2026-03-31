@@ -8,6 +8,11 @@
   "files": [
     {
       "date": "2026-03-31",
+      "slot": "noon",
+      "path": "./entries/2026-03-31-noon.json"
+    },
+    {
+      "date": "2026-03-31",
       "slot": "morning",
       "path": "./entries/2026-03-31-morning.json"
     },
