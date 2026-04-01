@@ -147,10 +147,34 @@
     }
 
     async function loadMarketData() {
+      // Robust loading: prefer daily JSON but fallback to briefs entries if daily missing expected summary
       try {
         const briefManifest = await safeFetchJson('./data/briefs/index.json');
         const latestDate = briefManifest.latestDate || REPORT_LIBRARY.latestDate;
-        return await safeFetchJson(`./data/daily/${latestDate}.json`);
+        try {
+          const daily = await safeFetchJson(`./data/daily/${latestDate}.json`);
+          // if daily has a proper summary/headline, use it
+          if (daily && daily.market && daily.market.summary && daily.market.summary.headline) return daily;
+          // otherwise try to fetch the briefs entry for the latest slot (prefer noon->morning->evening)
+          const preferSlots = ['noon','morning','evening'];
+          for (const s of preferSlots) {
+            const entry = (briefManifest.files || []).find(f => f.date === latestDate && f.slot === s);
+            if (entry) {
+              try {
+                return await safeFetchJson(`./data/briefs/${entry.path.replace('./','')}`);
+              } catch (err) {
+                // ignore and try next
+              }
+            }
+          }
+          // fallback to the daily we already loaded (even if incomplete)
+          return daily;
+        } catch (e) {
+          // if daily failed, fallback to briefs index -> entry
+          const entry = (briefManifest.files || []).find(f => f.date === briefManifest.latestDate);
+          if (entry) return await safeFetchJson(`./data/briefs/${entry.path.replace('./','')}`);
+          return await safeFetchJson(`./data/daily/${REPORT_LIBRARY.latestDate}.json`);
+        }
       } catch {
         try {
           return await safeFetchJson(`./data/daily/${REPORT_LIBRARY.latestDate}.json`);
