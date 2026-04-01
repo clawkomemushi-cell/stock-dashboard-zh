@@ -1,0 +1,25 @@
+{
+  "date": "2026-03-20",
+  "summary": {
+    "headline": "權值股整理，資金回流高股息 ETF",
+    "marketBias": "neutral",
+    "overview": "市場進入財報前觀望期，資金偏向穩健防禦與高息族群，短線追價意願偏低。",
+    "tags": ["高股息", "防禦輪動", "量縮"],
+    "metrics": {
+      "weightedIndexChangePct": -0.28,
+      "breadthPct": 44,
+      "etfSignals": 3,
+      "stockSignals": 3
+    }
+  },
+  "etfs": [
+    { "symbol": "0056", "name": "元大高股息", "action": "watch", "trendScore": 71, "priceChangePct": 0.8, "note": "量能穩定，適合防守型配置" },
+    { "symbol": "00878", "name": "國泰永續高股息", "action": "watch", "trendScore": 69, "priceChangePct": 0.5, "note": "月線附近有支撐" },
+    { "symbol": "006208", "name": "富邦台50", "action": "hold", "trendScore": 58, "priceChangePct": -0.3, "note": "權值股整理期，先觀察" }
+  ],
+  "stocks": [
+    { "symbol": "2330", "name": "台積電", "action": "hold", "trendScore": 57, "priceChangePct": -0.4, "note": "千元附近震盪，等待法人表態" },
+    { "symbol": "2454", "name": "聯發科", "action": "watch", "trendScore": 65, "priceChangePct": 0.6, "note": "季線附近整理，有反彈機會" },
+    { "symbol": "2303", "name": "聯電", "action": "avoid", "trendScore": 41, "priceChangePct": -1.2, "note": "短線弱勢未扭轉" }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-03-21",
+  "summary": {
+    "headline": "半導體回穩，ETF 與大型權值同步轉強",
+    "marketBias": "positive",
+    "overview": "買盤回流大型股，市場風險偏好略有升溫，ETF 與權值股表現同步改善。",
+    "tags": ["半導體反彈", "權值止穩", "風險偏好升溫"],
+    "metrics": {
+      "weightedIndexChangePct": 0.62,
+      "breadthPct": 56,
+      "etfSignals": 3,
+      "stockSignals": 3
+    }
+  },
+  "etfs": [
+    { "symbol": "0050", "name": "元大台灣50", "action": "watch", "trendScore": 74, "priceChangePct": 1.0, "note": "指數型 ETF 轉強" },
+    { "symbol": "0056", "name": "元大高股息", "action": "hold", "trendScore": 68, "priceChangePct": 0.2, "note": "穩定但彈性不如市值型" },
+    { "symbol": "00919", "name": "群益台灣精選高息", "action": "watch", "trendScore": 72, "priceChangePct": 0.7, "note": "人氣續強" }
+  ],
+  "stocks": [
+    { "symbol": "2330", "name": "台積電", "action": "watch", "trendScore": 70, "priceChangePct": 1.1, "note": "ADR 帶動信心回升" },
+    { "symbol": "2382", "name": "廣達", "action": "watch", "trendScore": 67, "priceChangePct": 0.9, "note": "AI 題材維持熱度" },
+    { "symbol": "2603", "name": "長榮", "action": "hold", "trendScore": 55, "priceChangePct": 0.1, "note": "運價題材需再觀察" }
+  ]
+}

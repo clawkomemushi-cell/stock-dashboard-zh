@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台股觀察站｜日報中心</title>
+  <link rel="stylesheet" href="./assets/style.css?v=20260323e" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar card page-hero">
+      <div>
+        <p class="eyebrow">DAILY BRIEF</p>
+        <h1>日報中心</h1>
+        <p class="hero-copy">上面先放今天目前已經更新過的重點卡，最新的排最上面；下面再用日期和晨間 / 午間 / 晚間查單篇內容，這樣今天的即時資訊和歷史查詢就能分開看。</p>
+      </div>
+      <div class="hero-meta compact-meta">
+        <div>
+          <span class="label">最新整理日</span>
+          <strong id="latestDateLabel">--</strong>
+        </div>
+        <div>
+          <span class="label">頁面定位</span>
+          <strong>今日重點 + 歷史查詢</strong>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav card" id="siteNav"></nav>
+
+    <main>
+      <section>
+        <div class="section-head">
+          <h3>今日最新資訊</h3>
+        </div>
+        <div id="todayBriefCards" class="stack-layout"></div>
+      </section>
+
+      <section class="grid-two" style="margin-top:16px;">
+        <article class="card">
+          <div class="section-head">
+            <h3>日報選擇查詢</h3>
+          </div>
+          <div class="controls brief-picker" style="grid-template-columns:repeat(2,minmax(0,1fr)); margin-bottom:0;">
+            <div>
+              <label for="briefDateSelect">日期</label>
+              <select id="briefDateSelect"></select>
+            </div>
+            <div>
+              <label for="briefSlotSelect">時段</label>
+              <select id="briefSlotSelect"></select>
+            </div>
+          </div>
+          <div class="comparison-panel" id="briefPickerHint" style="margin-top:12px"></div>
+        </article>
+
+        <article class="card stat-list" id="briefStats"></article>
+      </section>
+
+      <section style="margin-top:16px;">
+        <article class="card report-card">
+          <div class="section-head">
+            <div>
+              <span class="label" id="selectedMeta">--</span>
+              <h3 id="selectedTitle">載入中...</h3>
+            </div>
+            <div class="chips" id="selectedTags"></div>
+          </div>
+          <p class="report-summary" id="selectedSummary"></p>
+          <ul class="help-list report-list" id="selectedBullets"></ul>
+          <div class="comparison-panel">
+            <div class="compare-item"><strong>這篇的操作結論</strong><br><span id="selectedAction"></span></div>
+            <div class="compare-item"><strong>我為什麼留這篇</strong><br><span id="selectedWhy"></span></div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="./assets/site.js?v=20260324f"></script>
+  <script>
+    const BRIEF_FALLBACK_INDEX = {
+      latestDate: '2026-03-23',
+      files: [
+        { date: '2026-03-23', slot: 'morning', path: './entries/2026-03-23-morning.json' },
+        { date: '2026-03-23', slot: 'noon', path: './entries/2026-03-23-noon.json' },
+        { date: '2026-03-23', slot: 'evening', path: './entries/2026-03-23-evening.json' },
+        { date: '2026-03-22', slot: 'evening', path: './entries/2026-03-22-evening.json' }
+      ]
+    };
+
+    const BRIEF_FALLBACK_ENTRIES = {
+      '2026-03-23-morning': {
+        date: '2026-03-23', slot: 'morning', slotLabel: '晨間',
+        title: '晨間重點：先看資金往哪裡走，再決定要不要出手',
+        summary: '今天的核心不是猜哪一檔會漲最多，而是先分辨市場是在健康輪動，還是在高檔追價。若量能沒有放大，操作上仍以小量、分批、ETF 優先比較適合。',
+        tags: ['晨間整理', '資金流向', '先分批'],
+        bullets: ['高股息 ETF 仍有防守資金停留，代表市場不是全面瘋追題材。', 'AI 權值股熱度還在，但位置偏高，對新手不適合直接追價。', '如果今天量沒有跟上，強勢股很容易變成高檔震盪。'],
+        action: '如果你今天想做事，先把重點放在觀察 0050 / 0056 這種比較能看懂的標的；個股先看節奏，不要因為熱就追。',
+        whyKeep: '這篇留下來，是因為它代表今天整體基調：不是不能看，而是要先分清楚能看跟能追不是同一件事。'
+      },
+      '2026-03-23-noon': {
+        date: '2026-03-23', slot: 'noon', slotLabel: '午間',
+        title: '午間重點：跌深有收斂，但今天仍先用防守節奏看盤',
+        summary: '台股早盤一度重挫逾千點，午盤前跌點雖有收斂，但整體還是風險偏高的一天。今天不是證明自己敢抄底的日子，比較像練習怎麼在大震盪裡守住節奏。',
+        tags: ['午間整理', '跌深收斂', '高股息承接'],
+        bullets: ['跌很深不等於馬上變便宜，先看撐住，再決定要不要小量分批。', '今天我注意的 ETF 是 0050、006208、0056、00878、00919，大盤型先看權值有沒有穩，高股息型先看承接有沒有續航。', '今天我注意的個股是 2330、2303、2382、2884；另外把 2408 列為高波動避開觀察，把 3131 列為逆勢強但不建議新追。', '若下午想小量參與，ETF 可先看 00878、0056、00919，其次是 006208；個股則 2303、2884 比較適合新手觀察。', '和前一天比，今天盤勢明顯從晨間的震盪保守，升級成早盤恐慌後的防守盤；高股息 ETF 的相對抗跌性比權值電子更突出。'],
+        action: '今天比較適合怎麼做：偏觀望、偏分批、偏零股、偏 ETF。若下午還是沒有明顯止穩訊號，就把重點放在觀察，不用硬做。',
+        whyKeep: '這篇重點是把今天午盤的節奏定調成防守盤，提醒自己跌深收斂不等於可以隨便抄底。'
+      },
+      '2026-03-24-evening': {
+        date: '2026-03-24', slot: 'evening', slotLabel: '晚間',
+        title: '晚間整理：今天真正學到的不是修復成功，而是要把盤中修復和收盤成立分開看',
+        summary: '今天白天的台股學習重點，從晨間、午間到收盤驗證，最後收斂成同一件事：市場確實出現過修復條件，但收盤沒有把修復延續成進攻結構。對新手最有價值的，不是哪一檔看起來一度最強，而是要學會分辨「盤中看起來有撐」和「收盤真的站穩」是兩回事。',
+        tags: ['晚間整理', '收盤驗證', '有限修復', '高股息防守'],
+        bullets: ['晨間先用 2330、2454、2303、2884 去判斷修復是不是有結構，方向是對的：個股是讀盤輔助，不是追價名單。', '午間把 2454 降到次觀察、把 2408 與 3017 留在避開區，這個修正是有價值的，因為修復沒有擴散成題材進攻盤。', '收盤最終驗證：真正成立的是 0056、00878 這類高股息防守相對穩，還有 2884 的金融秩序；不成立的是把盤中修復直接當成全面回暖。', '今天白天學到的核心不是多抓到一檔股票，而是把盤勢拆成用途：ETF 看防守與權值、個股看結構、熱門股放進風險區。', '若明天還是震盪盤，延續性最高的思路仍是 ETF 主體、個股輔助、先看收盤是否真的站穩再提高節奏。'],
+        action: '晚間版可保留給明天的操作準備：預設仍以 ETF 防守主體優先，先看 0056、00878，再用 006208 與 2330 觀察權值是否續穩；個股只留 2884、2303 這種低難度觀察名單，避免把高波動題材當成修復成功訊號。',
+        whyKeep: '這份晚間中間結果值得保留，因為它把今天白天分回合的學習內容真正收束成可重用的方法：先分清楚觀察訊號與進場訊號，再分清楚 ETF 和個股各自的用途，最後用收盤驗證去修正白天的判斷。'
+      },
+      '2026-03-23-evening': {
+        date: '2026-03-23', slot: 'evening', slotLabel: '晚間',
+        title: '晚間整理：今天先學會慢，不要把跌深收斂誤認成安全進場',
+        summary: '台股今天在中東戰火與避險情緒影響下大跌 821 點，收盤雖比早盤恐慌時收斂，但驗證後更清楚了：晨間的保守方向大致正確，午間的高股息承接也大致成立；真正要修正的是，收斂不等於能進攻。',
+        tags: ['晚間整理', '收盤驗證', '分批進場'],
+        bullets: ['晨間先保守、ETF 優先、別追熱門股，這個大方向和今天收盤結果一致。', '午間提到高股息 ETF 相對穩，收盤也驗證 00878、0056 的承接確實比高波動電子更可觀察。', '不一致的是市場修復力比預期弱，台積電只是止住恐慌，AI 與記憶體沒有一起回到能進攻的節奏。', '新手今晚最該帶走的是：分批進場要以理由有沒有繼續成立為前提，不是把錢機械切三份就叫分批。', '如果明天只是急跌後再急拉、但族群和量能沒一起轉強，仍然不要把它當成安全訊號。'],
+        action: '今晚比較適合怎麼做：先把明天預設成防守盤延長賽，ETF 優先、單筆小量、不要追急拉；只有高股息續穩、權值止跌、族群一起回溫，才考慮把節奏慢慢修回中性。',
+        whyKeep: '這篇值得留，因為它把晨間與午間判斷拿去對照收盤結果，整理成新手真的用得上的避虧重點。'
+      },
+      '2026-03-22-evening': {
+        date: '2026-03-22', slot: 'evening', slotLabel: '晚間',
+        title: '晚間整理：高檔震盪下，先把想買跟適合買分開',
+        summary: '市場氣氛不差，但越是這種時候，越容易讓人把熱門股誤認成低風險。對新手來說，能看懂的機會比看起來很帥的機會更重要。',
+        tags: ['晚間整理', '高檔震盪', '新手節奏'],
+        bullets: ['加權指數維持高檔，但量縮代表追價意願沒有全面開。', '高股息 ETF 仍值得放在前排觀察名單。', '熱門 AI 股能看，但不要因為 FOMO 就進場。'],
+        action: '先保留現金彈性，比一次押滿更重要。',
+        whyKeep: '這篇代表前一天收尾的判斷基調，之後可以拿來跟隔天晨間版本對照，看我有沒有隨市場節奏調整。'
+      }
+    };
+
+    const SLOT_ORDER = { morning: 0, noon: 1, evening: 2 };
+    let briefEntries = [];
+
+    async function safeFetchJson(url) {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Fetch failed: ${url}`);
+      return response.json();
+    }
+
+    async function loadBriefEntries() {
+      try {
+        const manifest = await safeFetchJson('./data/briefs/index.json');
+        const pairs = await Promise.all(manifest.files.map(async item => {
+          const data = await safeFetchJson(`./data/briefs/${item.path.replace('./', '')}`);
+          return data;
+        }));
+        briefEntries = pairs;
+        document.getElementById('latestDateLabel').textContent = manifest.latestDate || pairs[0]?.date || '--';
+      } catch (error) {
+        const pairs = BRIEF_FALLBACK_INDEX.files.map(item => BRIEF_FALLBACK_ENTRIES[`${item.date}-${item.slot}`]).filter(Boolean);
+        briefEntries = pairs;
+        document.getElementById('latestDateLabel').textContent = BRIEF_FALLBACK_INDEX.latestDate;
+        setPageUpdateLabel('briefUpdatedAt', deriveBriefUpdate(pairs[0]).label);
+      }
+      briefEntries.sort((a, b) => {
+        if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+        return (SLOT_ORDER[b.slot] ?? -1) - (SLOT_ORDER[a.slot] ?? -1);
+      });
+    }
+
+    function getTodayEntries() {
+      const latestDate = briefEntries[0]?.date;
+      return briefEntries.filter(item => item.date === latestDate);
+    }
+
+    function populateBriefSelectors() {
+      const dates = [...new Set(briefEntries.map(item => item.date))].sort().reverse();
+      const slots = [
+        { value: 'morning', label: '晨間' },
+        { value: 'noon', label: '午間' },
+        { value: 'evening', label: '晚間' }
+      ];
+      document.getElementById('briefDateSelect').innerHTML = dates.map(date => `<option value="${date}">${date}</option>`).join('');
+      document.getElementById('briefSlotSelect').innerHTML = slots.map(slot => `<option value="${slot.value}">${slot.label}</option>`).join('');
+    }
+
+    function renderTodayCards() {
+      const todayEntries = getTodayEntries();
+      const mount = document.getElementById('todayBriefCards');
+      mount.innerHTML = todayEntries.map(item => `
+        <article class="card report-card">
+          <div class="section-head">
+            <div>
+              <span class="label">${deriveBriefUpdate(item).label} · ${item.slotLabel}</span>
+              <h3>${item.title}</h3>
+            </div>
+            <div class="chips">${item.tags.map(tag => `<span class="chip">${tag}</span>`).join('')}</div>
+          </div>
+          <p class="report-summary">${item.summary}</p>
+          <div class="comparison-panel">
+            <div class="compare-item"><strong>這一則最重要</strong><br>${item.bullets[0] || item.summary}</div>
+            <div class="compare-item"><strong>操作結論</strong><br>${item.action}</div>
+          </div>
+        </article>
+      `).join('') || '<div class="compare-item">今天還沒有新的日報資料。</div>';
+
+      const latestToday = todayEntries[0];
+      if (latestToday) {
+        document.getElementById('briefDateSelect').value = latestToday.date;
+        document.getElementById('briefSlotSelect').value = latestToday.slot;
+      }
+    }
+
+    function renderBriefStats() {
+      const dates = new Set(briefEntries.map(item => item.date));
+      const slots = new Set(briefEntries.map(item => item.slot));
+      const todayCount = getTodayEntries().length;
+      document.getElementById('briefStats').innerHTML = [
+        ['今日已更新', `${todayCount} 則`],
+        ['已收錄日期', `${dates.size} 天`],
+        ['已收錄篇數', `${briefEntries.length} 篇`],
+        ['可查時段', `${slots.size} 種`]
+      ].map(([label, value]) => `
+        <div class="stat">
+          <span class="label">${label}</span>
+          <span class="value">${value}</span>
+        </div>
+      `).join('');
+    }
+
+    function findBrief(date, slot) {
+      return briefEntries.find(item => item.date === date && item.slot === slot)
+        || briefEntries.find(item => item.date === date)
+        || briefEntries[0];
+    }
+
+    function renderSelectedBrief() {
+      const date = document.getElementById('briefDateSelect').value;
+      const slot = document.getElementById('briefSlotSelect').value;
+      const entry = findBrief(date, slot);
+      if (!entry) return;
+      document.getElementById('briefPickerHint').innerHTML = `<div class="compare-item"><strong>目前選擇</strong><br>${entry.date} · ${entry.slotLabel}。如果該日期沒有這個時段，就會自動帶出同一天現有的那篇。</div>`;
+      document.getElementById('selectedMeta').textContent = `${entry.date} · ${entry.slotLabel}`;
+      document.getElementById('selectedTitle').textContent = entry.title;
+      document.getElementById('selectedTags').innerHTML = entry.tags.map(tag => `<span class="chip">${tag}</span>`).join('');
+      document.getElementById('selectedSummary').textContent = entry.summary;
+      document.getElementById('selectedBullets').innerHTML = entry.bullets.map(point => `<li>${point}</li>`).join('');
+      document.getElementById('selectedAction').textContent = entry.action;
+      document.getElementById('selectedWhy').textContent = entry.whyKeep;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderSiteNav('日報中心');
+      await loadBriefEntries();
+      populateBriefSelectors();
+      renderTodayCards();
+      renderBriefStats();
+      renderSelectedBrief();
+      document.getElementById('briefDateSelect').addEventListener('change', renderSelectedBrief);
+      document.getElementById('briefSlotSelect').addEventListener('change', renderSelectedBrief);
+    });
+  </script>
+</body>
+</html>
