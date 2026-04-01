@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>台股觀察站｜今日股市</title>
-  <link rel="stylesheet" href="./assets/style.css?v=20260401a" />
+  <link rel="stylesheet" href="./assets/style.css?v=20260401-night3" />
 </head>
 <body>
   <div class="app-shell">
@@ -92,7 +92,7 @@
     </main>
   </div>
 
-  <script src="./assets/site.js?v=20260401a"></script>
+  <script src="./assets/site.js?v=20260401-night3"></script>
   <script>
     const MARKET_FALLBACK = {
       date: '2026-03-23',
@@ -184,15 +184,90 @@
       }
     }
 
+    function normalizeReasonItem(item = {}, type = 'stock') {
+      return {
+        symbol: item.symbol || item.code || '',
+        name: item.name || item.title || '',
+        action: item.action || (type === 'avoid' ? 'avoid' : 'watch'),
+        reason: item.reason || item.note || '',
+        watchFor: item.watchFor || item.watch_points || item.watchPoints || '',
+        risk: item.risk || '',
+        use: item.use || item.how_to_use || item.entry_guidance || ''
+      };
+    }
+
+    function normalizeMarketBrief(raw = {}) {
+      const summaryHeadline = raw.summary?.headline || raw.market?.summary?.headline || raw.headline || raw.title || '今日股市重點';
+      const summaryOverview = raw.summary?.overview || raw.market?.summary?.overview || raw.market?.market_summary || raw.summary || '正在整理今日盤勢。';
+      const summaryTags = raw.summary?.tags || raw.tags || [raw.slotLabel, raw.slot].filter(Boolean);
+      const metrics = raw.summary?.metrics || raw.market?.summary?.metrics || {};
+
+      const etfs = (raw.etfs || raw.market?.etf_list || raw.etf_highlights || [])
+        .map(item => normalizeReasonItem(item, 'etf'));
+      const stocks = [
+        ...(raw.stocks || raw.market?.stock_list || raw.stock_highlights || []).map(item => normalizeReasonItem(item, 'stock')),
+        ...(raw.market?.avoid_list || []).map(item => normalizeReasonItem(item, 'avoid'))
+      ];
+
+      const planPositions = raw.paperTradePlan?.positions;
+      const normalizedPlanPositions = Array.isArray(planPositions)
+        ? planPositions
+        : [
+            ...(planPositions?.buyCandidates || []),
+            ...(planPositions?.holdCandidates || []),
+            ...(planPositions?.avoidCandidates || [])
+          ];
+
+      const midday = raw.paperTradeMiddayReview || raw.paper_trade_midday_review || {};
+
+      return {
+        ...raw,
+        date: raw.date || raw.market_session_date || '--',
+        slot: raw.slot || raw.market?.slot || (raw.slotLabel === '晚間' ? 'evening' : raw.slotLabel === '午間' ? 'noon' : raw.slotLabel === '晨間' ? 'morning' : 'close'),
+        updateTime: raw.market?.updateTime || raw.updateTime || (raw.generatedAt ? raw.generatedAt.slice(11, 16) : raw.generated_at ? raw.generated_at.slice(11, 16) : null),
+        summary: {
+          headline: summaryHeadline,
+          overview: summaryOverview,
+          tags: Array.isArray(summaryTags) ? summaryTags.filter(Boolean) : [],
+          metrics
+        },
+        etfs,
+        stocks,
+        checklist: raw.checklist || (Array.isArray(raw.bullets) ? raw.bullets.slice(0, 3).map((text, idx) => ({ title: `重點 ${idx + 1}`, detail: text })) : []),
+        actionPanel: raw.actionPanel || (Array.isArray(raw.action)
+          ? raw.action.map((text, idx) => ({ title: `行動 ${idx + 1}`, detail: text }))
+          : raw.action
+            ? [{ title: '今天比較適合怎麼做', detail: raw.action }]
+            : []),
+        paperTradePlan: raw.paperTradePlan ? {
+          ...raw.paperTradePlan,
+          headline: raw.paperTradePlan.headline || raw.paperTradePlan.note || '3 萬實驗帳戶盤前策略',
+          summary: raw.paperTradePlan.summary || raw.paperTradePlan.note || '今日盤前策略尚未產出。',
+          positions: normalizedPlanPositions,
+          riskNotes: raw.paperTradePlan.riskNotes || raw.paperTradePlan.risk_notes || [],
+          invalidations: raw.paperTradePlan.invalidations || []
+        } : raw.paperTradePlan,
+        paperTradeMiddayReview: Object.keys(midday).length ? {
+          ...midday,
+          adjustments: midday.adjustments || midday.recommended_actions || midday.position_adjustments || [],
+          riskNotes: midday.riskNotes || midday.risk_notes || [],
+          invalidations: midday.invalidations || []
+        } : {},
+        reflection: raw.whyKeep || raw.reflection || raw.market?.whyKeep || '',
+        reflectionAdjustments: raw.warnings || raw.market?.warnings || []
+      };
+    }
+
     function enrichMarketData(raw) {
+      const normalized = normalizeMarketBrief(raw);
       const fallbackMap = new Map([
         ...MARKET_FALLBACK.etfs.map(item => [item.symbol, item]),
         ...MARKET_FALLBACK.stocks.map(item => [item.symbol, item])
       ]);
       return {
-        ...raw,
-        etfs: (raw.etfs || []).map(item => ({ ...(fallbackMap.get(item.symbol) || {}), ...item })),
-        stocks: (raw.stocks || []).map(item => ({ ...(fallbackMap.get(item.symbol) || {}), ...item }))
+        ...normalized,
+        etfs: (normalized.etfs || []).map(item => ({ ...(fallbackMap.get(item.symbol) || {}), ...item })),
+        stocks: (normalized.stocks || []).map(item => ({ ...(fallbackMap.get(item.symbol) || {}), ...item }))
       };
     }
 
@@ -352,3 +427,4 @@
   </script>
 </body>
 </html>
+html>
