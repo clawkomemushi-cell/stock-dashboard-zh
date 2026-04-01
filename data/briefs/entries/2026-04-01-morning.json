@@ -1,0 +1,22 @@
+{
+  "date": "2026-04-01",
+  "slot": "morning",
+  "generatedAt": "2026-04-01T07:50:00+08:00",
+  "headline": "海外情緒回溫，但高油價與消息可靠度不足；先用 ETF 小倉驗證權值與廣度。",
+  "summary": "昨夜美股強彈帶來今早正向開局機會，但油價仍高且部分利多仍屬傳聞。早盤重點：觀察開盤 30–60 分的 breadth、2330 與 006208 的同步性；ETF-first 小倉驗證，僅在多重確認成立時才升級至個股。",
+  "topIdeas": {
+    "etf_watch": ["006208 (富邦台50)", "0056 (元大高股息)", "00878 (國泰永續高股息)"],
+    "stock_watch": ["2330 (台積電)", "2454 (聯發科)", "2303 (聯電)"],
+    "avoid": ["2408 (南亞科)", "3037 (欣興)"]
+  },
+  "paperTradePlan": {
+    "status": "ok",
+    "note": "實驗帳戶 (NT$30,000) 採 ETF-first 分段驗證策略，若 30–60 分內多重確認成立，才考慮分段進場 2330；詳情見 paperTradePlan。",
+    "updatedAt": "2026-04-01T08:05:00+08:00"
+  },
+  "source": "stock-dashboard runtime: morning-analysis.json + paper-trade-plan.json",
+  "notes": [
+    "消息可靠度需盤中驗證，不建議盤前追價。",
+    "若開盤後 60 分內權值與 breadth 出現分歧，立刻回到防守並避免追價。"
+  ]
+}

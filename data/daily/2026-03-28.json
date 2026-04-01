@@ -262,12 +262,14 @@
     }
   ],
   "sourceNotes": [
+    "本檔已補上 machine-readable 欄位 `marketSessionDate=2026-03-27`、`contentMode=weekend-carryover`；paperTrade 區塊亦標記為 historical-carryover，避免模型或後續流程把週末頁誤讀成新交易日。",
     "本次晚間 publish 先驗證 stock-dashboard/data/runtime/evening-summary.json 存在、日期為 2026-03-28、status=ok，再將其內容落地到正式網站檔案。",
     "本次內容直接承接 runtime 晚間整理，未重新做晚間內容分析，也未回頭重算收盤驗證。",
     "stock-dashboard/data/daily/2026-03-28.json 採用週末延續寫法：摘要 / 清單 / 晚間結論以 2026-03-28 runtime 為主，ETF / 個股 / 風險區延用最新正式交易日 2026-03-27 已發布版做對照。",
     "依任務要求未更新首頁導覽頁 index.html；index.html 仍維持入口轉址用途。"
   ],
   "warnings": [
+    "本頁屬週末延續內容：發布日期為 2026-03-28，但 marketSessionDate 為 2026-03-27；其中 paperTrade 區塊僅供回顧，不可視為 2026-03-28 新指令。",
     "今天是 2026-03-28（週六），沒有新的台股現貨白天回合；本頁內容主要承接最新正式交易日 2026-03-27 的已驗證資料。",
     "`stock-dashboard/data/runtime/close-review.json` 目前日期為 2026-03-27，因此這次是週末延續整理，不是新的收盤驗證。",
     "本次晚間發布已把週末延續內容落地到 daily / briefs 正式檔，但核心依據仍是 2026-03-27 的正式收盤主軸，不應誤讀成 2026-03-28 有新的白天盤中證據。",
@@ -310,7 +312,11 @@
       "2884 等金融秩序股也同步轉弱，表示整體市場穩定度比預期更差。",
       "盤面若只剩高 beta 電子股急拉、但大盤型與高股息 ETF 沒跟上，視為假性風險偏好回升，不照原計畫追。",
       "若盤中出現新的國際利空、地緣政治或能源價格再惡化訊息，直接提高現金比重。"
-    ]
+    ],
+    "marketSessionDate": "2026-03-27",
+    "contentMode": "historical-carryover",
+    "notForFreshExecutionOnDate": "2026-03-28",
+    "historicalContext": "這是沿用最新正式交易日 2026-03-27 的歷史策略 / 檢視內容，供回顧與學習，不應當成 2026-03-28 的新盤中執行指令。"
   },
   "paperTradeMiddayReview": {
     "status": "ok",
@@ -397,6 +403,13 @@
       "if_no_positions_were_opened_in_morning": "預設維持 30,000 元現金或只做單筆小額 0056 / 00878 試單，不把三筆部位一次補齊。",
       "aggressive_redeployment": "not_allowed",
       "why": "今天午間最重要的不是把資金用滿，而是承認盤勢只進展到『防守中止穩』，尚未進展到『可放心加大風險』。"
-    }
-  }
+    },
+    "marketSessionDate": "2026-03-27",
+    "contentMode": "historical-carryover",
+    "notForFreshExecutionOnDate": "2026-03-28",
+    "historicalContext": "這是沿用最新正式交易日 2026-03-27 的歷史策略 / 檢視內容，供回顧與學習，不應當成 2026-03-28 的新盤中執行指令。"
+  },
+  "marketSessionDate": "2026-03-27",
+  "contentMode": "weekend-carryover",
+  "isWeekendCarryover": true
 }

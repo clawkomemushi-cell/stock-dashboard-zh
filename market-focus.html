@@ -274,6 +274,13 @@
       ].join('');
     }
 
+    function derivePaperTradeUpdateLabel(pageDate, section = {}, fallbackTime) {
+      const isHistoricalCarryover = section.contentMode === 'historical-carryover';
+      const sourceDate = isHistoricalCarryover ? (section.marketSessionDate || pageDate || '--') : (pageDate || '--');
+      const suffix = isHistoricalCarryover ? '（最近交易日）' : '';
+      return `${formatUpdateLabel(sourceDate, section.updatedAt || fallbackTime)}${suffix}`;
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
       renderSiteNav('今日股市');
       const rawMarket = await loadMarketData();
@@ -288,8 +295,8 @@
       setPageUpdateLabel('marketActionUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('etfFocusUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('stockFocusUpdatedAt', marketUpdateLabel);
-      setPageUpdateLabel('paperTradePlanUpdatedAt', formatUpdateLabel(market.date || '--', market.paperTradePlan?.updatedAt || market.updateTime || '08:05'));
-      setPageUpdateLabel('paperTradeMiddayUpdatedAt', formatUpdateLabel(market.date || '--', market.paperTradeMiddayReview?.updatedAt || market.updateTime || '12:30'));
+      setPageUpdateLabel('paperTradePlanUpdatedAt', derivePaperTradeUpdateLabel(market.date || '--', market.paperTradePlan || {}, market.updateTime || '08:05'));
+      setPageUpdateLabel('paperTradeMiddayUpdatedAt', derivePaperTradeUpdateLabel(market.date || '--', market.paperTradeMiddayReview || {}, market.updateTime || '12:30'));
       setPageUpdateLabel('riskFocusUpdatedAt', marketUpdateLabel);
       setPageUpdateLabel('reflectionFocusUpdatedAt', marketUpdateLabel);
       document.getElementById('marketHeadline').textContent = market.summary?.headline || '載入中...';
