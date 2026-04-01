@@ -6,7 +6,7 @@
     "headline": "一句話：海外情緒回溫提供彈性，但高油價與消息可靠度不足，先驗證 breadth 與權值才肯放手進攻。",
     "market_summary": "昨夜美股在俄/中東相關和解訊息與大型權值領域表現帶動下出現強彈；油價仍在高位，整體訊號混合，盤前框架為震盪偏多（需盤中驗證）。",
     "market_bias": "震盪偏多（需盤中驗證）",
-    "market_risk_level": "medium_high",
+    "market_risk_level": "medium",
     "action": "今天先觀察開盤後 30–60 分鐘的 breadth、2330（台積電）與 006208（台50）關鍵價位，僅在多重確認出現時才升級為修復參與；否則維持防守並以 ETF/高股息做小倉驗證。",
     "etf_list": [
       {
@@ -91,8 +91,8 @@
       "tags": [],
       "metrics": {}
     },
-    "updateTime": "08:05",
-    "slot": "morning"
+    "updateTime": "12:30",
+    "slot": "noon"
   },
   "paperTradePlan": {
     "status": "ok",
@@ -157,6 +157,44 @@
       "開盤 30–60 分內未見到 2330 與 006208 的同步站回與量能支撐 -> 取消股票升級計畫，只保留或不做 ETF 小倉驗證。",
       "若市場 breadth 明顯疲弱 -> 停止進場並保留現金。",
       "若官方/權威消息證實國際局勢再次惡化 -> 取消所有當日新倉。"
+    ]
+  },
+  "paperTradeMiddayReview": {
+    "status": "ok",
+    "updatedAt": "2026-04-01T12:30:00+08:00",
+    "headline": "3 萬實驗帳戶午間檢視：ETF-first 有效，允許保守小倉入場；個股採條件性分段參與",
+    "summary": "晨間計畫(ETF-first、小倉驗證) 經盤中 12:15–12:30 驗證仍有效；建議對 006208 與 0056 進行保守小倉入場，對 2330 保持條件性小量或觀望，午後以 12:30–13:30 的量能與廣度確認作為是否擴張的判斷。",
+    "action": "write_to_runtime_only",
+    "adjustments": [
+      {
+        "symbol": "006208",
+        "action": "enter_now_partial",
+        "recommended_amount_ntd": 8000,
+        "entry_guidance": "首次入場不超過計劃金額的 60%–80%，設定初始止損 ETF -3%。"
+      },
+      {
+        "symbol": "0056",
+        "action": "enter_now_partial",
+        "recommended_amount_ntd": 6000,
+        "entry_guidance": "初次小倉進場，止損 ETF -3%。若午後成交量顯著萎縮則不追補。"
+      },
+      {
+        "symbol": "2330",
+        "action": "deferred_conditional",
+        "conditional_allocation_ntd": 3000,
+        "max_allowed_if_confirmed_ntd": 9000,
+        "entry_guidance": "只有在 2330 維持 >1800 且成交量放大；006208 維持 >174；TWOII/廣度指標正向時才分段加碼。"
+      }
+    ],
+    "riskNotes": [
+      "主要利多含傳聞/新聞，消息可靠度需盤中持續驗證。",
+      "高油價仍對科技/成長股構成壓力，短線修復可能在午後遭遇獲利回吐。",
+      "避免追價：採分段入場與嚴格止損 (ETF -3%, 個股 -5%)。"
+    ],
+    "invalidations": [
+      "006208 回落並失守 174 或 2330 回落並失守 1800 且伴隨成交量萎縮 -> 取消股票升級並考慮部分或全部出場",
+      "若櫃買 (TWOII) 出現顯著回落或廣度指標反轉 -> 立即回到防守腳本，不擴張新倉",
+      "若有權威性消息證實利空或油價進一步飆升並衝擊資金面 -> 取消當日新倉並保留現金。"
     ]
   }
 }
