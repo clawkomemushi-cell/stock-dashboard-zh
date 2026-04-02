@@ -2,9 +2,15 @@
   "latestDate": "2026-04-02",
   "slots": [
     "morning",
-    "noon"
+    "noon",
+    "evening"
   ],
   "files": [
+    {
+      "date": "2026-04-02",
+      "slot": "evening",
+      "path": "./entries/2026-04-02-evening.json"
+    },
     {
       "date": "2026-04-02",
       "slot": "morning",
