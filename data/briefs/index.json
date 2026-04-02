@@ -1,7 +1,14 @@
 {
-  "latestDate": "2026-04-01",
-  "slots": ["evening"],
+  "latestDate": "2026-04-02",
+  "slots": [
+    "morning"
+  ],
   "files": [
+    {
+      "date": "2026-04-02",
+      "slot": "morning",
+      "path": "./entries/2026-04-02-morning.json"
+    },
     {
       "date": "2026-04-01",
       "slot": "evening",
@@ -9,8 +16,8 @@
     },
     {
       "date": "2026-03-31",
-      "slot": "evening",
-      "path": "./entries/2026-03-31-evening.json"
+      "slot": "morning",
+      "path": "./entries/2026-03-31-morning.json"
     },
     {
       "date": "2026-03-31",
@@ -19,8 +26,8 @@
     },
     {
       "date": "2026-03-31",
-      "slot": "morning",
-      "path": "./entries/2026-03-31-morning.json"
+      "slot": "evening",
+      "path": "./entries/2026-03-31-evening.json"
     },
     {
       "date": "2026-03-30",
