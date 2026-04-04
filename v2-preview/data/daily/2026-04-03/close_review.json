@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "schema_version": "1.1",
+    "job_name": "openclaw.close_review",
+    "data_type": "close",
+    "status": "success",
+    "generated_at_iso": "2026-04-03T15:10:00+08:00",
+    "generated_at_label": "04/03 15:10",
+    "last_successful_run": "2026-04-03T15:10:00+08:00",
+    "source_freshness": "stale",
+    "warnings": [],
+    "fallback_used": false
+  },
+  "date": "2026-04-03",
+  "generated_at_iso": "2026-04-03T15:10:00+08:00",
+  "generated_at_label": "15:10",
+  "taiex_close": 19738,
+  "taiex_change": -181,
+  "taiex_change_pct": -0.91,
+  "taiex_volume": 2847,
+  "predicted_direction": "bearish",
+  "predicted_confidence": 0.72,
+  "actual_direction": "down",
+  "direction_verdict": "correct",
+  "thesis_accuracy_score": 82,
+  "ticker_results": [
+    {
+      "ticker": "2330",
+      "name": "台積電",
+      "predicted_direction": "watch",
+      "actual_direction": "down",
+      "change_pct": -2.31,
+      "verdict": "correct",
+      "paper_trade_result": null,
+      "notes": "正確選擇觀望，當日波動大（最高跌 2.8%，收跌 2.31%），操作難度高"
+    },
+    {
+      "ticker": "00631L",
+      "name": "元大台灣50正2",
+      "predicted_direction": "short",
+      "actual_direction": "down",
+      "change_pct": -1.82,
+      "verdict": "correct",
+      "paper_trade_result": 4640,
+      "notes": "空單進場時機良好，午後護盤時停利 50% 決策正確"
+    },
+    {
+      "ticker": "2303",
+      "name": "聯電",
+      "predicted_direction": "short",
+      "actual_direction": "down",
+      "change_pct": -2.15,
+      "verdict": "correct",
+      "paper_trade_result": 3600,
+      "notes": "42 元跌破後順勢放空，執行良好"
+    },
+    {
+      "ticker": "2454",
+      "name": "聯發科",
+      "predicted_direction": "avoid",
+      "actual_direction": "down",
+      "change_pct": -1.45,
+      "verdict": "correct",
+      "paper_trade_result": null,
+      "notes": "正確迴避，當日下跌但波動複雜，確實不宜操作"
+    }
+  ],
+  "what_worked": [
+    "盤前正確判斷偏空格局並設定禁止追多規則",
+    "對官股護盤風險的提前預警，使午後能及時減倉",
+    "2330 觀望決策避免了在高波動中的無謂操作",
+    "指數工具（00631L）的使用比個股更有效率"
+  ],
+  "what_failed": [
+    "10:30 之前低估了台積電跌幅對整體市場的衝擊強度",
+    "原始信心度 0.72 略低估了今日走勢確定性",
+    "目標 19,600 未能達到（收 19,738），下修幅度過激"
+  ],
+  "key_learning": "官股護盤訊號出現時，應更快速執行停利，而不是等待再走弱。護盤力道雖短暫，但會壓縮空方獲利空間。",
+  "bias_observed": [
+    "仍有輕微的「不願意在下跌中獲利」的心態偏誤，需克服",
+    "對台積電的判斷過於謹慎，可適度增加信心"
+  ],
+  "tomorrow_watchpoints": [
+    "19,700 是否有效支撐（今日收 19,738，明日開盤即見分曉）",
+    "台積電是否能止穩 820 元，為市場提供信心",
+    "外資動向：是否延續賣超或轉為買超",
+    "周五美國非農就業數據前，市場觀望氣氛加重"
+  ],
+  "paper_trade_today_pnl": 8240
+}

@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "schema_version": "1.1",
+    "job_name": "openclaw.index",
+    "data_type": "index",
+    "status": "success",
+    "generated_at_iso": "2026-04-03T16:00:00+08:00",
+    "generated_at_label": "04/03 16:00",
+    "last_successful_run": "2026-04-03T16:00:00+08:00",
+    "source_freshness": "stale",
+    "warnings": [],
+    "fallback_used": false
+  },
+  "date": "2026-04-03",
+  "week": "2026-W14",
+  "market_status": "closed",
+  "paths": {
+    "daily_thesis":        "/data/daily/2026-04-03/daily_thesis.json",
+    "action_plan":         "/data/daily/2026-04-03/action_plan.json",
+    "thesis_check":        "/data/daily/2026-04-03/thesis_check.json",
+    "close_review":        "/data/daily/2026-04-03/close_review.json",
+    "weekly_review":       "/data/weekly/2026-W14/weekly_review.json",
+    "performance_history": "/data/performance/history.json"
+  },
+  "file_statuses": {
+    "daily_thesis":        { "status": "success", "updated_at_iso": "2026-04-03T07:28:00+08:00", "updated_at_label": "07:28" },
+    "action_plan":         { "status": "success", "updated_at_iso": "2026-04-03T14:35:00+08:00", "updated_at_label": "14:35" },
+    "thesis_check":        { "status": "success", "updated_at_iso": "2026-04-03T14:30:00+08:00", "updated_at_label": "14:30" },
+    "close_review":        { "status": "success", "updated_at_iso": "2026-04-03T15:10:00+08:00", "updated_at_label": "15:10" },
+    "weekly_review":       { "status": "success", "updated_at_iso": "2026-04-03T16:00:00+08:00", "updated_at_label": "16:00" },
+    "performance_history": { "status": "success", "updated_at_iso": "2026-04-03T16:00:00+08:00", "updated_at_label": "16:00" }
+  },
+  "available_weeks": ["2026-W14"],
+  "available_dates": ["2026-04-03", "2026-04-02", "2026-04-01", "2026-03-31", "2026-03-28"],
+  "weekly_paths": {
+    "2026-W14": "/data/weekly/2026-W14/weekly_review.json"
+  }
+}

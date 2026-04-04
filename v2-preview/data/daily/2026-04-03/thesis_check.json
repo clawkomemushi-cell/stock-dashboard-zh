@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "schema_version": "1.1",
+    "job_name": "openclaw.thesis_check",
+    "data_type": "intraday",
+    "status": "success",
+    "generated_at_iso": "2026-04-03T14:30:00+08:00",
+    "generated_at_label": "04/03 14:30",
+    "last_successful_run": "2026-04-03T14:30:00+08:00",
+    "source_freshness": "stale",
+    "warnings": [],
+    "fallback_used": false
+  },
+  "entries": [
+    {
+      "id": "check_001",
+      "timestamp": "09:15",
+      "trigger": "開盤驗證：大盤低開 127 點，成交量觀察",
+      "original_thesis": "預估開低逾百點，外資持續賣壓，偏空防守",
+      "revised_thesis": "開盤驗證符合預期，低開後出現小幅反彈嘗試，但量能僅 320 億（前日同時段 380 億），反彈力道不足，維持偏空立場",
+      "change_type": "no_change",
+      "risk_level_change": null,
+      "confidence_change": 0.05,
+      "updated_direction": null,
+      "updated_actions": [],
+      "market_snapshot": { "taiex_level": 19783, "taiex_change_pct": -0.64, "volume_ratio": 0.84 },
+      "notes": "開盤符合預期，信心度小幅提升至 0.77"
+    },
+    {
+      "id": "check_002",
+      "timestamp": "10:30",
+      "trigger": "台積電跌幅超過 2.5%，引發半導體族群連帶下跌",
+      "original_thesis": "維持偏空，關注 19,800 支撐",
+      "revised_thesis": "台積電跌幅擴大至 2.8%，半導體族群跟跌，19,800 支撐已跌破，下修今日目標至 19,600 附近；風險等級提升至 5",
+      "change_type": "risk_update",
+      "risk_level_change": 1,
+      "confidence_change": 0.08,
+      "updated_direction": "bearish",
+      "updated_actions": [
+        {
+          "ticker": "00631L",
+          "action": "維持空單，停利目標下修至 19,600"
+        }
+      ],
+      "market_snapshot": { "taiex_level": 19712, "taiex_change_pct": -1.0, "volume_ratio": 1.12 },
+      "notes": "19,800 失守，量能放大確認跌破，空方力道強於預期，風險等級提升"
+    },
+    {
+      "id": "check_003",
+      "timestamp": "13:00",
+      "trigger": "午後官股基金進場護盤，指數止跌回穩",
+      "original_thesis": "偏空，目標 19,600",
+      "revised_thesis": "午後出現明顯護盤跡象，量能縮小、指數快速回升 80 點。短期空方動能減弱，下午不宜再追空，等待收盤確認。風險等級由 5 降回 4。",
+      "change_type": "risk_update",
+      "risk_level_change": -1,
+      "confidence_change": -0.1,
+      "updated_direction": "bearish",
+      "updated_actions": [
+        {
+          "ticker": "00631L",
+          "action": "停利部分倉位（50%），剩餘部位持有等待收盤"
+        }
+      ],
+      "market_snapshot": { "taiex_level": 19795, "taiex_change_pct": -0.73, "volume_ratio": 0.71 },
+      "notes": "盤前提醒官股護盤風險，午後如期出現，依計劃減倉"
+    },
+    {
+      "id": "check_004",
+      "timestamp": "14:30",
+      "trigger": "收盤前 30 分鐘：尾盤再度走弱，護盤力道不持續",
+      "original_thesis": "等待收盤確認，空方仍有優勢",
+      "revised_thesis": "尾盤護盤力道消退，指數再次走弱，收盤在 19,738。論點驗證完成，今日操作符合預期。明日持續關注 19,700 支撐是否有效。",
+      "change_type": "confidence_adjust",
+      "risk_level_change": null,
+      "confidence_change": 0.05,
+      "updated_direction": "bearish",
+      "updated_actions": [],
+      "market_snapshot": { "taiex_level": 19738, "taiex_change_pct": -0.91, "volume_ratio": 0.89 },
+      "notes": "收盤驗證，整體論點正確，風險管理執行良好"
+    }
+  ]
+}

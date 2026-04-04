@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "schema_version": "1.1",
+    "job_name": "openclaw.daily_thesis",
+    "data_type": "preopen",
+    "status": "success",
+    "generated_at_iso": "2026-04-03T07:28:00+08:00",
+    "generated_at_label": "04/03 07:28",
+    "last_successful_run": "2026-04-03T07:28:00+08:00",
+    "source_freshness": "stale",
+    "warnings": [],
+    "fallback_used": false
+  },
+  "date": "2026-04-03",
+  "generated_at_iso": "2026-04-03T07:28:00+08:00",
+  "generated_at_label": "07:28",
+  "market_status": "pre_market",
+  "risk_level": 4,
+  "direction_bias": "bearish",
+  "confidence": 0.72,
+  "headline": "美股夜盤重挫，台指期下壓，今日偏空防守為主",
+  "core_thesis": "受美國 ISM 製造業數據遜於預期、Fed 官員鷹派言論影響，美股昨夜道瓊下跌 1.4%，那斯達克跌 1.8%。台指期夜盤跟跌，現貨預估開低逾百點。外資連三日淨賣超，籌碼面偏空。今日策略以防守為主，若開低後無法站回 19,800 則延續空頭思維；若出現明顯縮量止跌則可觀察反彈機會。",
+  "core_thesis_short": "美股夜盤重挫帶動台指期下壓，外資連三日賣超，今日偏空防守，等待量能確認方向後再行動。",
+  "market_context": {
+    "index_trend": "短期均線空頭排列，MA5 跌破 MA20，季線支撐待測試",
+    "volume_status": "近三日量能萎縮，成交量低於月均量 15%，缺乏買盤承接",
+    "foreign_capital": "外資連續 3 日淨賣超，累計賣超 182 億，賣壓尚未出盡",
+    "institutional_summary": "投信逆勢買超 23 億，自營商偏空，三大法人合計淨賣超 159 億"
+  },
+  "key_risks": [
+    "美 10 年期公債殖利率再度逼近 4.5%，壓抑高本益比科技股",
+    "台積電 ADR 昨夜下跌 2.3%，今日現貨開盤承壓",
+    "19,800 若跌破，下一支撐在 19,500（季線），空間約 300 點",
+    "本週五美國非農就業數據，市場提前觀望"
+  ],
+  "support_levels": [
+    { "price": 19800, "label": "短期整理平台下緣", "strength": "medium" },
+    { "price": 19500, "label": "季線 (MA60)", "strength": "strong" },
+    { "price": 19200, "label": "今年初低點", "strength": "strong" }
+  ],
+  "resistance_levels": [
+    { "price": 20000, "label": "心理整數關卡", "strength": "medium" },
+    { "price": 20200, "label": "MA20 壓力", "strength": "strong" },
+    { "price": 20500, "label": "前高壓力區", "strength": "strong" }
+  ],
+  "watchlist": [
+    {
+      "ticker": "2330",
+      "name": "台積電",
+      "direction": "watch",
+      "entry_condition": "開盤後觀察 9:30 前量能，若縮量跌破 820 則空方確立，量增守穩 830 以上才考慮多方",
+      "stop_loss_value": 835,
+      "stop_loss_label": "多方 815 出場；空方 835 回補",
+      "take_profit_value": 803,
+      "take_profit_label": "空方目標 800–805",
+      "rationale": "ADR 夜盤下跌 2.3%，今日現貨開盤承壓，仍需觀察量能決定方向",
+      "priority": "high"
+    },
+    {
+      "ticker": "2454",
+      "name": "聯發科",
+      "direction": "avoid",
+      "entry_condition": "今日避免操作，等待法說會後再評估",
+      "stop_loss_value": null,
+      "stop_loss_label": "N/A",
+      "take_profit_value": null,
+      "take_profit_label": "N/A",
+      "rationale": "下週法說會前市場預期分歧，今日波動難以預測，雜訊多",
+      "priority": "low"
+    },
+    {
+      "ticker": "00631L",
+      "name": "元大台灣50正2",
+      "direction": "short",
+      "entry_condition": "若大盤開低後反彈至 19,900–19,950 遇壓，可試空正2；量能需維持萎縮",
+      "stop_loss_value": 20050,
+      "stop_loss_label": "大盤 20,050 以上止損",
+      "take_profit_value": 19500,
+      "take_profit_label": "目標 19,500 附近減倉",
+      "rationale": "大盤空頭格局明確，以指數型工具放空效率較高，風險可控",
+      "priority": "high"
+    },
+    {
+      "ticker": "2303",
+      "name": "聯電",
+      "direction": "watch",
+      "entry_condition": "觀察是否跌破 42 元關鍵支撐，跌破後可順勢放空",
+      "stop_loss_value": 44,
+      "stop_loss_label": "44 元以上止損",
+      "take_profit_value": 39.5,
+      "take_profit_label": "目標 39–40 元",
+      "rationale": "半導體族群整體偏弱，聯電相對弱勢，42 元若失守技術面轉空",
+      "priority": "medium"
+    }
+  ],
+  "prohibitions": [
+    "禁止在開盤前 30 分鐘（09:00–09:30）追漲或殺跌，等待量能確認方向",
+    "禁止今日加碼任何多頭部位，現有多頭部位執行保守停利",
+    "禁止操作電子權值股以外的中小型股，流動性不足風險過高",
+    "禁止在尚未確認止跌前幻想 V 型反轉而攤平多頭"
+  ],
+  "cautions": [
+    "若 9:30 前出現急跌 200 點以上，反而需警覺是否有主力護盤行為，不宜盲目追空",
+    "官股基金下午護盤機率提升，下午 14:00 後空方需謹慎",
+    "注意美元指數與台幣匯率變動對外資動向的影響"
+  ],
+  "trading_style": "保守防守",
+  "notes": "整體局勢偏空，但非崩盤格局。保持謹慎，優先保護資金安全，等待清晰訊號再出手。"
+}
