@@ -1,0 +1,28 @@
+[
+  {
+    "ticker": "2330.TW",
+    "name": "台積電",
+    "kind": "stock",
+    "market": "TW",
+    "sector": "半導體",
+    "industry": "晶圓代工",
+    "tags": [
+      "AI",
+      "半導體",
+      "權值股"
+    ],
+    "oneLineSummary": "全球最大晶圓代工廠，AI 浪潮核心受惠者。",
+    "externalLinks": [
+      {
+        "label": "TradingView",
+        "url": "https://www.tradingview.com/symbols/TPE-2330/",
+        "kind": "tradingview"
+      },
+      {
+        "label": "TWSE 公開資訊",
+        "url": "https://mops.twse.com.tw/mops/web/t05st01?TYPEK=sii&co_id=2330",
+        "kind": "mops"
+      }
+    ]
+  }
+]

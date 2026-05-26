@@ -1,0 +1,22 @@
+{
+  "ticker": "2330.TW",
+  "asOf": "2026-05-15T05:30:07.000Z",
+  "trend": "up",
+  "rsi14": 56.45,
+  "ma20": 2191.75,
+  "ma60": 1993.83,
+  "ma200": 1582.3,
+  "supportLevels": [
+    2025,
+    1740
+  ],
+  "resistanceLevels": [
+    2345,
+    2345
+  ],
+  "patterns": [
+    "Yahoo OHLC",
+    "rolling MA"
+  ],
+  "notes": "由 Yahoo Finance chart API 日線 OHLC 自動更新。"
+}

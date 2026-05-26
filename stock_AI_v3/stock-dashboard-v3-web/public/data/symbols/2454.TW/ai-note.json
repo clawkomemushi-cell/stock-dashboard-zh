@@ -1,0 +1,31 @@
+{
+  "ticker": "2454.TW",
+  "asOf": "2026-05-15T22:10:00+08:00",
+  "thesis": "聯發科作為 IC 設計與邊緣 AI sentiment 觀察股，今晚先列 watch。",
+  "whySelected": "最新收盤 3260，今日相對台積電較弱；若後續轉強，代表資金可能擴散到 IC 設計。",
+  "trigger": "重新站回 MA20 且成交量回升。",
+  "invalidation": "續弱並跌破短中期均線。",
+  "bias": "neutral",
+  "confidence": "medium",
+  "riskScenarios": [
+    "高檔震盪",
+    "AI 題材預期修正",
+    "外資籌碼快速反向"
+  ],
+  "evidence": [
+    {
+      "label": "Yahoo Chart API OHLC",
+      "url": "https://tw.stock.yahoo.com/quote/2454.TW",
+      "kind": "quote"
+    },
+    {
+      "label": "Taiwan News market recap",
+      "url": "https://www.taiwannews.com.tw/en/news/6363034",
+      "kind": "news"
+    }
+  ],
+  "provenance": {
+    "source": "one-off-tonight-refresh",
+    "asOf": "2026-05-15T22:10:00+08:00"
+  }
+}

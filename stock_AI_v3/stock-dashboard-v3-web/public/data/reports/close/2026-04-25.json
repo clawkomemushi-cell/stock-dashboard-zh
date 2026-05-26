@@ -1,0 +1,40 @@
+{
+  "date": "2026-04-25",
+  "directionVerdict": "bull",
+  "thesisAccuracyScore": 0.78,
+  "whatWorked": [
+    "AI 主線判斷正確，權值股領漲。",
+    "盤前判斷美股影響為偏多，結果一致。"
+  ],
+  "whatFailed": [
+    "對高股息部位的相對強度預估偏高。"
+  ],
+  "nextDayWatchpoints": [
+    "外資是否延續買超權值股。",
+    "是否只有指數穩、中小型不跟。"
+  ],
+  "tickerResults": [
+    {
+      "ticker": "2330.TW",
+      "thesis": "AI 多頭續抱",
+      "outcome": "worked",
+      "comment": "+1.4%，符合預期。"
+    }
+  ],
+  "analysisLayerStatus": [
+    {
+      "layer": "macro",
+      "status": "ok"
+    },
+    {
+      "layer": "technical",
+      "status": "ok"
+    },
+    {
+      "layer": "news",
+      "status": "warn",
+      "note": "sample static review"
+    }
+  ],
+  "asOf": "2026-04-25T14:00:00+08:00"
+}

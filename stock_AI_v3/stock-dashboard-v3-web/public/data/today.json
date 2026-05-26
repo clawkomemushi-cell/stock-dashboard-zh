@@ -1,0 +1,204 @@
+[
+  {
+    "id": "cp-2026-05-24-tonight-refresh",
+    "kind": "after",
+    "title": "今晚一次性資料刷新",
+    "timestamp": "2026-05-24T15:27:37+08:00",
+    "status": "ok",
+    "summary": "已完成今晚一次性刷新，網站目前改用 2026-05-24 晚間資料；台股加權更新為 42267.97（+2.17%）。",
+    "confidence": "high",
+    "whatChanged": "dashboard、news、ideas、watchlist、today、system health 與個股 overview/technical 已改用今晚刷新內容。",
+    "trigger": "明早正式盤前分析排程可在此基礎上接續，不需要新增每日 V3 refresh 排程。",
+    "invalidation": "若頁面仍出現舊樣本連結或舊樣本快照，代表還有漏接資料源。",
+    "linkedSymbols": [
+      "2330.TW",
+      "2454.TW",
+      "2317.TW",
+      "2308.TW"
+    ],
+    "linkedNewsIds": [
+      "n-2026-05-24-tw-market",
+      "n-2026-05-24-taiex"
+    ]
+  },
+  {
+    "id": "cp-intraday-2026-05-24-close",
+    "kind": "close",
+    "title": "盤中靜默 Checkpoint（close）",
+    "timestamp": "2026-05-24T15:54:54+08:00",
+    "status": "warn",
+    "summary": "close checkpoint：2 項高優先事件，1 項中優先事件。建議確認。",
+    "confidence": "high",
+    "whatChanged": "[high][price-move] 聯發科 今日 +8.73%（現價 3860），超過 3% 門檻。\n[high][watchlist-move] 自選股 聯發科 今日 +8.73%（現價 3860）。\n[medium][watchlist-move] 自選股 台達電 今日 +3.2%（現價 2095）。",
+    "trigger": "聯發科 今日 +8.73%（現價 3860），超過 3% 門檻。 | 自選股 聯發科 今日 +8.73%（現價 3860）。",
+    "invalidation": null,
+    "linkedSymbols": [
+      "2454.TW",
+      "2308.TW"
+    ],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":true,\"alertCandidates\":[{\"ticker\":\"2454.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2454.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2308.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false}]}"
+    }
+  },
+  {
+    "id": "cp-intraday-2026-05-25-pre",
+    "kind": "pre",
+    "title": "盤中靜默 Checkpoint（pre）",
+    "timestamp": "2026-05-25T08:50:05+08:00",
+    "status": "warn",
+    "summary": "pre checkpoint：2 項高優先事件，1 項中優先事件。建議確認。",
+    "confidence": "high",
+    "whatChanged": "[high][price-move] 聯發科 今日 +8.73%（現價 3860），超過 3% 門檻。\n[high][watchlist-move] 自選股 聯發科 今日 +8.73%（現價 3860）。\n[medium][watchlist-move] 自選股 台達電 今日 +3.2%（現價 2095）。",
+    "trigger": "聯發科 今日 +8.73%（現價 3860），超過 3% 門檻。 | 自選股 聯發科 今日 +8.73%（現價 3860）。",
+    "invalidation": null,
+    "linkedSymbols": [
+      "2454.TW",
+      "2308.TW"
+    ],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":true,\"alertCandidates\":[{\"ticker\":\"2454.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2454.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2308.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false}]}"
+    }
+  },
+  {
+    "id": "cp-intraday-2026-05-25-open-track",
+    "kind": "open-track",
+    "title": "盤中靜默 Checkpoint（open-track）",
+    "timestamp": "2026-05-25T09:05:05+08:00",
+    "status": "warn",
+    "summary": "open-track checkpoint：2 項高優先事件，1 項中優先事件。建議確認。",
+    "confidence": "high",
+    "whatChanged": "[high][price-move] 聯發科 今日 +8.73%（現價 3860），超過 3% 門檻。\n[high][watchlist-move] 自選股 聯發科 今日 +8.73%（現價 3860）。\n[medium][watchlist-move] 自選股 台達電 今日 +3.2%（現價 2095）。",
+    "trigger": "聯發科 今日 +8.73%（現價 3860），超過 3% 門檻。 | 自選股 聯發科 今日 +8.73%（現價 3860）。",
+    "invalidation": null,
+    "linkedSymbols": [
+      "2454.TW",
+      "2308.TW"
+    ],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":true,\"alertCandidates\":[{\"ticker\":\"2454.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2454.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2308.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false}]}"
+    }
+  },
+  {
+    "id": "cp-intraday-2026-05-25-mid",
+    "kind": "mid",
+    "title": "盤中靜默 Checkpoint（mid）",
+    "timestamp": "2026-05-25T09:30:05+08:00",
+    "status": "warn",
+    "summary": "mid checkpoint：3 項高優先事件，3 項中優先事件。建議確認。",
+    "confidence": "high",
+    "whatChanged": "[high][price-move] 聯發科 今日 +9.97%（現價 4245），超過 3% 門檻。\n[medium][price-move] 鴻海 今日 +3%（現價 257.5），超過 3% 門檻。\n[high][watchlist-move] 自選股 聯發科 今日 +9.97%（現價 4245）。\n[medium][watchlist-move] 自選股 鴻海 今日 +3%（現價 257.5）。\n[high][watchlist-move] 自選股 台達電 今日 +8.35%（現價 2270）。\n[medium][watchlist-move] 自選股 元大台灣50 今日 +3.03%（現價 100.25）。",
+    "trigger": "聯發科 今日 +9.97%（現價 4245），超過 3% 門檻。 | 自選股 聯發科 今日 +9.97%（現價 4245）。 | 自選股 台達電 今日 +8.35%（現價 2270）。",
+    "invalidation": null,
+    "linkedSymbols": [
+      "2454.TW",
+      "2317.TW",
+      "2308.TW",
+      "0050.TW"
+    ],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":true,\"alertCandidates\":[{\"ticker\":\"2454.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2317.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"2454.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2317.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"2308.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"0050.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false}]}"
+    }
+  },
+  {
+    "id": "cp-intraday-2026-05-26-pre",
+    "kind": "pre",
+    "title": "盤中靜默 Checkpoint（pre）",
+    "timestamp": "2026-05-26T08:51:46+08:00",
+    "status": "warn",
+    "summary": "pre checkpoint：3 項高優先事件，4 項中優先事件。建議確認。",
+    "confidence": "high",
+    "whatChanged": "[high][price-move] 聯發科 今日 +9.97%（現價 4245），超過 3% 門檻。\n[medium][price-move] 鴻海 今日 +4.4%（現價 261），超過 3% 門檻。\n[high][watchlist-move] 自選股 聯發科 今日 +9.97%（現價 4245）。\n[medium][watchlist-move] 自選股 鴻海 今日 +4.4%（現價 261）。\n[high][watchlist-move] 自選股 台達電 今日 +9.31%（現價 2290）。\n[medium][watchlist-move] 自選股 國泰永續高股息 今日 +4.28%（現價 29.479999542236328）。\n[medium][watchlist-move] 自選股 元大台灣50 今日 +3.6%（現價 100.80000305175781）。",
+    "trigger": "聯發科 今日 +9.97%（現價 4245），超過 3% 門檻。 | 自選股 聯發科 今日 +9.97%（現價 4245）。 | 自選股 台達電 今日 +9.31%（現價 2290）。",
+    "invalidation": null,
+    "linkedSymbols": [
+      "2454.TW",
+      "2317.TW",
+      "2308.TW",
+      "00878.TW",
+      "0050.TW"
+    ],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":true,\"alertCandidates\":[{\"ticker\":\"2454.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2317.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"2454.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2317.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"2308.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"00878.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"0050.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false}]}"
+    }
+  },
+  {
+    "id": "cp-intraday-2026-05-26-open-track",
+    "kind": "open-track",
+    "title": "盤中靜默 Checkpoint（open-track）",
+    "timestamp": "2026-05-26T09:05:01+08:00",
+    "status": "warn",
+    "summary": "open-track checkpoint：3 項高優先事件，4 項中優先事件。建議確認。",
+    "confidence": "high",
+    "whatChanged": "[high][price-move] 聯發科 今日 +9.97%（現價 4245），超過 3% 門檻。\n[medium][price-move] 鴻海 今日 +4.4%（現價 261），超過 3% 門檻。\n[high][watchlist-move] 自選股 聯發科 今日 +9.97%（現價 4245）。\n[medium][watchlist-move] 自選股 鴻海 今日 +4.4%（現價 261）。\n[high][watchlist-move] 自選股 台達電 今日 +9.31%（現價 2290）。\n[medium][watchlist-move] 自選股 國泰永續高股息 今日 +4.28%（現價 29.479999542236328）。\n[medium][watchlist-move] 自選股 元大台灣50 今日 +3.6%（現價 100.80000305175781）。",
+    "trigger": "聯發科 今日 +9.97%（現價 4245），超過 3% 門檻。 | 自選股 聯發科 今日 +9.97%（現價 4245）。 | 自選股 台達電 今日 +9.31%（現價 2290）。",
+    "invalidation": null,
+    "linkedSymbols": [
+      "2454.TW",
+      "2317.TW",
+      "2308.TW",
+      "00878.TW",
+      "0050.TW"
+    ],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":true,\"alertCandidates\":[{\"ticker\":\"2454.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2317.TW\",\"eventType\":\"price-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"2454.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"2317.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"2308.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"high\",\"shouldNotify\":true},{\"ticker\":\"00878.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false},{\"ticker\":\"0050.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false}]}"
+    }
+  },
+  {
+    "id": "cp-intraday-2026-05-26-mid",
+    "kind": "mid",
+    "title": "盤中靜默 Checkpoint（mid）",
+    "timestamp": "2026-05-26T12:15:01+08:00",
+    "status": "ok",
+    "summary": "mid checkpoint：1 項中優先事件。靜默更新。",
+    "confidence": "medium",
+    "whatChanged": "[medium][watchlist-move] 自選股 台達電 今日 +3.49%（現價 2370）。",
+    "trigger": null,
+    "invalidation": null,
+    "linkedSymbols": [
+      "2308.TW"
+    ],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":false,\"alertCandidates\":[{\"ticker\":\"2308.TW\",\"eventType\":\"watchlist-move\",\"direction\":\"up\",\"priority\":\"medium\",\"shouldNotify\":false}]}"
+    }
+  },
+  {
+    "id": "cp-intraday-2026-05-26-close",
+    "kind": "close",
+    "title": "盤中靜默 Checkpoint（close）",
+    "timestamp": "2026-05-26T13:40:01+08:00",
+    "status": "ok",
+    "summary": "close checkpoint：無重要事件，市場運行正常。",
+    "confidence": "medium",
+    "whatChanged": null,
+    "trigger": null,
+    "invalidation": null,
+    "linkedSymbols": [],
+    "linkedNewsIds": [],
+    "provenance": {
+      "source": "intraday-checkpoint",
+      "generatedBy": "run-v3-intraday-checkpoint.mjs",
+      "note": "{\"shouldNotify\":false,\"alertCandidates\":[]}"
+    }
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "ticker": "2330.TW",
+  "asOf": "2026-04-26T13:30:00+08:00",
+  "pe": 22.5,
+  "pb": 6.4,
+  "dividendYield": 1.5,
+  "epsTtm": 48.2,
+  "revenueGrowthYoy": 18.3,
+  "revenueMonthly": [
+    {
+      "month": "2026-03",
+      "revenue": 285000000000,
+      "yoy": 16.4
+    },
+    {
+      "month": "2026-02",
+      "revenue": 250000000000,
+      "yoy": 14.2
+    },
+    {
+      "month": "2026-01",
+      "revenue": 270000000000,
+      "yoy": 12.8
+    }
+  ]
+}

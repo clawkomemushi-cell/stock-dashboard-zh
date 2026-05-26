@@ -1,0 +1,34 @@
+[
+  {
+    "id": "n-2026-05-15-tw-market",
+    "title": "台股追隨美股走勢，權值與電子股分化",
+    "source": "Taiwan News / Yahoo Chart API",
+    "publishedAt": "2026-05-15T22:10:00+08:00",
+    "oneLineSummary": "台積電收高，但鴻海、台達電、聯發科等權值電子走勢分化；個股頁以當日行情與公開新聞重新校準資料。",
+    "whyItMatters": "這是個股頁今晚刷新後的驗證資料，避免繼續引用舊樣本新聞。",
+    "impactType": "market",
+    "impactScope": [
+      "TW",
+      "semiconductor",
+      "AI-server"
+    ],
+    "relatedSymbols": [
+      "2330.TW",
+      "2454.TW",
+      "2317.TW",
+      "2308.TW"
+    ],
+    "relatedThemes": [
+      "台股",
+      "AI",
+      "半導體",
+      "權值股"
+    ],
+    "importanceScore": 0.82,
+    "noiseScore": 0.18,
+    "topic": "market-close",
+    "url": "https://www.taiwannews.com.tw/en/news/6363034",
+    "mode": "curated",
+    "isLowSignal": false
+  }
+]

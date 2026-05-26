@@ -1,0 +1,136 @@
+{
+  "_comment": "Sample input file for generate-v3-snapshot.mjs --input. See docs/V3_PHASE2B_INPUT_SPEC.md for full schema.",
+  "date": "2026-05-09",
+  "marketSummary": {
+    "headline": "美股半導體領漲，台積電 ADR 創高，AI 需求持續落地",
+    "detail": "費城半導體指數本週上漲 3.1%，台積電 ADR 創 52 週新高，GB200 出貨進度優於預期。市場情緒偏多，但法人動向需持續觀察廣度是否跟上。",
+    "bias": "long",
+    "themes": ["AI", "半導體", "AI Server"],
+    "confidence": "high"
+  },
+  "candidates": [
+    {
+      "ticker": "2330.TW",
+      "name": "台積電",
+      "role": "starter",
+      "summary": "N2 量產確認在即，AI 訓練推論需求持續上修，月營收年增雙位數確認主線。",
+      "whySelected": "台積電是 AI 需求真實性最佳驗證指標；ADR 創高後短線壓力約在 1120，回測 MA20（1055）守住為進場信號。",
+      "trigger": "回測 MA20（1055）不破且外資當日轉買，或帶量突破 1120。",
+      "invalidation": "跌破 MA60（990）且連兩日量縮，或外資連三日賣超超過 1 萬張。",
+      "risk": "美對中半導體出口限制擴大、AI capex 縮減傳言、地緣風險急升溫。",
+      "themes": ["AI", "半導體"],
+      "confidence": "high"
+    },
+    {
+      "ticker": "2454.TW",
+      "name": "聯發科",
+      "role": "watch",
+      "summary": "D9400 旗艦訂單穩健，AI 邊緣推論需求加溫，庫存去化進度仍是關鍵變數。",
+      "whySelected": "估值相對 TSMC 折價約 20%，若 Q2 法說確認庫存健康，補漲空間可觀。均線收斂整理中，方向待確認。",
+      "trigger": "800 附近量縮整理後放量突破 840，或 Q2 法說確認庫存正常化。",
+      "invalidation": "跌破 755（MA200）或 Q2 法說下修全年 guidance。",
+      "risk": "庫存去化慢於預期、Qualcomm 搶單、高端手機需求疲軟。",
+      "themes": ["AI", "半導體", "手機"],
+      "confidence": "medium"
+    },
+    {
+      "ticker": "2308.TW",
+      "name": "台達電",
+      "kind": "stock",
+      "role": "observe",
+      "summary": "AI 伺服器電源供應與散熱需求帶動，電源管理技術領先，但估值已部分反映利多，等待回測確認。",
+      "whySelected": "AI Server 電源規格升級（48V 架構、高效能 PSU）是台達電的核心競爭優勢；GB200 機架電源需求明確受惠，但股價已先行，需等技術面回測。此為非自選股池標的，作為 Phase 2F 未知 ticker 測試案例。",
+      "trigger": "回測 MA20 守穩後放量，或法人籌碼出現明確轉買訊號。",
+      "invalidation": "AI Server 訂單成長幅度低於市場預期，或毛利率走低顯示競爭加劇。",
+      "risk": "估值偏高、AI Server 週期放緩、電源規格競爭加劇、地緣政治影響供應鏈。",
+      "themes": ["AI Server", "電源管理", "半導體"],
+      "confidence": "low"
+    }
+  ],
+  "news": [
+    {
+      "id": "n-001",
+      "title": "台積電 ADR 本週創 52 週新高，N2 量產進度優於預期",
+      "source": "工商時報",
+      "oneLineSummary": "台積電 ADR 週漲 4.2%，創 52 週新高，市場對 N2 量產進度樂觀。",
+      "whyItMatters": "ADR 領漲代表外資對台積電的信心延續，N2 量產確認後，AI 需求落地的主線敘事得到具體支撐。",
+      "relatedSymbols": ["2330.TW"],
+      "relatedThemes": ["AI", "半導體"],
+      "importanceScore": 0.93,
+      "noiseScore": 0.05,
+      "topic": "earnings",
+      "url": "https://mops.twse.com.tw"
+    },
+    {
+      "id": "n-002",
+      "title": "輝達 GB200 出貨量再上修，鴻海拿下更多 AI Server 機櫃訂單",
+      "source": "電子時報",
+      "oneLineSummary": "NVIDIA 上修 GB200 2026H2 出貨量，鴻海 AI Server 訂單能見度延伸至 2027Q1。",
+      "whyItMatters": "訂單能見度延伸至 2027Q1 意味著 AI Server 週期比市場預期更長，支持相關供應鏈標的的持倉邏輯。",
+      "relatedSymbols": ["2317.TW"],
+      "relatedThemes": ["AI Server", "AI"],
+      "importanceScore": 0.87,
+      "noiseScore": 0.08,
+      "topic": "supply-chain",
+      "url": "https://www.digitimes.com.tw"
+    },
+    {
+      "id": "n-003",
+      "title": "聯發科 Q1 法說：庫存去化優於預期，Q2 展望上修",
+      "source": "Digitimes",
+      "oneLineSummary": "聯發科 Q1 法說確認庫存去化速度優於預期，Q2 revenue guidance 上修 5%。",
+      "whyItMatters": "庫存正常化是聯發科從 watch 升級為 starter 的關鍵條件，此消息若屬實，則 800 附近為低風險進場區。",
+      "relatedSymbols": ["2454.TW"],
+      "relatedThemes": ["AI", "半導體", "手機"],
+      "importanceScore": 0.88,
+      "noiseScore": 0.10,
+      "topic": "earnings",
+      "url": "https://www.digitimes.com.tw"
+    },
+    {
+      "id": "n-004",
+      "title": "台達電 AI 伺服器電源模組新訂單：48V 架構受主要 CSP 採用",
+      "source": "電子時報",
+      "oneLineSummary": "台達電 48V PSU 模組獲得北美主要 CSP 認證採用，AI Server 電源訂單能見度延伸至 2027Q1。",
+      "whyItMatters": "48V 架構是 AI Server 下一代電源標準，台達電率先獲得認證意味技術壁壘優勢確立；但股價已先行反映，進場前需等技術面回測確認。",
+      "relatedSymbols": ["2308.TW"],
+      "relatedThemes": ["AI Server", "電源管理"],
+      "importanceScore": 0.76,
+      "noiseScore": 0.18,
+      "topic": "product",
+      "url": "https://www.digitimes.com.tw"
+    }
+  ],
+  "reports": {
+    "closeSummary": "前一交易日半導體主線偏多，TSMC 守 MA20 確認，台達電 AI 電源訂單消息屬邊際利多。下次優先觀察台達電是否回測後站穩，聯發科庫存數據進一步確認。",
+    "weeklySummary": "本週 AI/半導體主軸持續強勁，TSMC ADR 創高確認外資信心，聯發科法說庫存去化優於預期為關鍵催化。台達電作為 AI 電源受惠標的納入觀察，但估值先行需等回測。整體偏多，廣度尚待全面確認。"
+  },
+  "notes": {
+    "2330.TW": {
+      "thesis": "N2 量產確認在即，AI 訓練/推論需求持續上修，月營收年增雙位數確認 AI 主線非僅情緒炒作。ADR 創高後短線壓力約在 1120，回測 MA20 守住後仍是核心倉位。",
+      "trigger": "回測 MA20（1055）不破且外資當日轉買；或帶量突破 1120 確認。",
+      "invalidation": "跌破 MA60（990）且連兩日量縮，或外資連三日賣超超過 1 萬張。",
+      "riskScenarios": [
+        "美對中半導體出口限制擴大",
+        "AI capex 縮減傳言",
+        "地緣風險急升溫",
+        "高檔技術性修正加深"
+      ],
+      "bias": "long",
+      "confidence": "high"
+    },
+    "2454.TW": {
+      "thesis": "Q1 法說確認庫存去化優於預期後，D9400 旗艦訂單穩健 + AI 邊緣推論需求加溫，補漲空間可觀。800 附近量縮整理中，方向已偏向確認。",
+      "trigger": "800 附近量縮整理後放量突破 840，或 Q2 guidance 進一步上修。",
+      "invalidation": "跌破 775（MA60）或法說後庫存數據不如預期。",
+      "riskScenarios": [
+        "庫存去化慢於預期",
+        "Qualcomm 搶單",
+        "高端手機需求疲軟",
+        "中國市場份額流失"
+      ],
+      "bias": "neutral",
+      "confidence": "medium"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "ticker": "2308.TW",
+  "asOf": "2026-05-15T05:30:15.000Z",
+  "last": 2075,
+  "changePct": -3.71,
+  "rangeDay": [
+    2075,
+    2195
+  ],
+  "range52w": [
+    361,
+    2370
+  ],
+  "volume": 12066668,
+  "status": "ok",
+  "oneLineThesis": "Yahoo Chart API 更新：最新收盤 2075，日漲跌 -3.71%。"
+}

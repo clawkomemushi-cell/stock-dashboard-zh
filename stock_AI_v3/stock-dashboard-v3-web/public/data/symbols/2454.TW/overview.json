@@ -1,0 +1,17 @@
+{
+  "ticker": "2454.TW",
+  "asOf": "2026-05-15T05:30:15.000Z",
+  "last": 3260,
+  "changePct": -4.26,
+  "rangeDay": [
+    3200,
+    3555
+  ],
+  "range52w": [
+    1130,
+    3985
+  ],
+  "volume": 7297416,
+  "status": "ok",
+  "oneLineThesis": "Yahoo Chart API 更新：最新收盤 3260，日漲跌 -4.26%。"
+}

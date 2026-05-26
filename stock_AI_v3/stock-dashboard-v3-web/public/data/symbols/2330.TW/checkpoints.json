@@ -1,0 +1,20 @@
+[
+  {
+    "id": "cp-pre",
+    "kind": "pre",
+    "title": "盤前 Checkpoint",
+    "timestamp": "2026-04-26T08:30:00+08:00",
+    "status": "ok",
+    "summary": "美股收紅 + 法說後情緒偏多。",
+    "confidence": "high",
+    "whatChanged": "新增關注：capex 上修。",
+    "trigger": "權值股開高且不破前低。",
+    "invalidation": "若指數開高走低且廣度不跟。",
+    "linkedSymbols": [
+      "2330.TW"
+    ],
+    "linkedNewsIds": [
+      "n-001"
+    ]
+  }
+]

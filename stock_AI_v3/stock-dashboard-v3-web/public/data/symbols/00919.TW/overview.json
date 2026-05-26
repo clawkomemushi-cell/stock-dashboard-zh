@@ -1,0 +1,17 @@
+{
+  "ticker": "00919.TW",
+  "asOf": "2026-05-15T05:30:03.000Z",
+  "last": 25.76,
+  "changePct": -0.5,
+  "rangeDay": [
+    25.66,
+    26.37
+  ],
+  "range52w": [
+    20.99,
+    26.37
+  ],
+  "volume": 145749771,
+  "status": "ok",
+  "oneLineThesis": "Yahoo Chart API 更新：最新收盤 25.76，日漲跌 -0.5%。"
+}

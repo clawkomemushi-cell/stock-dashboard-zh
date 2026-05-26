@@ -1,0 +1,17 @@
+{
+  "ticker": "3034.TW",
+  "asOf": "2026-05-15T05:30:19.000Z",
+  "last": 466.5,
+  "changePct": -5.38,
+  "rangeDay": [
+    463,
+    499.5
+  ],
+  "range52w": [
+    352,
+    552
+  ],
+  "volume": 8571892,
+  "status": "ok",
+  "oneLineThesis": "Yahoo Chart API 更新：最新收盤 466.5，日漲跌 -5.38%。"
+}

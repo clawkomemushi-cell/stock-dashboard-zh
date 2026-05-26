@@ -1,0 +1,87 @@
+{
+  "asOf": "2026-05-24T15:27:37+08:00",
+  "currentRun": {
+    "id": "one-off-tonight-refresh-2026-05-24",
+    "name": "one-off-tonight-v3-data-refresh",
+    "status": "ok",
+    "startedAt": "2026-05-24T15:27:37+08:00",
+    "finishedAt": "2026-05-24T15:27:37+08:00",
+    "durationMs": null,
+    "message": "Tonight one-off refresh completed; recurring V3 refresh cron was not kept."
+  },
+  "lastSuccessfulPublishAt": "2026-05-24T15:27:37+08:00",
+  "dataFreshness": [
+    {
+      "feed": "dashboard",
+      "lastUpdated": "2026-05-24T15:27:37+08:00",
+      "status": "fresh"
+    },
+    {
+      "feed": "ideas/news/watchlist/today",
+      "lastUpdated": "2026-05-24T15:27:37+08:00",
+      "status": "fresh"
+    },
+    {
+      "feed": "yahoo-chart-symbols",
+      "lastUpdated": "2026-05-24T15:27:37+08:00",
+      "status": "fresh"
+    }
+  ],
+  "warnings": [
+    "TPEx index source not written because Yahoo ^TWOII returned stale 2024 data; intentionally omitted instead of faking it."
+  ],
+  "staleData": [],
+  "missingData": [
+    "TPEx index live quote fallback still needs official TPEx/OpenAPI integration."
+  ],
+  "routes": [
+    {
+      "path": "/dashboard",
+      "adapter": "V3",
+      "mode": "db/static-file",
+      "status": "ok"
+    },
+    {
+      "path": "/watchlist",
+      "adapter": "V3",
+      "mode": "db/static-file",
+      "status": "ok"
+    },
+    {
+      "path": "/ideas",
+      "adapter": "V3",
+      "mode": "db/static-file",
+      "status": "ok"
+    },
+    {
+      "path": "/news",
+      "adapter": "V3",
+      "mode": "db/static-file",
+      "status": "ok"
+    },
+    {
+      "path": "/today",
+      "adapter": "V3",
+      "mode": "db/static-file",
+      "status": "ok"
+    },
+    {
+      "path": "/symbols",
+      "adapter": "V3",
+      "mode": "db/static-file",
+      "status": "ok"
+    },
+    {
+      "path": "/system/health",
+      "adapter": "V3",
+      "mode": "db/static-file",
+      "status": "ok"
+    }
+  ],
+  "modes": {
+    "dataMode": "db/static-file",
+    "aiMode": "one-off-refresh",
+    "newsMode": "curated",
+    "chartMode": "lightweight-charts+yahoo"
+  }
+}

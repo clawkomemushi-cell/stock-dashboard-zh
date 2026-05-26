@@ -1,0 +1,17 @@
+{
+  "ticker": "00878.TW",
+  "asOf": "2026-05-15T05:30:02.000Z",
+  "last": 27.9,
+  "changePct": -0.78,
+  "rangeDay": [
+    27.76,
+    28.56
+  ],
+  "range52w": [
+    20.01,
+    28.56
+  ],
+  "volume": 128824140,
+  "status": "ok",
+  "oneLineThesis": "Yahoo Chart API 更新：最新收盤 27.9，日漲跌 -0.78%。"
+}

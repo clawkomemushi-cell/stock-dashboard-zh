@@ -1,0 +1,82 @@
+[
+  {
+    "id": "n-2026-05-24-tw-market",
+    "title": "台股追隨美股走勢，權值與電子股分化",
+    "source": "Taiwan News / Yahoo Chart API",
+    "publishedAt": "2026-05-24T22:00:00+08:00",
+    "oneLineSummary": "台積電收高，但鴻海、台達電、聯發科等權值電子走勢分化；網站先以當日行情與公開新聞重新校準資料。",
+    "whyItMatters": "這能避免 dashboard 繼續顯示舊樣本敘事；今晚版本的重點是驗證資料 freshness 與真實來源，而不是產生新的操作指令。",
+    "impactType": "market",
+    "impactScope": [
+      "TW",
+      "semiconductor",
+      "AI-server"
+    ],
+    "relatedSymbols": [
+      "2330.TW",
+      "2454.TW",
+      "2317.TW",
+      "2308.TW"
+    ],
+    "relatedThemes": [
+      "台股",
+      "AI",
+      "半導體",
+      "權值股"
+    ],
+    "importanceScore": 0.82,
+    "noiseScore": 0.18,
+    "topic": "market-close",
+    "url": "https://www.taiwannews.com.tw/en/news/6363034",
+    "mode": "curated",
+    "isLowSignal": false
+  },
+  {
+    "id": "n-2026-05-24-taiex",
+    "title": "TAIEX 收在 41172.36，單日約 -1.39%",
+    "source": "Yahoo Chart API / Trading Economics",
+    "publishedAt": "2026-05-24T22:00:00+08:00",
+    "oneLineSummary": "網站台股加權指數已改用 Yahoo ^TWII 實際行情，不再保留舊樣本指數數字。",
+    "whyItMatters": "指數是 dashboard 第一眼可信度來源；若這裡是假的，後續候選股與觀察邏輯都會被污染。",
+    "impactType": "market",
+    "impactScope": [
+      "TWII"
+    ],
+    "relatedSymbols": [],
+    "relatedThemes": [
+      "資料更新",
+      "台股"
+    ],
+    "importanceScore": 0.9,
+    "noiseScore": 0.08,
+    "topic": "data-refresh",
+    "url": "https://tradingeconomics.com/taiwan/stock-market",
+    "mode": "curated",
+    "isLowSignal": false
+  },
+  {
+    "id": "n-2026-05-24-tsmc-quote",
+    "title": "台積電行情頁同步驗證：價格與 K 線改走真實 OHLC",
+    "source": "Yahoo 股市 / Yahoo Chart API",
+    "publishedAt": "2026-05-24T22:00:00+08:00",
+    "oneLineSummary": "個股頁已用 lightweight-charts 顯示 Yahoo OHLC，並加入 MA5/20/60、成交量與 OHLC 指標。",
+    "whyItMatters": "這是本輪修 TradingView 後的核心驗證點：不是 iframe，也不是站內假資料。",
+    "impactType": "symbol",
+    "impactScope": [
+      "semiconductor"
+    ],
+    "relatedSymbols": [
+      "2330.TW"
+    ],
+    "relatedThemes": [
+      "K線",
+      "資料更新"
+    ],
+    "importanceScore": 0.75,
+    "noiseScore": 0.12,
+    "topic": "chart-data",
+    "url": "https://tw.stock.yahoo.com/quote/2330.TW",
+    "mode": "curated",
+    "isLowSignal": false
+  }
+]

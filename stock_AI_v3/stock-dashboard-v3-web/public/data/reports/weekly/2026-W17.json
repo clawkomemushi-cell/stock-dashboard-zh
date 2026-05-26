@@ -1,0 +1,25 @@
+{
+  "week": "2026-W17",
+  "summary": "本週 AI 主軸延續，權值股強勢，但仍需防止只剩少數大型股撐盤。",
+  "keyWins": [
+    "TSMC 趨勢判斷正確"
+  ],
+  "keyMisses": [
+    "對市場廣度的確認節奏還能更快"
+  ],
+  "biasObservations": [
+    "對權值股偏樂觀，但需要更強的廣度驗證。"
+  ],
+  "nextWeekAdjustments": [
+    "先確認廣度，再放寬曝險。"
+  ],
+  "dailyReviews": [
+    {
+      "date": "2026-04-25",
+      "oneLine": "權值轉強",
+      "verdict": "bull",
+      "accuracy": 0.78
+    }
+  ],
+  "asOf": "2026-04-25T15:00:00+08:00"
+}

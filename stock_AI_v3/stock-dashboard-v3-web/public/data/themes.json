@@ -1,0 +1,28 @@
+[
+  {
+    "id": "th-001",
+    "theme": "AI",
+    "description": "AI capex / GPU / server 相關主題。",
+    "momentum": "rising",
+    "relatedSymbols": [
+      "2330.TW"
+    ],
+    "relatedNewsIds": [
+      "n-001"
+    ],
+    "asOf": "2026-04-26T09:30:00+08:00"
+  },
+  {
+    "id": "th-002",
+    "theme": "半導體",
+    "description": "先進製程與設備鏈相關主題。",
+    "momentum": "rising",
+    "relatedSymbols": [
+      "2330.TW"
+    ],
+    "relatedNewsIds": [
+      "n-001"
+    ],
+    "asOf": "2026-04-26T09:30:00+08:00"
+  }
+]

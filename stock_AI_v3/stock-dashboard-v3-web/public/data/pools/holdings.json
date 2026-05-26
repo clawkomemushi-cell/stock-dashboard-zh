@@ -1,0 +1,53 @@
+[
+  {
+    "id": "h-001",
+    "ticker": "2330.TW",
+    "name": "台積電",
+    "kind": "stock",
+    "holdingSince": "2025-10-15T00:00:00+08:00",
+    "entryNote": "AI / HPC 結構性多頭主軸，法說 guidance 上修後加碼。",
+    "continuationVerdict": "watch",
+    "shippingWarning": "5/15 後 ADR 與美股半導體回檔，外資連兩日轉賣超；世界先進股權處分事件引發市場聯想，注意週一補跌後能否收斂。",
+    "thesisValid": true,
+    "thesisSummary": "N3/N2 產能滿載，CoWoS 供應緊俏，AI capex 需求未見轉折。",
+    "sellTrigger": "跌破 MA60 (2150) 且無利多催化 → 減碼至半倉。",
+    "invalidation": "AI capex 客戶縮減訂單 or 美對台半導體加碼制裁。",
+    "tags": ["核心", "AI", "半導體"],
+    "statusLevel": "warn",
+    "asOf": "2026-05-17T09:30:00+08:00"
+  },
+  {
+    "id": "h-002",
+    "ticker": "0050.TW",
+    "name": "元大台灣50",
+    "kind": "etf",
+    "holdingSince": "2024-03-01T00:00:00+08:00",
+    "entryNote": "市值型核心，長線定期定額策略。",
+    "continuationVerdict": "hold",
+    "shippingWarning": null,
+    "thesisValid": true,
+    "thesisSummary": "台股指數多頭結構未破，0050 作為大盤代理部位持續持有。",
+    "sellTrigger": "指數跌破季線且外資連續 10 日賣超 → 評估減碼。",
+    "invalidation": "台股結構性空頭（指數跌破年線）。",
+    "tags": ["核心", "市值型", "ETF"],
+    "statusLevel": "ok",
+    "asOf": "2026-05-17T09:30:00+08:00"
+  },
+  {
+    "id": "h-003",
+    "ticker": "2382.TW",
+    "name": "廣達",
+    "kind": "stock",
+    "holdingSince": "2026-02-10T00:00:00+08:00",
+    "entryNote": "AI server ODM 龍頭，受惠 GB200 NVL72 大量出貨。",
+    "continuationVerdict": "hold",
+    "shippingWarning": "近期股價反映大量利多，短線漲幅超前基本面，留意若出現大量換手。",
+    "thesisValid": true,
+    "thesisSummary": "CSP 客戶 AI capex 持續上修，廣達拿單比例維持。Q2 法說前為觀察重點。",
+    "sellTrigger": "Q2 法說展望不如預期 or 股價跌破 280 (MA20)。",
+    "invalidation": "AI server 訂單出現重大取消 or 競爭對手搶單。",
+    "tags": ["AI server", "ODM"],
+    "statusLevel": "ok",
+    "asOf": "2026-05-17T09:30:00+08:00"
+  }
+]

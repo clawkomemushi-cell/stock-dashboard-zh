@@ -1,0 +1,116 @@
+[
+  {
+    "id": "n-2026-05-15-tsmc-vis-sale",
+    "title": "台積電擬出售世界先進 8.1% 股權，聚焦核心業務",
+    "source": "台積電 / 東森新聞",
+    "publishedAt": "2026-05-15T15:27:00+08:00",
+    "oneLineSummary": "台積電擬以鉅額交易出售世界先進 1.52 億股、約 8.1% 股權，持股預估由 27.1% 降至約 19%。",
+    "whyItMatters": "這是資本配置訊號：官方說法是聚焦核心業務，且不影響矽中介層與 GaN 技術授權等合作；週一需看市場把它解讀為資源聚焦，還是成熟製程疑慮。",
+    "impactType": "symbol",
+    "impactScope": [
+      "semiconductor",
+      "foundry"
+    ],
+    "relatedSymbols": [
+      "2330.TW",
+      "5347.TWO"
+    ],
+    "relatedThemes": [
+      "AI",
+      "半導體",
+      "資本配置"
+    ],
+    "importanceScore": 0.92,
+    "noiseScore": 0.08,
+    "topic": "capital-allocation",
+    "url": "https://news.ebc.net.tw/news/business/551811",
+    "mode": "curated",
+    "isLowSignal": false
+  },
+  {
+    "id": "n-2026-05-14-reuters-ai-chip-growth",
+    "title": "Reuters：台積電稱 AI 驅動全球晶片市場長線成長",
+    "source": "Reuters",
+    "publishedAt": "2026-05-14T20:00:00+08:00",
+    "oneLineSummary": "Reuters 報導台積電對全球晶片市場與 AI / HPC 需求維持強勁展望，先進製程與先進封裝仍是長線核心。",
+    "whyItMatters": "這支持 2330 長線 thesis，但週一短線仍要先消化 ADR / SOX / NVDA 高檔回檔與外資賣壓，不能把長線利多直接當追價理由。",
+    "impactType": "sector",
+    "impactScope": [
+      "semiconductor",
+      "ai"
+    ],
+    "relatedSymbols": [
+      "2330.TW",
+      "2454.TW",
+      "2317.TW"
+    ],
+    "relatedThemes": [
+      "AI",
+      "HPC",
+      "半導體"
+    ],
+    "importanceScore": 0.86,
+    "noiseScore": 0.12,
+    "topic": "ai-demand",
+    "url": "https://www.reuters.com/world/asia-pacific/tsmc-says-global-chip-market-hit-15-trillion-by-2030-ai-drives-growth-2026-05-14/",
+    "mode": "curated",
+    "isLowSignal": false
+  },
+  {
+    "id": "n-2026-05-15-tw-market",
+    "title": "台股追隨美股走勢，權值與電子股分化",
+    "source": "Taiwan News / Yahoo Chart API",
+    "publishedAt": "2026-05-15T22:10:00+08:00",
+    "oneLineSummary": "台積電收高，但鴻海、台達電、聯發科等權值電子走勢分化；個股頁以當日行情與公開新聞重新校準資料。",
+    "whyItMatters": "這是個股頁今晚刷新後的驗證資料，避免繼續引用舊樣本新聞。",
+    "impactType": "market",
+    "impactScope": [
+      "TW",
+      "semiconductor",
+      "AI-server"
+    ],
+    "relatedSymbols": [
+      "2330.TW",
+      "2454.TW",
+      "2317.TW",
+      "2308.TW"
+    ],
+    "relatedThemes": [
+      "台股",
+      "AI",
+      "半導體",
+      "權值股"
+    ],
+    "importanceScore": 0.82,
+    "noiseScore": 0.18,
+    "topic": "market-close",
+    "url": "https://www.taiwannews.com.tw/en/news/6363034",
+    "mode": "curated",
+    "isLowSignal": false
+  },
+  {
+    "id": "n-2026-05-15-tsmc-quote",
+    "title": "台積電行情頁同步驗證：價格與 K 線改走真實 OHLC",
+    "source": "Yahoo 股市 / Yahoo Chart API",
+    "publishedAt": "2026-05-15T22:10:00+08:00",
+    "oneLineSummary": "台積電個股頁已用 lightweight-charts 顯示 Yahoo OHLC，並加入 MA5/20/60、成交量與 OHLC 指標。",
+    "whyItMatters": "驗證目前版本不是 TradingView iframe，也不是站內假資料。",
+    "impactType": "symbol",
+    "impactScope": [
+      "semiconductor"
+    ],
+    "relatedSymbols": [
+      "2330.TW"
+    ],
+    "relatedThemes": [
+      "K線",
+      "資料更新"
+    ],
+    "importanceScore": 0.75,
+    "noiseScore": 0.12,
+    "topic": "chart-data",
+    "url": "https://tw.stock.yahoo.com/quote/2330.TW",
+    "mode": "curated",
+    "isLowSignal": false
+  }
+]

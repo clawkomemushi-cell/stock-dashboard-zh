@@ -1,0 +1,22 @@
+{
+  "ticker": "2308.TW",
+  "asOf": "2026-05-15T05:30:15.000Z",
+  "trend": "sideways",
+  "rsi14": 50,
+  "ma20": 2110.5,
+  "ma60": 1665.58,
+  "ma200": 1122.67,
+  "supportLevels": [
+    1830,
+    1115
+  ],
+  "resistanceLevels": [
+    2370,
+    2370
+  ],
+  "patterns": [
+    "Yahoo OHLC",
+    "rolling MA"
+  ],
+  "notes": "由 Yahoo Finance chart API 日線 OHLC 自動更新。"
+}

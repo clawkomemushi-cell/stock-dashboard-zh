@@ -1,0 +1,31 @@
+{
+  "ticker": "2317.TW",
+  "asOf": "2026-05-15T22:10:00+08:00",
+  "thesis": "鴻海是 AI server 與蘋果鏈的大型承接股，但今日表現需保守看待。",
+  "whySelected": "最新收盤 248.5，AI server 題材仍在；觀察是否能重新帶量轉強。",
+  "trigger": "站回短均並與 AI server 族群同步。",
+  "invalidation": "量增收黑或跌破近期支撐。",
+  "bias": "neutral",
+  "confidence": "medium",
+  "riskScenarios": [
+    "高檔震盪",
+    "AI 題材預期修正",
+    "外資籌碼快速反向"
+  ],
+  "evidence": [
+    {
+      "label": "Yahoo Chart API OHLC",
+      "url": "https://tw.stock.yahoo.com/quote/2317.TW",
+      "kind": "quote"
+    },
+    {
+      "label": "Taiwan News market recap",
+      "url": "https://www.taiwannews.com.tw/en/news/6363034",
+      "kind": "news"
+    }
+  ],
+  "provenance": {
+    "source": "one-off-tonight-refresh",
+    "asOf": "2026-05-15T22:10:00+08:00"
+  }
+}

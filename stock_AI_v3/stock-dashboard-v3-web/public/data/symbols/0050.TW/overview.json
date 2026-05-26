@@ -1,0 +1,17 @@
+{
+  "ticker": "0050.TW",
+  "asOf": "2026-05-15T05:30:03.000Z",
+  "last": 95.4,
+  "changePct": -0.68,
+  "rangeDay": [
+    95.2,
+    98.25
+  ],
+  "range52w": [
+    43.81,
+    98.4
+  ],
+  "volume": 97585728,
+  "status": "ok",
+  "oneLineThesis": "Yahoo Chart API 更新：最新收盤 95.4，日漲跌 -0.68%。"
+}

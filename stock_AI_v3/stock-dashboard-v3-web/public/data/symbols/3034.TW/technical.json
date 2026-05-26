@@ -1,0 +1,22 @@
+{
+  "ticker": "3034.TW",
+  "asOf": "2026-05-15T05:30:19.000Z",
+  "trend": "up",
+  "rsi14": 66.9,
+  "ma20": 440.3,
+  "ma60": 403.14,
+  "ma200": 409.28,
+  "supportLevels": [
+    406,
+    352
+  ],
+  "resistanceLevels": [
+    503,
+    503
+  ],
+  "patterns": [
+    "Yahoo OHLC",
+    "rolling MA"
+  ],
+  "notes": "由 Yahoo Finance chart API 日線 OHLC 自動更新。"
+}

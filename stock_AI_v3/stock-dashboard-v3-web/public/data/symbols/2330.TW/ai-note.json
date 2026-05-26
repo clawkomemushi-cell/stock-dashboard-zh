@@ -1,0 +1,42 @@
+{
+  "ticker": "2330.TW",
+  "asOf": "2026-05-17T10:30:00+08:00",
+  "thesis": "AI / HPC、先進製程與先進封裝仍是 2330 的長線主軸；但 5/15 後 TSM ADR 與美股半導體從高檔回落，外資籌碼也有鬆動跡象，週一應先當成「強基本面下的高檔壓力測試」，不要只因長線敘事強就追價。",
+  "whySelected": "台積電仍是台股權值與 AI 供應鏈核心；5/15 官方宣布擬出售世界先進約 8.1% 股權，理由是聚焦核心業務，且聲明不影響雙方矽中介層與 GaN 技術授權等合作。這更像資本配置事件，而非 2330 基本面轉弱；但短線市場可能先測試成熟製程情緒與外資賣壓。",
+  "trigger": "週一若 ADR / SOX / NVDA 止穩，2330 開低後跌幅快速收斂，0050 / 006208 同步守穩，且外資賣壓縮小或量縮止跌，才把 2330 從觀察升級為可行候選；若只是一開盤反彈但量價與權值 ETF 沒跟，不追。",
+  "invalidation": "若 2330 放量跌破短期關鍵支撐、外資續大賣，美股半導體未止跌，或市場把處分世界先進股權解讀成晶圓代工成熟製程風險擴散，則短線 thesis 失效，先降回防守觀察。",
+  "bias": "neutral",
+  "confidence": "medium",
+  "riskScenarios": [
+    "ADR / SOX / NVDA 高檔回檔延續，帶動週一台股權值補跌",
+    "外資持續賣超 2330，投信承接不足，籌碼面壓過基本面",
+    "市場將處分世界先進股權誤讀或延伸成成熟製程風險，拖累半導體情緒",
+    "AI capex 預期過熱後修正，導致高估值半導體一起降溫",
+    "美元 / 台幣、關稅與地緣政治變數造成外資 risk-off"
+  ],
+  "evidence": [
+    {
+      "label": "2330 週末重大資訊整理（內部研究）",
+      "kind": "internal-research"
+    },
+    {
+      "label": "台積公司擬出售 8.1% 世界先進公司股權",
+      "url": "https://pr.tsmc.com/chinese/news/3314",
+      "kind": "official-news"
+    },
+    {
+      "label": "東森：台積電啟動鉅額交易，轉讓世界先進 8.1% 股權",
+      "url": "https://news.ebc.net.tw/news/business/551811",
+      "kind": "news"
+    },
+    {
+      "label": "Reuters：AI 驅動全球晶片市場成長",
+      "url": "https://www.reuters.com/world/asia-pacific/tsmc-says-global-chip-market-hit-15-trillion-by-2030-ai-drives-growth-2026-05-14/",
+      "kind": "news"
+    }
+  ],
+  "provenance": {
+    "source": "weekend-tsmc-research-refresh",
+    "asOf": "2026-05-17T10:30:00+08:00"
+  }
+}

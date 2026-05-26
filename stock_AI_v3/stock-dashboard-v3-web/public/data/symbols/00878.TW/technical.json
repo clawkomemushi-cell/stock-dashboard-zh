@@ -1,0 +1,22 @@
+{
+  "ticker": "00878.TW",
+  "asOf": "2026-05-15T05:30:02.000Z",
+  "trend": "up",
+  "rsi14": 85.02,
+  "ma20": 26.26,
+  "ma60": 23.9,
+  "ma200": 22.15,
+  "supportLevels": [
+    23.82,
+    21.28
+  ],
+  "resistanceLevels": [
+    28.56,
+    28.56
+  ],
+  "patterns": [
+    "Yahoo OHLC",
+    "rolling MA"
+  ],
+  "notes": "由 Yahoo Finance chart API 日線 OHLC 自動更新。"
+}

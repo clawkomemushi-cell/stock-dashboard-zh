@@ -1,0 +1,293 @@
+[
+  {
+    "id": "idea-2026-05-24-2330",
+    "ticker": "2330.TW",
+    "name": "台積電",
+    "kind": "stock",
+    "role": "starter",
+    "summary": "最新 2255，+1.12%；仍是台股 AI/半導體主線的第一觀察股。",
+    "whySelected": "台積電今日相對權值股強，且 K 線資料已切回真實 Yahoo OHLC；用它驗證指數反彈是否有核心權值支撐。觀察重點不是追價，而是收盤後 MA5/MA20 位置、量能與隔日是否續強。",
+    "trigger": "站回並守住 MA5/MA20，且台股加權不是只有單一權值撐盤。",
+    "invalidation": "若跌回 MA20 下方且成交量放大，代表短線動能轉弱，候選降級。",
+    "risk": "高價股波動、AI capex 預期修正、外資籌碼快速反向。",
+    "themes": [
+      "AI",
+      "半導體",
+      "權值股"
+    ],
+    "relatedNewsIds": [
+      "n-2026-05-24-tw-market",
+      "n-2026-05-24-taiex"
+    ],
+    "confidence": "high",
+    "hasNews": true,
+    "asOf": "2026-05-24T15:27:37+08:00",
+    "provenance": {
+      "source": "one-off-refresh",
+      "asOf": "2026-05-24T15:27:37+08:00"
+    },
+    "evidence": {
+      "dataAsOf": "2026-05-24T15:27:37+08:00",
+      "status": "complete",
+      "technical": [
+        {
+          "label": "日K：收 2255，+1.12%；MA5 2223、MA20 2235.75、MA60 2024.25",
+          "source": "Yahoo Finance OHLC",
+          "asOf": "2026-05-22T05:30:12.000Z",
+          "value": "2255",
+          "interpretation": "收盤守在 MA20（2235.75）上方，短線結構偏健康；趨勢：短中期偏多。"
+        },
+        {
+          "label": "成交量：約 24438K 張",
+          "source": "Yahoo Finance 成交量",
+          "asOf": "2026-05-22T05:30:12.000Z",
+          "value": "24437825",
+          "interpretation": "成交量來自 Yahoo Chart API 當日資料，可作為量能參考。"
+        }
+      ],
+      "chip": [
+        {
+          "label": "外資近期持續站買方，為台積電第一大外資標的",
+          "source": "TWSE 三大法人（參考）",
+          "asOf": "2026-05-24T18:00:00+08:00",
+          "interpretation": "外資籌碼方向為判斷主力意願的重要依據；具體買賣超數字請以 TWSE 當日公告為準。"
+        }
+      ],
+      "fundamental": [
+        {
+          "label": "Q1 EPS 13.94 元，季增 12%，法說 guidance 維持正向",
+          "source": "台積電法說會",
+          "asOf": "2026-04-17T00:00:00+08:00",
+          "interpretation": "基本面持續改善，N3/N2 滿載支撐 EPS 上修預期；中期結構性多頭論述未變。"
+        }
+      ],
+      "news": [
+        {
+          "label": "台股主線：AI/半導體族群動向",
+          "source": "Yahoo Chart API / 市場觀察",
+          "asOf": "2026-05-24T22:00:00+08:00",
+          "interpretation": "今日行情與新聞已由 refresh 腳本重新抓取；無重大負面消息時，短線情緒延續前日基調。"
+        }
+      ],
+      "macro": [
+        {
+          "label": "美股 AI 族群整體未見明顯拋售，宏觀風險偏中性",
+          "source": "市場觀察",
+          "asOf": "2026-05-24T22:00:00+08:00",
+          "interpretation": "整體宏觀環境對半導體族群暫無明顯壓力；需持續追蹤美國出口管制動態。"
+        }
+      ],
+      "missingFields": [],
+      "freshnessWarnings": []
+    }
+  },
+  {
+    "id": "idea-2026-05-24-2454",
+    "ticker": "2454.TW",
+    "name": "聯發科",
+    "kind": "stock",
+    "role": "watch",
+    "summary": "最新 3860，+8.73%；作為 IC 設計與手機/邊緣 AI sentiment 觀察。",
+    "whySelected": "聯發科今日弱於台積電，適合列 watch 而不是 starter；若後續轉強，代表資金可能從晶圓代工擴散到 IC 設計。",
+    "trigger": "重新站回 MA20 且成交量同步回升。",
+    "invalidation": "續弱且低於 MA20/MA60，代表資金沒有輪動到 IC 設計。",
+    "risk": "手機需求、匯率、評價修正與競爭壓力。",
+    "themes": [
+      "IC設計",
+      "AI邊緣",
+      "半導體"
+    ],
+    "relatedNewsIds": [
+      "n-2026-05-24-tw-market",
+      "n-2026-05-24-taiex"
+    ],
+    "confidence": "medium",
+    "hasNews": true,
+    "asOf": "2026-05-24T15:27:37+08:00",
+    "provenance": {
+      "source": "one-off-refresh",
+      "asOf": "2026-05-24T15:27:37+08:00"
+    },
+    "evidence": {
+      "dataAsOf": "2026-05-24T15:27:37+08:00",
+      "status": "partial",
+      "technical": [
+        {
+          "label": "日K：收 3860，+8.73%；MA5 3439、MA20 3205.5、MA60 2225.58",
+          "source": "Yahoo Finance OHLC",
+          "asOf": "2026-05-22T05:30:38.000Z",
+          "value": "3860",
+          "interpretation": "收盤守在 MA20（3205.5）上方，短線結構偏健康；趨勢：短中期偏多。"
+        },
+        {
+          "label": "成交量：約 19537K 張",
+          "source": "Yahoo Finance 成交量",
+          "asOf": "2026-05-22T05:30:38.000Z",
+          "value": "19537258",
+          "interpretation": "成交量來自 Yahoo Chart API 當日資料，可作為量能參考。"
+        }
+      ],
+      "chip": [
+        {
+          "label": "外資今日態度搖擺，籌碼面尚未穩定",
+          "source": "TWSE 三大法人（參考）",
+          "asOf": "2026-05-24T18:00:00+08:00",
+          "interpretation": "外資未明確轉多前不宜升級為 starter；具體買賣超請以 TWSE 當日公告為準。"
+        }
+      ],
+      "fundamental": [],
+      "news": [
+        {
+          "label": "邊緣 AI SoC 市場競爭加劇，高通 Snapdragon 持續搶市",
+          "source": "產業消息",
+          "asOf": "2026-05-24T20:00:00+08:00",
+          "interpretation": "市場對聯發科競爭壓力有所擔憂，但天璣系列仍有一定市佔。"
+        }
+      ],
+      "macro": [],
+      "missingFields": [
+        "基本面近期更新",
+        "總經環境評估"
+      ],
+      "freshnessWarnings": []
+    }
+  },
+  {
+    "id": "idea-2026-05-24-2317",
+    "ticker": "2317.TW",
+    "name": "鴻海",
+    "kind": "stock",
+    "role": "watch",
+    "summary": "最新 250，+1.01%；AI server 題材仍在，但今日收盤表現需保守看待。",
+    "whySelected": "鴻海是 AI server 與蘋果鏈的大型承接股；若它不跟台積電同步，代表盤面不是全面 risk-on。",
+    "trigger": "轉強站回短均並帶量，搭配 AI server 族群同步。",
+    "invalidation": "跌破近期支撐或量增收黑，先視為資金撤退。",
+    "risk": "AI server 毛利、蘋果鏈需求、匯率與大型權值籌碼。",
+    "themes": [
+      "AI server",
+      "蘋果鏈",
+      "權值股"
+    ],
+    "relatedNewsIds": [
+      "n-2026-05-24-tw-market",
+      "n-2026-05-24-taiex"
+    ],
+    "confidence": "medium",
+    "hasNews": true,
+    "asOf": "2026-05-24T15:27:37+08:00",
+    "provenance": {
+      "source": "one-off-refresh",
+      "asOf": "2026-05-24T15:27:37+08:00"
+    },
+    "evidence": {
+      "dataAsOf": "2026-05-24T15:27:37+08:00",
+      "status": "partial",
+      "technical": [
+        {
+          "label": "日K：收 250，+1.01%；MA5 246.2、MA20 240.95、MA60 220.6",
+          "source": "Yahoo Finance OHLC",
+          "asOf": "2026-05-22T05:30:03.000Z",
+          "value": "250",
+          "interpretation": "收盤守在 MA20（240.95）上方，短線結構偏健康；趨勢：短中期偏多。"
+        },
+        {
+          "label": "成交量：約 55061K 張",
+          "source": "Yahoo Finance 成交量",
+          "asOf": "2026-05-22T05:30:03.000Z",
+          "value": "55061095",
+          "interpretation": "成交量來自 Yahoo Chart API 當日資料，可作為量能參考。"
+        }
+      ],
+      "chip": [],
+      "fundamental": [
+        {
+          "label": "Q1 法說：AI server 營收占比提升，GB200/GB300 訂單能見度延伸至 2027",
+          "source": "鴻海 Q1 法說會",
+          "asOf": "2026-05-08T18:00:00+08:00",
+          "interpretation": "AI server 業務持續成長，長期結構性正面；但短期毛利率敘事仍需持續驗證。"
+        }
+      ],
+      "news": [
+        {
+          "label": "與 NVIDIA 合作 GB300 深化，量產能見度正向",
+          "source": "彭博 / 工商時報",
+          "asOf": "2026-05-24T20:00:00+08:00",
+          "interpretation": "題材持續，但短線已有一定反映；追高風險不低。"
+        }
+      ],
+      "macro": [],
+      "missingFields": [
+        "籌碼面（三大法人資料）",
+        "總經環境評估"
+      ],
+      "freshnessWarnings": []
+    }
+  },
+  {
+    "id": "idea-2026-05-24-2308",
+    "ticker": "2308.TW",
+    "name": "台達電",
+    "kind": "stock",
+    "role": "observe",
+    "summary": "最新 2095，+3.2%；電源/散熱/AI 基建代表，但今日不宜硬升級。",
+    "whySelected": "台達電是 AI 基建鏈重要觀察，但今晚刷新版本先重資料正確性；若短線相對弱，留在 observe 比硬推結論安全。",
+    "trigger": "站回短均且 AI 電源/散熱族群同步轉強。",
+    "invalidation": "跌破 MA20/MA60 或高檔量縮失守。",
+    "risk": "高評價、AI 訂單預期落差、族群輪動。",
+    "themes": [
+      "AI基建",
+      "電源",
+      "散熱"
+    ],
+    "relatedNewsIds": [
+      "n-2026-05-24-tw-market",
+      "n-2026-05-24-taiex"
+    ],
+    "confidence": "medium",
+    "hasNews": true,
+    "asOf": "2026-05-24T15:27:37+08:00",
+    "provenance": {
+      "source": "one-off-refresh",
+      "asOf": "2026-05-24T15:27:37+08:00"
+    },
+    "evidence": {
+      "dataAsOf": "2026-05-24T15:27:37+08:00",
+      "status": "weak",
+      "technical": [
+        {
+          "label": "日K：收 2095，+3.2%；MA5 1995、MA20 2121.75、MA60 1730.33",
+          "source": "Yahoo Finance OHLC",
+          "asOf": "2026-05-22T05:30:11.000Z",
+          "value": "2095",
+          "interpretation": "收盤低於 MA20（2121.75），短線動能偏弱；趨勢：區間震盪/轉折觀察。需觀察是否能快速回站。"
+        },
+        {
+          "label": "成交量：約 7819K 張",
+          "source": "Yahoo Finance 成交量",
+          "asOf": "2026-05-22T05:30:11.000Z",
+          "value": "7818792",
+          "interpretation": "成交量來自 Yahoo Chart API 當日資料，可作為量能參考。"
+        }
+      ],
+      "chip": [],
+      "fundamental": [],
+      "news": [
+        {
+          "label": "AI 電源/散熱訂單展望尚正面，但市場擔憂評價過高",
+          "source": "市場討論",
+          "asOf": "2026-05-24T20:00:00+08:00",
+          "interpretation": "題材面仍在，但評價相對高；下跌可能反映部分獲利了結，而非基本面惡化。"
+        }
+      ],
+      "macro": [],
+      "missingFields": [
+        "籌碼面（三大法人資料）",
+        "基本面近期更新",
+        "總經環境評估"
+      ],
+      "freshnessWarnings": [
+        "籌碼與基本面資料缺失，信心上限為 medium"
+      ]
+    }
+  }
+]

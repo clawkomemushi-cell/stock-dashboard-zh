@@ -1,0 +1,53 @@
+[
+  {
+    "id": "op-001",
+    "ticker": "3035.TW",
+    "name": "智原",
+    "kind": "stock",
+    "role": "watch",
+    "summary": "客製化 ASIC 設計領域切入 AI 推論晶片，法人籌碼開始異動。",
+    "whySelected": "智原（3035）與台積電合作 N5/N3 ASIC 設計服務，隨 AI 推論晶片需求爆發，客戶委託設計案件增加；本益比仍低於同業，具補漲空間。觀察法人持續買超是否延續。",
+    "trigger": "站上 520 且法人買超連 3 日。",
+    "invalidation": "跌破 495 (月線支撐) 且成交量萎縮。",
+    "risk": "ASIC 設計服務毛利率波動，單一大客戶集中風險。",
+    "themes": ["ASIC", "AI 推論", "IC 設計"],
+    "relatedNewsIds": [],
+    "confidence": "medium",
+    "hasNews": false,
+    "asOf": "2026-05-17T09:30:00+08:00"
+  },
+  {
+    "id": "op-002",
+    "ticker": "6669.TW",
+    "name": "緯穎",
+    "kind": "stock",
+    "role": "starter",
+    "summary": "超大規模 AI 伺服器 ODM，液冷機櫃出貨量加速，訂單能見度延伸至 2027。⚠️ 以下價位為 prototype 範例，非實際建議。",
+    "whySelected": "緯穎聚焦超高端 AI server，與微軟/META 直接合作，毛利率較同業高。液冷技術壁壘高，競爭者追趕需 2-3 年；現股價回測支撐，風報比合理。判斷依據：法人報告上調 EPS 預估 15%，本益比 22x 合理區間。",
+    "trigger": "（範例）回測 1680 不破且量縮整理 → 分批進場。",
+    "invalidation": "（範例）跌破 1600 (季線) 且量增 → 停損。",
+    "risk": "CSP 客戶 capex 砍單、液冷方案替代競爭。",
+    "themes": ["AI server", "液冷", "ODM"],
+    "relatedNewsIds": [],
+    "confidence": "high",
+    "hasNews": false,
+    "asOf": "2026-05-17T09:30:00+08:00"
+  },
+  {
+    "id": "op-003",
+    "ticker": "3529.TW",
+    "name": "力旺",
+    "kind": "stock",
+    "role": "observe",
+    "summary": "嵌入式非揮發記憶體 IP 授權，AI 端側推論晶片需求帶動授權金成長。",
+    "whySelected": "力旺授權 eMRAM/eFlash IP 給全球 IC 設計公司，每顆 AI 邊緣晶片均需記憶體 IP；授權金具備高重複性，無製造風險。股價仍在高點半腰，需等待整理完成再進場。觀察方向：Q2 授權金收入是否超預期。",
+    "trigger": "站回 1600 且外資轉買。",
+    "invalidation": "跌破 1480 (半年線)。",
+    "risk": "IP 授權談判週期長，新客戶開發不如預期。",
+    "themes": ["IP 授權", "eMRAM", "AI 邊緣"],
+    "relatedNewsIds": [],
+    "confidence": "medium",
+    "hasNews": false,
+    "asOf": "2026-05-17T09:30:00+08:00"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "ticker": "2317.TW",
+  "asOf": "2026-05-15T05:30:04.000Z",
+  "last": 248.5,
+  "changePct": 1.64,
+  "rangeDay": [
+    247,
+    260
+  ],
+  "range52w": [
+    151,
+    265
+  ],
+  "volume": 137389071,
+  "status": "ok",
+  "oneLineThesis": "Yahoo Chart API 更新：最新收盤 248.5，日漲跌 1.64%。"
+}

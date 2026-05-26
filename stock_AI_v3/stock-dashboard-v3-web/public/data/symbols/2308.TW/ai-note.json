@@ -1,0 +1,31 @@
+{
+  "ticker": "2308.TW",
+  "asOf": "2026-05-15T22:10:00+08:00",
+  "thesis": "台達電是 AI 基建/電源/散熱代表，今晚版本先列 observe。",
+  "whySelected": "最新收盤 2075，高價股波動較大；要等技術面重新轉強再升級。",
+  "trigger": "站回短均且 AI 電源/散熱族群同步轉強。",
+  "invalidation": "跌破 MA20/MA60 或高檔量縮失守。",
+  "bias": "neutral",
+  "confidence": "medium",
+  "riskScenarios": [
+    "高檔震盪",
+    "AI 題材預期修正",
+    "外資籌碼快速反向"
+  ],
+  "evidence": [
+    {
+      "label": "Yahoo Chart API OHLC",
+      "url": "https://tw.stock.yahoo.com/quote/2308.TW",
+      "kind": "quote"
+    },
+    {
+      "label": "Taiwan News market recap",
+      "url": "https://www.taiwannews.com.tw/en/news/6363034",
+      "kind": "news"
+    }
+  ],
+  "provenance": {
+    "source": "one-off-tonight-refresh",
+    "asOf": "2026-05-15T22:10:00+08:00"
+  }
+}

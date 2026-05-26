@@ -1,0 +1,50 @@
+import type { SystemHealthSnapshot } from "@/lib/contracts";
+
+export const MOCK_SYSTEM_HEALTH: SystemHealthSnapshot = {
+  asOf: "2026-04-26T13:30:00+08:00",
+  currentRun: {
+    id: "run-2026-04-26-13",
+    name: "midday-publish",
+    status: "ok",
+    startedAt: "2026-04-26T13:00:00+08:00",
+    finishedAt: "2026-04-26T13:04:12+08:00",
+    durationMs: 252_000,
+    message: "All slices published.",
+  },
+  lastSuccessfulPublishAt: "2026-04-26T13:04:12+08:00",
+  dataFreshness: [
+    { feed: "twse-quotes", lastUpdated: "2026-04-26T13:30:00+08:00", status: "fresh" },
+    { feed: "tpex-quotes", lastUpdated: "2026-04-26T13:30:00+08:00", status: "fresh" },
+    { feed: "mops-fundamentals", lastUpdated: "2026-04-25T20:00:00+08:00", status: "fresh" },
+    { feed: "news-stream", lastUpdated: "2026-04-26T11:30:00+08:00", status: "stale" },
+    { feed: "ai-synthesis", lastUpdated: "2026-04-26T13:00:00+08:00", status: "fresh" },
+  ],
+  warnings: ["news-stream lag > 60min,RSS 來源延遲。"],
+  staleData: ["news-stream"],
+  missingData: [],
+  routes: [
+    { path: "/dashboard", adapter: "DashboardAdapter", mode: "mock", status: "ok" },
+    { path: "/watchlist", adapter: "WatchlistAdapter", mode: "mock", status: "ok" },
+    { path: "/ideas", adapter: "IdeasAdapter", mode: "mock", status: "ok" },
+    { path: "/news", adapter: "NewsAdapter", mode: "mock", status: "ok" },
+    { path: "/today", adapter: "TimelineAdapter", mode: "mock", status: "ok" },
+    { path: "/symbols", adapter: "SymbolAdapter", mode: "mock", status: "ok" },
+    { path: "/symbols/[ticker]", adapter: "SymbolAdapter", mode: "mock", status: "ok" },
+    { path: "/reports/close/[date]", adapter: "ReportsAdapter", mode: "mock", status: "ok" },
+    { path: "/reports/weekly/[week]", adapter: "ReportsAdapter", mode: "mock", status: "ok" },
+    { path: "/system/health", adapter: "SystemAdapter", mode: "mock", status: "ok" },
+    {
+      path: "(api adapter not implemented)",
+      adapter: "*",
+      mode: "api",
+      status: "stub",
+      note: "Reserved for backend integration.",
+    },
+  ],
+  modes: {
+    dataMode: "mock",
+    aiMode: "published",
+    newsMode: "curated",
+    chartMode: "tradingview",
+  },
+};

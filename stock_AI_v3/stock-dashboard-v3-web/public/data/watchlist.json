@@ -1,0 +1,135 @@
+[
+  {
+    "id": "w-2330.TW",
+    "ticker": "2330.TW",
+    "name": "台積電",
+    "kind": "stock",
+    "market": "TW",
+    "tags": [
+      "台股",
+      "AI",
+      "半導體"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：2255，+1.12；短中期偏多。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": true,
+    "recentNewsCount": 1,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  },
+  {
+    "id": "w-2454.TW",
+    "ticker": "2454.TW",
+    "name": "聯發科",
+    "kind": "stock",
+    "market": "TW",
+    "tags": [
+      "台股"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：3860，+8.73；短中期偏多。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": true,
+    "recentNewsCount": 1,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  },
+  {
+    "id": "w-2317.TW",
+    "ticker": "2317.TW",
+    "name": "鴻海",
+    "kind": "stock",
+    "market": "TW",
+    "tags": [
+      "台股"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：250，+1.01；短中期偏多。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": true,
+    "recentNewsCount": 1,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  },
+  {
+    "id": "w-2308.TW",
+    "ticker": "2308.TW",
+    "name": "台達電",
+    "kind": "stock",
+    "market": "TW",
+    "tags": [
+      "台股"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：2095，+3.2；區間震盪/轉折觀察。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": true,
+    "recentNewsCount": 1,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  },
+  {
+    "id": "w-3034.TW",
+    "ticker": "3034.TW",
+    "name": "聯詠",
+    "kind": "stock",
+    "market": "TW",
+    "tags": [
+      "台股"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：485.5，+0.21；短中期偏多。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": false,
+    "recentNewsCount": 0,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  },
+  {
+    "id": "w-00919.TW",
+    "ticker": "00919.TW",
+    "name": "群益台灣精選高息",
+    "kind": "etf",
+    "market": "TW",
+    "tags": [
+      "ETF",
+      "台股"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：26.73，+0.75；短中期偏多。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": false,
+    "recentNewsCount": 0,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  },
+  {
+    "id": "w-00878.TW",
+    "ticker": "00878.TW",
+    "name": "國泰永續高股息",
+    "kind": "etf",
+    "market": "TW",
+    "tags": [
+      "ETF",
+      "台股"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：28.27，+2.02；短中期偏多。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": false,
+    "recentNewsCount": 0,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  },
+  {
+    "id": "w-0050.TW",
+    "ticker": "0050.TW",
+    "name": "元大台灣50",
+    "kind": "etf",
+    "market": "TW",
+    "tags": [
+      "ETF",
+      "台股"
+    ],
+    "addedAt": "2026-05-15T22:00:00+08:00",
+    "latestStatus": "今晚刷新：97.3，+1.51；短中期偏多。資料源 Yahoo Chart API。",
+    "latestStatusLevel": "ok",
+    "inIdeasToday": false,
+    "recentNewsCount": 0,
+    "lastUpdated": "2026-05-24T15:27:37+08:00"
+  }
+]
